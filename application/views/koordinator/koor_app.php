@@ -159,4 +159,3 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
-<?php $this->load->view('common/footer'); ?>

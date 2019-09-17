@@ -12,6 +12,7 @@
 <script src="<?php echo base_url(); ?>assets/theme/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url(); ?>assets/theme/plugins/jquery-ui/jquery-ui.min.js"></script>
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -22,9 +23,7 @@
 <script src="<?php echo base_url(); ?>assets/theme/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 <script src="<?php echo base_url(); ?>assets/theme/plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="<?php echo base_url(); ?>assets/theme/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/theme/plugins/jqvmap/maps/jquery.vmap.world.js"></script>
+
 <!-- jQuery Knob Chart -->
 <script src="<?php echo base_url(); ?>assets/theme/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
@@ -44,6 +43,16 @@
 <script src="<?php echo base_url(); ?>assets/theme/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/theme/dist/js/demo.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="<?=base_url("assets/theme/plugins/sweetalert2/sweetalert2.min.js")?>"></script>
+<script src="<?=base_url('assets/helper/main.js');?>"></script>
+<script>
+  <?php
+    if(isset($notification['message'])){
+      ?>
+        alert_toast('<?=$notification['message']?>','<?=$notification['status']?>','<?=$notification['config']?>');
+      <?php
+    }
+  ?>
+</script>
 </body>
 </html>

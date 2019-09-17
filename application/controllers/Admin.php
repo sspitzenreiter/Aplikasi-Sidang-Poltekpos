@@ -7,11 +7,15 @@ class Admin extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$con_config['navigation'] = "nav_admin";
+		if(isset($_SESSION['notification'])){
+			$con_config['notification'] = $_SESSION['notification'];
+		}
 		$this->con_config = $con_config;
 	}
 
 	public function index()
 	{
+		$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success', 'config'=>'top-end'));
 		$data['nav_active'] = "dashboard";
 		$data['nav_open'] = "";
 		$data = array_merge($data, $this->con_config);

@@ -202,4 +202,3 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
-<?php $this->load->view('common/footer'); ?>
