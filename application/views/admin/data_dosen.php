@@ -106,11 +106,14 @@
   			Swal.fire('Success', 'Data Submitted ', 'success');
   		});
   		$("#delete").click(function(){
-
-  			Swal.fire('Success', 'Data Deleted', 'success');
+        alert_toast('{"title":"Coba", "text":"Mau Delete?", "status":"warning","yes_text":"Ya", "no_text":"No", "function_call":"cobain", "type":"confirmation"}');
+  			//Swal.fire('Success', 'Data Deleted', 'success');
   		});
-
   	});
+    
+    function cobain(){
+      Swal.fire('Sukses', 'Data Berhasil Dihapus', 'success');
+    }
   </script>
         <div class="modal fade" id="modal-default">
         <div class="modal-dialog">

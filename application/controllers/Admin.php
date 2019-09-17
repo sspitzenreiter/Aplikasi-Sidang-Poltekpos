@@ -19,29 +19,28 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		//$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success')); //Alert Ditengah
+		//$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success', 'title'=>'Apa anjing')); //Alert Ditengah
 		$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success', 'type'=>'top-end')); //Alert di kanan atas
 		$data['nav_active'] = "dashboard";
 		$data['nav_open'] = "";
 		$data = array_merge($data, $this->con_config);
 		$this->load->view('admin/admin_dash', $data);
-		//$this->load->view('common/footer');
 	}
+
 	public function kegiatan()
 	{
 		$data['nav_active'] = "kegiatan";
 		$data['nav_open'] = "menu";
 		$data = array_merge($data, $this->con_config);
 		$this->load->view('admin/index', $data);
-		//$this->load->view('common/footer');
 	}
+
 	public function dosen()
 	{
 		$data['nav_active'] = "dosen";
 		$data['nav_open'] = "menu";
 		$data = array_merge($data, $this->con_config);
 		$this->load->view('admin/data_dosen', $data);
-		//$this->load->view('common/footer');
 	}
 
 }
