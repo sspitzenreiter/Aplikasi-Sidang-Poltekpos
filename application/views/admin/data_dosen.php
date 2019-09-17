@@ -205,7 +205,7 @@
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button id="button_upload" type="button" class="btn btn-primary">Upload</button>
+            <button id="button_upload" type="button" class="btn btn-primary" disabled>Upload</button>
           </div>
         </div>
         <!-- /.modal-content -->
@@ -227,11 +227,12 @@
   		});
       $('#button_upload').click(function(){
         var filename = document.getElementById('file-label').innerHTML;
-        alert_toast('{"title":"Apakah File Sudah Benar?", "text":"Nama File : '+filename+'", "status":"warning","yes_text":"Ya", "no_text":"Tidak", "function_call":"upload_data", "type":"confirmation"}');
+        alert_toast('{"title":"Apakah File Sudah Benar?", "message":"Nama File : '+filename+'", "status":"question","yes_text":"Ya", "no_text":"Tidak", "function_call":"upload_data", "type":"confirmation"}');
       });
       $('input[type=file]').change(function(e){
         var filename = e.target.files[0].name;
         document.getElementById('file-label').innerHTML=filename;
+        document.getElementById('button_upload').disabled=false;
       });
   	});
 
@@ -243,14 +244,15 @@
       var fd = new FormData();
       var files = $('#file')[0].files[0];
       fd.append('file', files);
+      alert_toast('{"type":"loading", "message":"Loading..."}');
       $.ajax({url:'<?=base_url('Admin/upload_data_excel')?>', type:'post', data: fd, contentType: false, processData: false, success: function(response){
         alert_toast(response);
         if(JSON.parse(response).status=="success"){
-          $('#modal-file').modal(toggle);
-        }else{
+          $('#modal-file').modal('toggle');
           document.getElementById('file').value=null;
-          document.getElementById('file-label').innerHTML="Choose File..";
+          document.getElementById('file-label').innerHTML="Choose File";
         }
+        document.getElementById('button_upload').disabled=true;
       }});
     }
   </script>

@@ -71,17 +71,30 @@ class Admin extends CI_Controller {
 				}
 				$this->load->model('M_Admin');
 				$total_masuk=0;
+				$error_code="";
 				foreach($data as $row){
-					$isi['npm'] = $row['npm'];
-					$isi['nama'] = $row['nama'];
-					if($this->M_Admin->insert_mahasiswa($isi)=='1'){
+					$isi[$col['a']] = $row[$col['a']];
+					$isi[$col['b']] = $row[$col['b']];
+					$query = $this->M_Admin->insert_mahasiswa($isi);
+					if($query['status']=='1'){
 						$total_masuk++;
+					}else if($query['message']['code']!='1062'){
+						$error_code=$query['message']['code'];
+						break;
 					}
 				}
 				if($total_masuk>0){
 					$notification['status'] = "success";
-					$notification['message'] = "Data sudah dimasukkan ke database";
+					$notification['message'] = "Data berhasil disinkron ke pusat data";
 					$notification['title'] = "YEAY!";
+				}else if($error_code!=""){
+					$notification['status'] = "error";
+					if($error_code=="1054"){
+						$notification['message'] = "Kolom di excel berbeda dengan yang di database, apa kamu dah dikasihtau apa nama kolomnya?";
+					}else{
+						$notification['message'] = "Apakah yang terjadi? (".$error_code.")";
+					}
+					$notification['title'] = "Oops..";
 				}else{
 					$notification['status'] = "warning";
 					$notification['message'] = "Data tidak ada yang masuk sama sekali ke database";

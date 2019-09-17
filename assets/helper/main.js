@@ -11,7 +11,7 @@ function alert_toast(value){
   }else if(alert_config.type=="confirmation"){
     Swal.fire({
       title: alert_config.title,
-      text: alert_config.text,
+      text: alert_config.message,
       type: alert_config.status,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -21,6 +21,14 @@ function alert_toast(value){
     }).then((result) => {
       if (result.value) {
         window[alert_config.function_call]();
+      }
+    });
+  }else if(alert_config.type=="loading"){
+    Swal.fire({
+      title:alert_config.message,
+      allowOutsideClick: false,
+      onBeforeOpen: ()=>{
+        Swal.showLoading()
       }
     });
   }else{
