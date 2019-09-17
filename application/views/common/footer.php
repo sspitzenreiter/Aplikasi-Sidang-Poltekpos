@@ -47,9 +47,9 @@
 <script src="<?=base_url('assets/helper/main.js');?>"></script>
 <script>
   <?php
-    if(isset($notification['message'])){
+    if(isset($notification)){
       ?>
-        alert_toast('<?=$notification['message']?>','<?=$notification['status']?>','<?=$notification['config']?>');
+        alert_toast('<?=$notification?>');
       <?php
     }
   ?>

@@ -9,13 +9,17 @@ class Admin extends CI_Controller {
 		$con_config['navigation'] = "nav_admin";
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
+			if(!isset($con_config['notification']['type'])){
+				$con_config['notification']['config'] = "normal";
+			}
+			$con_config['notification'] = json_encode($con_config['notification']);
 		}
 		$this->con_config = $con_config;
 	}
 
 	public function index()
 	{
-		$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success', 'config'=>'top-end'));
+		$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success', 'type'=>'top-end'));
 		$data['nav_active'] = "dashboard";
 		$data['nav_open'] = "";
 		$data = array_merge($data, $this->con_config);
