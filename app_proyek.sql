@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2019 at 11:50 AM
+-- Generation Time: Sep 17, 2019 at 12:21 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -55,11 +55,20 @@ CREATE TABLE `dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `dosen`
+-- Triggers `dosen`
 --
-
-INSERT INTO `dosen` (`nik`, `nama`, `tgl_lahir`, `tempat_lahir`, `alamat`, `judul_jurnal`, `link_jurnal`, `research_interest`) VALUES
-('3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+DELIMITER $$
+CREATE TRIGGER `user_add_dosen` AFTER INSERT ON `dosen` FOR EACH ROW begin
+insert into user values(new.nik, new.nik, 'M');
+end
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `user_delete_dosen` AFTER DELETE ON `dosen` FOR EACH ROW begin
+delete from user where id_user = old.nik;
+end
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -94,11 +103,20 @@ CREATE TABLE `mahasiswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mahasiswa`
+-- Triggers `mahasiswa`
 --
-
-INSERT INTO `mahasiswa` (`npm`, `nama`, `alamat`, `angkatan`, `tempat_lahir`, `tgl_lahir`) VALUES
-('1174035', NULL, NULL, NULL, NULL, NULL);
+DELIMITER $$
+CREATE TRIGGER `user_add_mahasiswa` AFTER INSERT ON `mahasiswa` FOR EACH ROW begin
+insert into user values(new.npm, new.npm, 'M');
+end
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `user_delete_mahasiswa` AFTER DELETE ON `mahasiswa` FOR EACH ROW begin
+delete from user where id_user = old.npm;
+end
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
