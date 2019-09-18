@@ -1,22 +1,28 @@
 <li class="nav-item">
   <a href="<?php echo base_url('admin/'); ?>" class="nav-link <?= nav_setting('dashboard', $nav_active); ?>">
-    <i class="far fa-circle nav-icon"></i>
+    <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>Dashboard</p>
   </a>
 </li>
-<li class="nav-item has-treeview <?=nav_setting('menu', $nav_open, 'open')?>">
+<li class="nav-item">
+  <a href="<?php echo base_url('admin/kegiatan'); ?>" class="nav-link <?= nav_setting('kegiatan', $nav_active); ?>">
+    <i class="far fa-circle nav-icon"></i>
+    <p>Kegiatan</p>
+  </a>
+</li>
+<li class="nav-item has-treeview <?=nav_setting('data_master', $nav_open, 'open')?>">
   <a href="<?php echo base_url(); ?>assets/theme/#" class="nav-link">
-    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <i class="nav-icon fas fa-circle"></i>
     <p>
-      Menu
+      Data Master
       <i class="right fas fa-angle-left"></i>
     </p>
   </a>
   <ul class="nav nav-treeview">
     <li class="nav-item">
-      <a href="<?php echo base_url('admin/kegiatan'); ?>" class="nav-link <?= nav_setting('kegiatan', $nav_active); ?>">
+      <a href="<?php echo base_url('admin/Mahasiswa'); ?>" class="nav-link <?= nav_setting('mahasiswa', $nav_active); ?>">
         <i class="far fa-circle nav-icon"></i>
-        <p>Kegiatan</p>
+        <p>Data Mahasiswa</p>
       </a>
     </li>
     <li class="nav-item">

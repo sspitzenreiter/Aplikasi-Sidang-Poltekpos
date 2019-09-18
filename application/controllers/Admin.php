@@ -1,11 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\Response;
+
 class Admin extends CI_Controller {
 
 	public $con_config;
 	public function __construct(){
 		parent::__construct();
+		$this->load->model('M_Admin');
 		$con_config['navigation'] = "nav_admin";
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
@@ -30,7 +37,7 @@ class Admin extends CI_Controller {
 	public function kegiatan()
 	{
 		$data['nav_active'] = "kegiatan";
-		$data['nav_open'] = "menu";
+		$data['nav_open'] = "";
 		$data = array_merge($data, $this->con_config);
 		$this->load->view('admin/index', $data);
 	}
@@ -38,9 +45,23 @@ class Admin extends CI_Controller {
 	public function dosen()
 	{
 		$data['nav_active'] = "dosen";
-		$data['nav_open'] = "menu";
+		$data['nav_open'] = "data_master";
+		$data['data_dosen'] = $this->M_Admin->get_dosen();
 		$data = array_merge($data, $this->con_config);
 		$this->load->view('admin/data_dosen', $data);
+	}
+
+	public function Mahasiswa(){
+		$data['nav_active'] = "mahasiswa";
+		$data['nav_open'] = "data_master";
+		$db_call = $this->M_Admin->get_mahasiswa();
+		if($db_call['status']=='1'){
+			$data['data_mahasiswa'] = $this->M_Admin->get_mahasiswa()['isi'];
+		}else{
+			$data['error_message'] = json_encode($db_call['message']);
+		}
+		$data = array_merge($data, $this->con_config);
+		$this->load->view('admin/data_mahasiswa', $data);
 	}
 
 	public function upload_data_excel(){
@@ -49,8 +70,7 @@ class Admin extends CI_Controller {
 			$file = $_FILES['file']['tmp_name'];
 			$filename = $_FILES['file']['name'];
 			if(substr($filename, -4)==".xls" || substr($filename, -5)==".xlsx"){
-				include APPPATH.'third_party/PHPExcel/PHPExcel.php';
-				$excelreader = new PHPExcel_Reader_Excel2007();
+				$excelreader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
 				$loadexcel = $excelreader->load($file); // Load file yang telah diupload ke folder excel
 				$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 
@@ -69,7 +89,6 @@ class Admin extends CI_Controller {
 					}
 					$numrow++;
 				}
-				$this->load->model('M_Admin');
 				$total_masuk=0;
 				$error_code="";
 				foreach($data as $row){
@@ -111,5 +130,22 @@ class Admin extends CI_Controller {
 			$notification['title'] = "Aduh";
 		}
 		echo json_encode($notification);
+	}
+
+	public function download_format_excel(){
+		$streamedResponse = new StreamedResponse();
+		$streamedResponse->setCallback(function(){
+			$spreadsheet = new Spreadsheet();
+			$sheet = $spreadsheet->getActiveSheet();
+			$sheet->setCellValue('A1','npm');
+			$sheet->setCellValue('B1','nama');
+			$writer = new Xlsx($spreadsheet);
+			$writer->save('php://output');
+		});
+
+		$streamedResponse->setStatusCode(Response::HTTP_OK);
+		$streamedResponse->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		$streamedResponse->headers->set('Content-Disposition', 'attachment; filename="format_kolom.xlsx"');
+		return $streamedResponse->send();
 	}
 }
