@@ -44,6 +44,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/theme/dist/js/demo.js"></script>
 <script src="<?=base_url("assets/theme/plugins/sweetalert2/sweetalert2.min.js")?>"></script>
+
+<script src="<?=base_url('assets/theme/')?>plugins/datatables/jquery.dataTables.js"></script>
+<script src="<?=base_url('assets/theme/')?>plugins/datatables/dataTables.bootstrap4.js"></script>
+
 <script src="<?=base_url('assets/helper/main.js');?>"></script>
 <script>
   <?php

@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1> Daftar Dosen</h1>
+            <h1> Daftar Mahasiswa</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -28,27 +28,26 @@
           <!-- /.col -->
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header">
-              	<div class="col-md-2">
-                   <button id="tolol" data-toggle="modal" data-target="#modal-file" type="button" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> ADD</button>
-               </div>
-
-                <div class="card-tools">
-                  <ul class="pagination pagination-sm m-0 float-right">
-                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                  </ul>
-                </div>
-              </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
-                <table class="table">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-2">
+                     <button data-toggle="modal" data-target="#modal-file" type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-plus"></i> ADD</button>
+                  </div>
+                  <div class="col-md-7"></div>
+                  <div class="col-md-3 text-right">
+                    <div class="input-group">
+                      <input type="text" id="mhs_search" class="form-control form-control-sm">
+                      <div class="input-group-append">
+                        <button class="btn btn-default btn-sm" disabled><i class="fas fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <table class="table" id="data-mahasiswa">
                   <thead>
                     <tr>
-                      <th style="width: 10px">#</th>
+                      <th>#</th>
                       <th>NPM</th>
                       <th>Nama</th>
                       <th>Alamat</th>
@@ -58,26 +57,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php
-                    if(!isset($data_mahasiswa)){
-                      ?>
-                      <tr>
-                        <td colspan="7" align="center" style="background-color:#ffffff;">Data tidak bisa dimuat</td>
-                      </tr>
-                      <?php
-                    }else{
-                    foreach($data_mahasiswa->result() as $row){ ?>
-                    <tr>
-                      <td>1.</td>
-                      <td><?=$row->npm?></td>
-                      <td><?=$row->nama?></td>
-                      <td><?=$row->alamat?></td>
-                      <td><?=$row->angkatan?></td>
-                      <td><?=$row->tempat_lahir.','.$row->tgl_lahir?></td>
-                      <td><button id="edit" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-warning"> EDIT</button>
-                      <button id="delete"  type="button" class="btn btn-block btn-danger"> DELETE</button></td>
-                    </tr>
-                    <?php }} ?>
+
                   </tbody>
                 </table>
               </div>
@@ -160,7 +140,7 @@
         var filename = document.getElementById('file-label').innerHTML;
         var notif_config = {
           title:"Apakah File Sudah Benar?",
-          message:"Nama File : '"+filename"'",
+          message:"Nama File : '"+filename+"'",
           status:"question",
           yes_text:"Ya",
           no_text:"Tidak",
@@ -175,6 +155,49 @@
         document.getElementById('button_upload').disabled=false;
       });
   	});
+
+    var mhs_table = $('#data-mahasiswa').DataTable({
+      "ajax": {
+        "type":"GET",
+        "url":"<?=base_url('admin/Mahasiswa_Data')?>",
+        "dataSrc": function(json){
+          var dump = JSON.parse(JSON.stringify(json));
+          if(dump.data!=null){
+            return json.data;
+          }else if(dump.error_message!=null){
+            var alert_config = {
+              type: "normal",
+              title: "Aww..",
+              message: "Saat memanggil data, terdapat error : '"+dump.error_message.message+"' (Code : "+dump.error_message.code+")",
+              status: "error"
+            };
+            alert_toast(JSON.stringify(alert_config));
+            return '';
+          }
+        }
+      },
+      "columns": [
+        {"data": "npm"},
+        {"data": "npm"},
+        {"data": "nama"},
+        {"data": "alamat"},
+        {"data": "angkatan"},
+        {"data": "tempat_lahir"}
+      ],
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": false,
+      "autoWidth": false,
+      "order": [[ 0, 'asc' ]],
+      "dom":'t<"bottom"p>'
+    });
+
+
+    $("#mhs_search").on('keyup', function(){
+      mhs_table.search( this.value ).draw();
+    });
 
     $('#button_download_format').click(function(){
       document.location = '<?=base_url('Admin/download_format_excel')?>';
@@ -207,6 +230,8 @@
         }
       });
     }
+
+
 
     <?php if(isset($error_message)){ ?>
       var error = JSON.parse('<?=str_replace("'", "", $error_message)?>');

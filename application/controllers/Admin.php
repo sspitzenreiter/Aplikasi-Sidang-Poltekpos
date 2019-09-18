@@ -54,14 +54,19 @@ class Admin extends CI_Controller {
 	public function Mahasiswa(){
 		$data['nav_active'] = "mahasiswa";
 		$data['nav_open'] = "data_master";
-		$db_call = $this->M_Admin->get_mahasiswa();
-		if($db_call['status']=='1'){
-			$data['data_mahasiswa'] = $this->M_Admin->get_mahasiswa()['isi'];
-		}else{
-			$data['error_message'] = json_encode($db_call['message']);
-		}
 		$data = array_merge($data, $this->con_config);
 		$this->load->view('admin/data_mahasiswa', $data);
+	}
+
+	public function Mahasiswa_Data(){
+		$this->load->model('M_Mahasiswa');
+		$db_call = $this->M_Mahasiswa->get_mahasiswa();
+		if($db_call['status']=='1'){
+			$data['data'] = $db_call['isi']->result();
+		}else{
+			$data['error_message'] = $db_call['message'];
+		}
+		echo json_encode($data);
 	}
 
 	public function upload_data_excel(){
