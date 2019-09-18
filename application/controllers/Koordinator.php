@@ -37,5 +37,13 @@ class Koordinator extends CI_Controller {
 		$this->load->view('koordinator/koor_jadwal',$data);
 		//$this->load->view('common/footer');
 	}
+	public function nilai()
+	{
+		$data['nav_active'] = "nilai";
+		$data['nav_open'] = "menu";
+		$data = array_merge($data, $this->con_config);
+		$this->load->view('koordinator/koor_nilai',$data);
+		//$this->load->view('common/footer');
+	}
 
 }

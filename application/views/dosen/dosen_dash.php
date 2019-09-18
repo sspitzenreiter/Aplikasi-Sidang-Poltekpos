@@ -90,7 +90,7 @@
                 <button type="button" data-toggle="modal" data-target="#modal-default" class="btn btn-info float-right"><i class="fas fa-plus"></i> ADD</button>
               </div>
             </div>
-  <?php $this->load->view('common/footer_koor');?>
+  <?php $this->load->view('common/footer');?>
   <script>
     $(function(){
       $("#save").click(function(){

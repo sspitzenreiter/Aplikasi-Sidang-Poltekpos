@@ -218,10 +218,7 @@
 
 
             <!-- general form elements -->
-<?php 
-      if($mahasiswa){
-        foreach($mahasiswa as $mahasiswa){
-    ?>
+
 
               <!-- /.card-header -->
               <!-- form start -->
@@ -230,7 +227,7 @@
                   <div class="col-sm-2">
                 <div class="form-group" >
                     <label >NPM</label>
-                    <input  type="text" class="form-control" value="<?php echo $mahasiswa->npm; ?>" name="txt_hidden" placeholder="NPM"  readonly>
+                    <input  type="text" class="form-control" value="npm; ?>" name="txt_hidden" placeholder="NPM"  readonly>
                   </div>
                 </div>
                 <div class ="col-sm-2">
@@ -238,7 +235,7 @@
                 <div class="col-sm-6">
                 <div class="form-group">
                     <label >NAMA</label>
-                    <input  type="text" class="form-control" value="<?php echo $mahasiswa->nama; ?>"name="txt_namamahasiswa" placeholder="NONE" width="10px" >
+                    <input  type="text" class="form-control" value="nama; ?>"name="txt_namamahasiswa" placeholder="NONE" width="10px" >
                   </div>
                 </div>
               </div>
@@ -246,7 +243,7 @@
               <div class="col-sm-10">
                 <div class="form-group">
                     <label >ALAMAT</label>
-                    <input  type="text" class="form-control" value="<?php echo $mahasiswa->alamat; ?>"name="txt_alamatmahasiswa" placeholder="NONE" width="10px" >
+                    <input  type="text" class="form-control" value="alamat; ?>"name="txt_alamatmahasiswa" placeholder="NONE" width="10px" >
                   </div>
                 </div>
               </div>
@@ -254,7 +251,7 @@
                 <div class="col-sm-2">
                 <div class="form-group" >
                     <label >Angkatan</label>
-                    <input  type="text" class="form-control" value="<?php echo $mahasiswa->angkatan; ?>"name="txt_angkatanmahasiswa" placeholder="NONE" >
+                    <input  type="text" class="form-control" value="angkatan; ?>"name="txt_angkatanmahasiswa" placeholder="NONE" >
                   </div>
                 </div>
               </div>
@@ -262,13 +259,13 @@
                   <div class="col-sm-3">
                 <div class="form-group" >
                     <label >Tempat Lahir</label>
-                    <input  type="text" class="form-control" value="<?php echo $mahasiswa->tempat_lahir; ?>" name="txt_tmptlhrmahasiswa" placeholder="NONE" >
+                    <input  type="text" class="form-control" value="tempat_lahir; ?>" name="txt_tmptlhrmahasiswa" placeholder="NONE" >
                   </div>
                 </div>
                  <div class="col-sm-3">
                 <div class="form-group" >
                     <label >Tanggal Lahir</label>
-                    <input  type="date" class="form-control" value="<?php echo $mahasiswa->tgl_lahir; ?>"name="txt_tgllhrmahasiswa" placeholder="NONE" >
+                    <input  type="date" class="form-control" value="tgl_lahir; ?>"name="txt_tgllhrmahasiswa" placeholder="NONE" >
                   </div>
                 </div>
                 </div>
@@ -290,9 +287,5 @@
         <!-- /.modal-dialog -->
       </div>
     </div>
-<?php
-        }
-      }
-    ?>
 
      

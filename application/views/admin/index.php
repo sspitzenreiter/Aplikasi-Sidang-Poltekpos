@@ -54,6 +54,7 @@
                       <th>Tanggal Selesai</th>
                       <th>Dosen Koordinator</th>
                       <th>Tahun Ajaran</th>
+                      <th>Semester</th>
                       <th>Prodi</th>
                       <th>Status</th>
                       <th style="width: 50px">Action</th>
@@ -68,8 +69,10 @@
                         15/02/2019
                       </td>
                       <td>15/03/2019</td>
+                      
                       <td>Tia</td>
                       <td>2019/2020</td>
+                      <td>2</td>
                       <td>D4 Teknik Informatika</td>
                       <td>Berjalan</td>
                       <td><button id="edit" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-warning"> EDIT</button>
@@ -85,6 +88,7 @@
                       <td>15/03/2019</td>
                       <td>Upi</td>
                       <td>2018/2019</td>
+                      <td>3</td>
                       <td>D4 Teknik Informatika</td>
                       <td>Selesai</td>
                       <td><button id="edit" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-warning"> EDIT</button>
@@ -100,6 +104,7 @@
                       <td>15/03/2019</td>
                       <td>Bin</td>
                       <td>2017/2018</td>
+                      <td>5</td>
                       <td>D4 Teknik Informatika</td>
                       <td>Berjalan</td>
                       <td><button id="edit" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-warning"> EDIT</button>
@@ -208,6 +213,19 @@
                     <option>2021/2022</option>
                     <option>2022/2023</option>
                     <option>2023/2024</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Semester</label>
+                  <select class="form-control select2" style="width: 100%;">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
                   </select>
                 </div>
                   <div class="form-group">

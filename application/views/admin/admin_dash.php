@@ -73,7 +73,7 @@
                       <input type="checkbox" value="" name="todo3" id="todoCheck3">
                       <label for="todoCheck3"></label>
                     </div>
-                    <span class="text">Proyek 3 (207/2018)</span>
+                    <span class="text">Proyek 3 (2017/2018)</span>
                     <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
                     <div class="tools">
                       <i class="fas fa-edit"></i>
@@ -173,6 +173,19 @@
                     <option>2021/2022</option>
                     <option>2022/2023</option>
                     <option>2023/2024</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Semester</label>
+                  <select class="form-control select2" style="width: 100%;">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
                   </select>
                 </div>
                   <div class="form-group">

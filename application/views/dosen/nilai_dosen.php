@@ -54,6 +54,7 @@
                       <th>Pembimbing</th>
                       <th>Penguji</th>
                       <th>Nilai</th>
+                      <th>Status Nilai</th>
                       <th style="width: 50px">Action</th>
                       <th style="width: 50px"></th>
                     </tr>
@@ -68,6 +69,7 @@
                       <td>Bin</td>
                       <td>Tia</td>
                       <td>A</td>
+                      <td>Belum Tetap</td>
                        <td><button id="buat" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-success"> Nilai</button>
                       </td>
 
@@ -81,7 +83,7 @@
                       <td>-</td>
                       <td>-</td>
                       <td>-</td>
-
+                      <td>-</td>
                        <td><button id="buat" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-success">Nilai</button>
                       </td>
 
@@ -95,7 +97,7 @@
                       <td>-</td>
                       <td>-</td>
                       <td>-</td>
-
+                      <td>-</td>
                        <td><button id="buat" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-success"> Nilai</button>
                       </td>
 
