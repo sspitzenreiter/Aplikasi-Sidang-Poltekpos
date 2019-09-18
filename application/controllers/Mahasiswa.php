@@ -16,7 +16,14 @@ class Mahasiswa extends CI_Controller {
 		
 		$data['nav_active'] = "dashboard";
 		$data['nav_open'] = "";
+		$db_call = $this->m->get_mahasiswa();
+		if($db_call['status']=='1'){
+			$data['data_mahasiswa'] = $this->m->get_mahasiswa()['isi'];
+		}else{
+			$data['error_message'] = json_encode($db_call['message']);
+		}
 		$data = array_merge($data, $this->con_config);
+
 		$this->load->view('mahasiswa/mhsw_dash',$data);
 		//$this->load->view('common/footer');
 	}

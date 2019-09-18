@@ -50,7 +50,8 @@
     </section>
 
     <!-- Main content -->
-
+<?php
+foreach($data_mahasiswa->result() as $row){ ?>
 <section class="col-lg-12 connectedSortable">
    <div class="container-fluid">
                  <div class="col-md-12">
@@ -71,7 +72,7 @@
                   <div class="col-sm-2">
                 <div class="form-group" >
                     <label >NPM</label>
-                    <input style ="border:none" type="text" class="form-control" id="exampleInputEmail1" placeholder="NPM" readonly>
+                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->npm; ?>" id="exampleInputEmail1" placeholder="NPM" readonly>
                   </div>
                 </div>
                 <div class ="col-sm-2">
@@ -79,7 +80,7 @@
                 <div class="col-sm-6">
                 <div class="form-group">
                     <label >NAMA</label>
-                    <input style ="border:none" type="text" class="form-control" id="exampleInputEmail1" placeholder="NONE" width="10px" readonly>
+                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->nama; ?>"id="exampleInputEmail1" placeholder="NONE" width="10px" readonly>
                   </div>
                 </div>
               </div>
@@ -87,7 +88,7 @@
               <div class="col-sm-10">
                 <div class="form-group">
                     <label >ALAMAT</label>
-                    <input style ="border:none" type="text" class="form-control" id="exampleInputEmail1" placeholder="NONE" width="10px" readonly>
+                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->alamat; ?>"id="exampleInputEmail1" placeholder="NONE" width="10px" readonly>
                   </div>
                 </div>
               </div>
@@ -95,7 +96,7 @@
                 <div class="col-sm-2">
                 <div class="form-group" >
                     <label >Angkatan</label>
-                    <input style ="border:none" type="text" class="form-control" id="exampleInputEmail1" placeholder="NONE" readonly>
+                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->angkatan; ?>"id="exampleInputEmail1" placeholder="NONE" readonly>
                   </div>
                 </div>
               </div>
@@ -103,13 +104,13 @@
                   <div class="col-sm-3">
                 <div class="form-group" >
                     <label >Tempat Lahir</label>
-                    <input style ="border:none" type="text" class="form-control" id="exampleInputEmail1" placeholder="NONE" readonly>
+                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->tempat_lahir; ?>"id="exampleInputEmail1" placeholder="NONE" readonly>
                   </div>
                 </div>
                  <div class="col-sm-3">
                 <div class="form-group" >
                     <label >Tanggal Lahir</label>
-                    <input style ="border:none" type="date" class="form-control" id="exampleInputEmail1" placeholder="NONE" readonly>
+                    <input style ="border:none" type="date" class="form-control" value ="<?php echo $row->tgl_lahir; ?>"id="exampleInputEmail1" placeholder="NONE" readonly>
                   </div>
                 </div>
                 </div>
@@ -118,6 +119,7 @@
           </div>
         </div>
 </section>
+<?php } ?>
 
     <!-- /.content -->
   </div>
@@ -192,7 +194,8 @@
 
               </form>
 
-
+<?php
+foreach($data_mahasiswa->result() as $row){ ?>
 
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -227,7 +230,7 @@
                   <div class="col-sm-2">
                 <div class="form-group" >
                     <label >NPM</label>
-                    <input  type="text" class="form-control" value="npm; ?>" name="txt_hidden" placeholder="NPM"  readonly>
+                    <input  type="text" class="form-control" value="<?php echo $row->npm; ?>" name="txt_hidden" placeholder="NPM"  readonly>
                   </div>
                 </div>
                 <div class ="col-sm-2">
@@ -235,7 +238,7 @@
                 <div class="col-sm-6">
                 <div class="form-group">
                     <label >NAMA</label>
-                    <input  type="text" class="form-control" value="nama; ?>"name="txt_namamahasiswa" placeholder="NONE" width="10px" >
+                    <input  type="text" class="form-control" value="<?php echo $row->nama; ?>"name="txt_namamahasiswa" placeholder="NONE" width="10px" >
                   </div>
                 </div>
               </div>
@@ -243,7 +246,7 @@
               <div class="col-sm-10">
                 <div class="form-group">
                     <label >ALAMAT</label>
-                    <input  type="text" class="form-control" value="alamat; ?>"name="txt_alamatmahasiswa" placeholder="NONE" width="10px" >
+                    <input  type="text" class="form-control" value="<?php echo $row->alamat; ?>"name="txt_alamatmahasiswa" placeholder="NONE" width="10px" >
                   </div>
                 </div>
               </div>
@@ -251,7 +254,7 @@
                 <div class="col-sm-2">
                 <div class="form-group" >
                     <label >Angkatan</label>
-                    <input  type="text" class="form-control" value="angkatan; ?>"name="txt_angkatanmahasiswa" placeholder="NONE" >
+                    <input  type="text" class="form-control" value="<?php echo $row->angkatan; ?>"name="txt_angkatanmahasiswa" placeholder="NONE" >
                   </div>
                 </div>
               </div>
@@ -259,13 +262,13 @@
                   <div class="col-sm-3">
                 <div class="form-group" >
                     <label >Tempat Lahir</label>
-                    <input  type="text" class="form-control" value="tempat_lahir; ?>" name="txt_tmptlhrmahasiswa" placeholder="NONE" >
+                    <input  type="text" class="form-control" value="<?php echo $row->tempat_lahir; ?>" name="txt_tmptlhrmahasiswa" placeholder="NONE" >
                   </div>
                 </div>
                  <div class="col-sm-3">
                 <div class="form-group" >
                     <label >Tanggal Lahir</label>
-                    <input  type="date" class="form-control" value="tgl_lahir; ?>"name="txt_tgllhrmahasiswa" placeholder="NONE" >
+                    <input  type="date" class="form-control" value="<?php echo $row->tgl_lahir; ?>"name="txt_tgllhrmahasiswa" placeholder="NONE" >
                   </div>
                 </div>
                 </div>
@@ -279,7 +282,7 @@
 
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button id="saveprof" type="button" class="btn btn-primary">Save changes</button>
+              <button id="saveprof" type="submit" class="btn btn-primary" value="Update">Save changes</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -288,4 +291,4 @@
       </div>
     </div>
 
-     
+     <?php } ?>
