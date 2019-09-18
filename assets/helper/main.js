@@ -5,7 +5,7 @@ function alert_toast(value){
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 9000
+      timer: 3000
     });
     Toast.fire({type:alert_config.status, title:alert_config.message});
   }else if(alert_config.type=="confirmation"){

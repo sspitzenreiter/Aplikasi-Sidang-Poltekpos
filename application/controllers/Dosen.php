@@ -7,6 +7,13 @@ class Dosen extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$con_config['navigation'] = "nav_dosen";
+		if(isset($_SESSION['notification'])){
+			$con_config['notification'] = $_SESSION['notification'];
+			if(!isset($con_config['notification']['type'])){
+				$con_config['notification']['type'] = "normal";
+			}
+			$con_config['notification'] = json_encode($con_config['notification']);
+		}
 		$this->con_config = $con_config;
 	}
 

@@ -6,14 +6,21 @@ class Mahasiswa extends CI_Controller {
 	public $con_config;
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('m_mahasiswa', 'm');
+		$this->load->model('M_Mahasiswa', 'm');
 		$con_config['navigation'] = "nav_mhsw";
+		if(isset($_SESSION['notification'])){
+			$con_config['notification'] = $_SESSION['notification'];
+			if(!isset($con_config['notification']['type'])){
+				$con_config['notification']['type'] = "normal";
+			}
+			$con_config['notification'] = json_encode($con_config['notification']);
+		}
 		$this->con_config = $con_config;
 	}
 
 	public function index()
 	{
-		
+
 		$data['nav_active'] = "dashboard";
 		$data['nav_open'] = "";
 		$db_call = $this->m->get_mahasiswa();
@@ -44,12 +51,26 @@ class Mahasiswa extends CI_Controller {
 		//$this->load->view('common/footer');
 	}
 	public function update(){
-		$result = $this->m->update();
-		if($result){
-			$this->session->set_flashdata('success_msg', 'Record updated successfully');
+		$result = $this->m->update($this->input->post());
+		if($result['status']=='1'){
+			$this->session->set_flashdata(
+				'notification',
+				array(
+					'message'=>'Update Berhasil',
+					'status'=>'success',
+					'type'=>'top-end'
+				)
+			);
 		}else{
-			$this->session->set_flashdata('error_msg', 'Faill to update record');
+			$this->session->set_flashdata(
+				'notification',
+				array(
+					'message'=>'Update Gagal',
+					'status'=>'success',
+					'type'=>'top-end'
+				)
+			);
 		}
-		redirect(base_url('index'));
+		redirect(base_url('Mahasiswa/'));
 	}
 }

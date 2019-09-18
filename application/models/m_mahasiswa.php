@@ -35,22 +35,21 @@ class M_mahasiswa extends CI_Model{
 		}
 	}
 
-public function update(){
-		$npm = $this->input->post('txt_hidden');
+public function update($data){
+		$npm = $data['txt_hidden'];
 		$field = array(
-			'nama'=>$this->input->post('txt_namamahasiswa'),
-			'alamat'=>$this->input->post('txt_alamatmahasiswa'),
-			'angkatan'=>$this->input->post('txt_angkatanmahasiswa'),
-			'tempat_lahir'=>$this->input->post('txt_tmptlhrmahasiswa'),
-			'tgl_lahir'=>$this->input->post('txt_tgllhrmahasiswa')
+			'nama'=>$data['txt_namamahasiswa'],
+			'alamat'=>$data['txt_alamatmahasiswa'],
+			'angkatan'=>$data['txt_angkatanmahasiswa'],
+			'tempat_lahir'=>$data['txt_tmptlhrmahasiswa'],
+			'tgl_lahir'=>$data['txt_tgllhrmahasiswa']
 			);
-		$this->db->where('npm', '1174040');
-		$this->db->update('mahasiswa', $field);
-		echo $this->db->last_query();extit;
-		if($this->db->affected_rows() > 0){
-			return true;
+		$this->db->where('npm', $npm);
+		$isi = $this->db->update('mahasiswa', $field);
+    if($isi){
+			return array('status'=>'1');
 		}else{
-			return false;
+			return array('status'=>'0', 'message'=>$this->db->error());
 		}
 	}
 

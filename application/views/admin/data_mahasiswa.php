@@ -144,12 +144,30 @@
   			Swal.fire('Success', 'Data Submitted ', 'success');
   		});
   		$("#delete").click(function(){
-        alert_toast('{"title":"Coba", "text":"Mau Delete?", "status":"warning","yes_text":"Ya", "no_text":"No", "function_call":"cobain", "type":"confirmation"}');
+        var notif_config = {
+          title:"Coba",
+          text:"Mau Delete?",
+          status:"warning",
+          yes_text:"Ya",
+          no_text:"Tidak",
+          function_call:"cobain",
+          type:"confirmation"
+        };
+        alert_toast(JSON.stringify(notif_config));
   			//Swal.fire('Success', 'Data Deleted', 'success');
   		});
       $('#button_upload').click(function(){
         var filename = document.getElementById('file-label').innerHTML;
-        alert_toast('{"title":"Apakah File Sudah Benar?", "message":"Nama File : '+filename+'", "status":"question","yes_text":"Ya", "no_text":"Tidak", "function_call":"upload_data", "type":"confirmation"}');
+        var notif_config = {
+          title:"Apakah File Sudah Benar?",
+          message:"Nama File : '"+filename"'",
+          status:"question",
+          yes_text:"Ya",
+          no_text:"Tidak",
+          function_call:"upload_data",
+          type:"confirmation"
+        };
+        alert_toast(JSON.stringify(notif_config));
       });
       $('input[type=file]').change(function(e){
         var filename = e.target.files[0].name;
@@ -170,20 +188,34 @@
       var fd = new FormData();
       var files = $('#file')[0].files[0];
       fd.append('file', files);
-      alert_toast('{"type":"loading", "message":"Loading..."}');
-      $.ajax({url:'<?=base_url('Admin/upload_data_excel')?>', type:'post', data: fd, contentType: false, processData: false, success: function(response){
-        alert_toast(response);
-        if(JSON.parse(response).status=="success"){
-          $('#modal-file').modal('toggle');
-          document.getElementById('file').value=null;
-          document.getElementById('file-label').innerHTML="Choose File";
+      var notif_config = {type:"loading", message:"Loading..."};
+      alert_toast(JSON.stringify(notif_config));
+      $.ajax({
+        url:'<?=base_url('Admin/upload_data_excel')?>',
+        type:'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(response){
+          alert_toast(response);
+          if(JSON.parse(response).status=="success"){
+            $('#modal-file').modal('toggle');
+            document.getElementById('file').value=null;
+            document.getElementById('file-label').innerHTML="Choose File";
+          }
+          document.getElementById('button_upload').disabled=true;
         }
-        document.getElementById('button_upload').disabled=true;
-      }});
+      });
     }
 
     <?php if(isset($error_message)){ ?>
       var error = JSON.parse('<?=str_replace("'", "", $error_message)?>');
-      alert_toast('{"title":"Aww..", "message":"Data tidak bisa diambil, Error yang didapat : '+error.message+' ('+error.code+')", "type":"normal", "status":"error"}');
+      var notif_config = {
+        title:"Aww...",
+        message:"Data tidak bisa diambil, Error yang didapat : '"+error.message+" ("+error.code+")'",
+        type:"normal",
+        status:"error"
+      };
+      alert_toast(JSON.stringify(notif_config));
     <?php } ?>
   </script>

@@ -60,7 +60,7 @@ foreach($data_mahasiswa->result() as $row){ ?>
                 <div class="row">
 
                 <h5 style="font-size:30px">Profile</h5>
-              
+
               <div class="col-9">
               </div>
               <div class="col-sm-2">
@@ -131,8 +131,7 @@ foreach($data_mahasiswa->result() as $row){ ?>
   			Swal.fire('Success', 'Data Submitted ', 'success');
   		});
       $("#saveprof").click(function(){
-        $('#modal2').modal('toggle');
-        Swal.fire('Success', 'Data Submitted ', 'success');
+        
       });
       $('#timepicker').datetimepicker({
       format: 'LT'
@@ -194,8 +193,7 @@ foreach($data_mahasiswa->result() as $row){ ?>
 
               </form>
 
-<?php
-foreach($data_mahasiswa->result() as $row){ ?>
+
 
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -207,6 +205,9 @@ foreach($data_mahasiswa->result() as $row){ ?>
         <!-- /.modal-dialog -->
       </div>
     </div>
+
+    <?php
+      foreach($data_mahasiswa->result() as $row){ ?>
     <div class="modal fade" id="modal2">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -218,72 +219,59 @@ foreach($data_mahasiswa->result() as $row){ ?>
               </button>
             </div>
             <div class="modal-body">
-
-
-            <!-- general form elements -->
-
-
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form  action="<?php echo base_url('mahasiswa/update') ?>" method="post">
+              <form action="<?php echo base_url('Mahasiswa/update') ?>" method="post">
                 <div class="row">
                   <div class="col-sm-2">
-                <div class="form-group" >
-                    <label >NPM</label>
-                    <input  type="text" class="form-control" value="<?php echo $row->npm; ?>" name="txt_hidden" placeholder="NPM"  readonly>
+                    <div class="form-group" >
+                      <label >NPM</label>
+                      <input  type="text" class="form-control" value="<?php echo $row->npm; ?>" name="txt_hidden" placeholder="NPM"  readonly>
+                    </div>
+                  </div>
+                  <div class ="col-sm-2">
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label >NAMA</label>
+                      <input  type="text" class="form-control" value="<?php echo $row->nama; ?>"name="txt_namamahasiswa" placeholder="NONE" width="10px" >
+                    </div>
                   </div>
                 </div>
-                <div class ="col-sm-2">
-              </div>
-                <div class="col-sm-6">
-                <div class="form-group">
-                    <label >NAMA</label>
-                    <input  type="text" class="form-control" value="<?php echo $row->nama; ?>"name="txt_namamahasiswa" placeholder="NONE" width="10px" >
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-group">
+                      <label >ALAMAT</label>
+                      <input  type="text" class="form-control" value="<?php echo $row->alamat; ?>"name="txt_alamatmahasiswa" placeholder="NONE" width="10px" >
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-              <div class="col-sm-10">
-                <div class="form-group">
-                    <label >ALAMAT</label>
-                    <input  type="text" class="form-control" value="<?php echo $row->alamat; ?>"name="txt_alamatmahasiswa" placeholder="NONE" width="10px" >
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group" >
+                      <label >Angkatan</label>
+                      <input  type="text" class="form-control" value="<?php echo $row->angkatan; ?>"name="txt_angkatanmahasiswa" placeholder="NONE" >
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-2">
-                <div class="form-group" >
-                    <label >Angkatan</label>
-                    <input  type="text" class="form-control" value="<?php echo $row->angkatan; ?>"name="txt_angkatanmahasiswa" placeholder="NONE" >
-                  </div>
-                </div>
-              </div>
                 <div class="row">
                   <div class="col-sm-3">
-                <div class="form-group" >
-                    <label >Tempat Lahir</label>
-                    <input  type="text" class="form-control" value="<?php echo $row->tempat_lahir; ?>" name="txt_tmptlhrmahasiswa" placeholder="NONE" >
+                    <div class="form-group" >
+                      <label >Tempat Lahir</label>
+                      <input  type="text" class="form-control" value="<?php echo $row->tempat_lahir; ?>" name="txt_tmptlhrmahasiswa" placeholder="NONE" >
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group" >
+                      <label >Tanggal Lahir</label>
+                      <input  type="date" class="form-control" value="<?php echo $row->tgl_lahir; ?>"name="txt_tgllhrmahasiswa" placeholder="NONE" >
+                    </div>
                   </div>
                 </div>
-                 <div class="col-sm-3">
-                <div class="form-group" >
-                    <label >Tanggal Lahir</label>
-                    <input  type="date" class="form-control" value="<?php echo $row->tgl_lahir; ?>"name="txt_tgllhrmahasiswa" placeholder="NONE" >
-                  </div>
-                </div>
-                </div>
-                  
-                <!-- /.card-body -->
-
-
-              </form>
-
-
 
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button id="saveprof" type="submit" class="btn btn-primary" value="Update">Save changes</button>
             </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
