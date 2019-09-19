@@ -194,6 +194,11 @@
       "dom":'t<"bottom"p>'
     });
 
+    mhs_table.on( 'order.dt search.dt', function () {
+        mhs_table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
 
     $("#mhs_search").on('keyup', function(){
       mhs_table.search( this.value ).draw();
@@ -225,22 +230,10 @@
             $('#modal-file').modal('toggle');
             document.getElementById('file').value=null;
             document.getElementById('file-label').innerHTML="Choose File";
+            mhs_table.ajax.reload();
           }
           document.getElementById('button_upload').disabled=true;
         }
       });
     }
-
-
-
-    <?php if(isset($error_message)){ ?>
-      var error = JSON.parse('<?=str_replace("'", "", $error_message)?>');
-      var notif_config = {
-        title:"Aww...",
-        message:"Data tidak bisa diambil, Error yang didapat : '"+error.message+" ("+error.code+")'",
-        type:"normal",
-        status:"error"
-      };
-      alert_toast(JSON.stringify(notif_config));
-    <?php } ?>
   </script>
