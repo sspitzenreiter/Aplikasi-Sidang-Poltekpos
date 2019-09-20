@@ -1,101 +1,203 @@
 <?php $this->load->view('common/header'); ?>
-       <div class="content-wrapper">
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-
+</section>
     <section class="content-header">
       <div class="container-fluid">
-
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Dash Dosen</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="<?php echo base_url('mahasiswa/index'); ?>">Home</a></li>
+              <li class="breadcrumb-item active">Dash Dosen</li>
+            </ol>
+          </div>
+        </div>
       </div><!-- /.container-fluid -->
     </section>
+<section class="content-header">
+      <div class="container-fluid">
+                 <div class="col-md-7">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">
-                  <i class="ion ion-clipboard mr-1"></i>
-                  List Kegiatan
-                </h3>
+                <h3 class="card-title">List Kegiatan</h3>
 
-                <div class="card-tools">
-                  <ul class="pagination pagination-sm">
-                    <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-                  </ul>
-                </div>
+
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
-                <ul class="todo-list" data-widget="todo-list">
-                  <li>
-                    <!-- drag handle -->
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <!-- checkbox -->
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                      <label for="todoCheck1"></label>
-                    </div>
-                    <!-- todo text -->
-                    <span class="text">Proyek 1 (2019/2020)</span>
-                    <!-- Emphasis label -->
-                    <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
-                    <!-- General tools such as edit or delete-->
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
-                      <label for="todoCheck2"></label>
-                    </div>
-                    <span class="text">Proyek 2 (2018/2019)</span>
-                    <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Proyek 3 (207/2018)</span>
-                    <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
+              <div class="card-body p-0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th ">Kegiatan</th>
+                      <th ">Judul</th>
+                      <th style="width: 40px">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1.</td>
+                      <td>Proyek 3</td>
+                      <td>Sistem Informasi Bajaj Online</td>
 
+                      <td><button id="edit" data-toggle="modal" data-target="#modal1" type="button" class="btn btn-block btn-success"> Tampilkan</button></td>
+                    </tr>
+                     <tr>
+                      <td>2.</td>
+                      <td>SP Proyek 2</td>
+                      <td>Sistem Informasi Komputerisasi</td>
 
-
-                </ul>
+                      <td><button id="edit" data-toggle="modal" data-target="#modal1" type="button" class="btn btn-block btn-success"> Tampilkan</button></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <button type="button" data-toggle="modal" data-target="#modal-default" class="btn btn-info float-right"><i class="fas fa-plus"></i> ADD</button>
+            </div>
+            <!-- /.card -->
+
+            <!-- /.card -->
+          </div>
+      </div><!-- /.container-fluid -->
+    
+
+    <!-- Main content -->
+
+    <section class="content">
+   <div class="container-fluid">
+                 <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="row">
+
+                <h5 style="font-size:30px">Detail Proyek</h5>
+
+              <div class="col-8">
+              </div>
+              <div class="col-sm-2">
+              <button id="lengkapi" data-toggle="modal" data-toggle="modal" data-target="#modal-default" class="btn btn-block btn-success" > Upload File</button></div>
               </div>
             </div>
+              <div class="card-body">
+                <div class ="row">
+               <div class="col-sm-6">
+                <div class="form-group">
+                  
+                    <label >Judul Proyek</label>
+                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Judul Proyek" readonly>
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-2">
+                <div class="form-group">
+                  
+                    <label >NPM</label>
+                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="NPM" readonly>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                <div class="form-group">
+                  
+                    <label >Nama</label>
+                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Nama" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class ="row">
+                <div class="col-sm-6">
+                   <div class="form-group">
+                   
+                    <label>Abstrak</label>
+                    <textarea class="form-control" style ="border:none" rows="3" placeholder="Abstrak" readonly></textarea>
+                  </div>
+                </div>
+<div class="col-sm-1">
+                </div>
+                <div class="col-sm-5">
+                <div class="form-group">
+                  
+                    <label >Dosen Penguji</label>
+                    <input type="text" style ="border:none"  class="form-control" id="exampleInputEmail1" placeholder="Dosen Penguji" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class ="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    
+                    <label>Latar Belakang</label>
+                    <textarea class="form-control" style ="border:none" rows="3" placeholder="Latar Belakang" readonly></textarea>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    
+                    <label>Identifikasi Masalah</label>
+                    <textarea class="form-control" style ="border:none" rows="3" placeholder="Identifikasi Masalah" readonly></textarea readonly>
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-3">
+                <div class="form-group">
+                  
+                    <label >Tanggal Sidang</label>
+                    <input type="date" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Tanggal Sidang" readonly>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                <div class="form-group">
+                  
+                    <label >Ruangan</label>
+                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Ruangan" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    
+                    <label>Daftar Pustaka</label>
+                    <textarea class="form-control" style ="border:none" rows="3" placeholder="Daftar Pustaka" readonly></textarea>
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-2">
+                <div class="form-group">
+                  
+                    <label >Nilai</label>
+                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Nilai" readonly>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                <div class="form-group">
+                  
+                    <label >Status Nilai</label>
+                    <input type="text"style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Status" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+</section>
+    <!-- /.content -->
+  </div>
   <?php $this->load->view('common/footer');?>
   <script>
     $(function(){
       $("#save").click(function(){
         $('#modal-default').modal('toggle');
-        Swal.fire('Success', 'Data Submitted ', 'success');
+        Swal.fire('Success', 'Approved ', 'success');
       });
       $("#delete").click(function(){
 
@@ -109,7 +211,7 @@
           <div class="modal-content">
             <div class="modal-header">
 
-              <h4 class="modal-title">Form Kegiatan</h4>
+              <h4 class="modal-title">Form Bimbingan</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -125,17 +227,10 @@
               <form role="form">
                 <div class="card-body">
 
-                  <div class="form-group">
-                  <label>Nilai</label>
-                  <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">A</option>
-                    <option>B</option>
-                    <option>C</option>
-                    <option>D</option>
-                    <option>E</option>
-                  </select>
-                </div>
-
+                <div class="form-group">
+                    <label>Pembahasan</label>
+                    <textarea class="form-control" rows="3" placeholder="Pembahasan"></textarea>
+                  </div>
 
 
                 </div>
@@ -155,3 +250,5 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
+      <!-- /.modal -->
+<?php $this->load->view('common/footer'); ?>

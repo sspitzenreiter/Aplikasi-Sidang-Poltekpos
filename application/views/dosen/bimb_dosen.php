@@ -75,8 +75,9 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-
-
+<div class="col-md-2">
+                   <button id="tolol"  type="button" class="btn btn-block btn-primary"> SIDANG</button>
+               </div>
                 <div class="card-tools">
                   <ul class="pagination pagination-sm m-0 float-right">
                     <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
