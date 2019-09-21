@@ -15,6 +15,7 @@ class Admin extends CI_Controller {
 		$this->load->model('M_Admin');
 		$this->load->model('M_Mahasiswa');
 		$this->load->model('M_Dosen');
+		$this->load->model('M_Kegiatan');
 		$con_config['navigation'] = "nav_admin";
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
@@ -42,13 +43,18 @@ class Admin extends CI_Controller {
 			case "":
 				$data['nav_active'] = "kegiatan";
 				$data['nav_open'] = "";
+				$data['jscallurl'] = "admin/data_kegiatan.js";
+				$data['data_tahun_ajaran'] = $this->M_Mahasiswa->getAngkatan();
 				$data = array_merge($data, $this->con_config);
 				$this->load->view('admin/data_kegiatan', $data);
 			break;
-
-			case "Tambah":
+			case "Insert":
 				$data = $this->input->post();
+				$data['status'] = "0";
 				$this->Tambah_Data($data, 'kegiatan');
+			break;
+			case "Data":
+				$this->Tampil_Data('kegiatan');
 			break;
 		}
 
@@ -64,15 +70,8 @@ class Admin extends CI_Controller {
 				$data = array_merge($data, $this->con_config);
 				$this->load->view('admin/data_dosen', $data);
 			break;
-
 			case "Data":
-				$db_call = $this->M_Dosen->get_dosen();
-				if($db_call['status']=='1'){
-					$data['data'] = $db_call['isi']->result();
-				}else{
-					$data['error_message'] = $db_call['message'];
-				}
-				echo json_encode($data);
+				$this->Tampil_Data('dosen');
 			break;
 			case "Insert":
 				$data = $this->input->post();
@@ -87,7 +86,6 @@ class Admin extends CI_Controller {
 			case "dosen": $query = $this->M_Dosen->insert_dosen($data); break;
 			case "kegiatan" : $query = $this->M_Kegiatan->insert_kegiatan($data); break;
 		}
-
 
 		if($query['status']=='1'){
 			$notification['status'] = "success";
@@ -111,14 +109,7 @@ class Admin extends CI_Controller {
 				$this->load->view('admin/data_mahasiswa', $data);
 			break;
 			case "Data":
-				$this->load->model('M_Mahasiswa');
-				$db_call = $this->M_Mahasiswa->get_mahasiswa();
-				if($db_call['status']=='1'){
-					$data['data'] = $db_call['isi']->result();
-				}else{
-					$data['error_message'] = $db_call['message'];
-				}
-				echo json_encode($data);
+				$this->Tampil_Data('mahasiswa');
 			break;
 			case "Download":
 				$this->download_format_excel();
@@ -127,7 +118,21 @@ class Admin extends CI_Controller {
 				$this->upload_data_excel($_FILES['file']);
 			break;
 		}
+	}
 
+	public function Tampil_Data($table){
+		$db_call = "";
+		switch($table){
+			case "mahasiswa": $db_call = $this->M_Mahasiswa->get_mahasiswa(); break;
+			case "dosen": $db_call = $this->M_Dosen->get_dosen(); break;
+			case "kegiatan": $db_call = $this->M_Kegiatan->get_kegiatan(); break;
+		}
+		if($db_call['status']=='1'){
+			$data['data'] = $db_call['isi']->result();
+		}else{
+			$data['error_message'] = $db_call['message'];
+		}
+		echo json_encode($data);
 	}
 
 	public function upload_data_excel($file){

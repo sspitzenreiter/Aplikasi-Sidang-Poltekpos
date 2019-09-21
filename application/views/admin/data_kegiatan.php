@@ -24,34 +24,31 @@
 
       <div class="container-fluid">
         <div class="row">
-
           <!-- /.col -->
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header">
-              	<div class="col-md-2">
-                   <button id="tolol" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> ADD</button>
-               </div>
-
-                <div class="card-tools">
-                  <ul class="pagination pagination-sm m-0 float-right">
-                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                  </ul>
-                </div>
-              </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
-                <table class="table">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-2">
+                     <button data-toggle="modal" data-target="#modal-kegiatan" type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-plus"></i> ADD</button>
+                  </div>
+                  <div class="col-md-7"></div>
+                  <div class="col-md-3 text-right">
+                    <div class="input-group">
+                      <input type="text" id="kegiatan_search" class="form-control form-control-sm">
+                      <div class="input-group-append">
+                        <button class="btn btn-default btn-sm" disabled><i class="fas fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <table class="table" id="data-kegiatan">
                   <thead>
                     <tr>
                       <th style="width: 10px">#</th>
                       <th>Kegiatan</th>
-                      <th>Tanggal Mulai</th>
-                      <th>Tanggal Selesai</th>
+                      <th>Tanggal Kegiatan</th>
                       <th>Dosen Koordinator</th>
                       <th>Tahun Ajaran</th>
                       <th>Semester</th>
@@ -62,55 +59,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1.</td>
-                      <td>Proyek 1</td>
-                      <td>
-                        15/02/2019
-                      </td>
-                      <td>15/03/2019</td>
 
-                      <td>Tia</td>
-                      <td>2019/2020</td>
-                      <td>2</td>
-                      <td>D4 Teknik Informatika</td>
-                      <td>Berjalan</td>
-                      <td><button id="edit" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-warning"> EDIT</button>
-                      </td>
-                      <td><button id="delete"  type="button" class="btn btn-block btn-danger"> DELETE</button></td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Proyek 2</td>
-                      <td>
-                        15/02/2019
-                      </td>
-                      <td>15/03/2019</td>
-                      <td>Upi</td>
-                      <td>2018/2019</td>
-                      <td>3</td>
-                      <td>D4 Teknik Informatika</td>
-                      <td>Selesai</td>
-                      <td><button id="edit" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-warning"> EDIT</button>
-                      </td>
-                      <td><button id="delete"  type="button" class="btn btn-block btn-danger"> DELETE</button></td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td>Proyek 3</td>
-                      <td>
-                        15/02/2019
-                      </td>
-                      <td>15/03/2019</td>
-                      <td>Bin</td>
-                      <td>2017/2018</td>
-                      <td>5</td>
-                      <td>D4 Teknik Informatika</td>
-                      <td>Berjalan</td>
-                      <td><button id="edit" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-warning"> EDIT</button>
-                      </td>
-                      <td><button id="delete"  type="button" class="btn btn-block btn-danger"> DELETE</button></td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -131,19 +80,7 @@
     <!-- /.content -->
   </div>
   <?php $this->load->view('common/footer');?>
-  <script>
-  	$(function(){
-  		$("#save").click(function(){
-  			$('#modal-default').modal('toggle');
-  			Swal.fire('Success', 'Data Submitted ', 'success');
-  		});
-  		$("#delete").click(function(){
 
-  			Swal.fire('Success', 'Data Deleted', 'success');
-  		});
-
-  	});
-  </script>
       <div class="modal fade" id="modal-kegiatan">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -187,14 +124,10 @@
               </div>
               <div class="form-group">
                 <label>Tahun Ajaran</label>
-                <select class="form-control select2" style="width: 100%;" id="tahun_ajaran">
-                  <option selected="selected">2016/2017</option>
-                  <option>2017/2018</option>
-                  <option>2019/2020</option>
-                  <option>2020/2021</option>
-                  <option>2021/2022</option>
-                  <option>2022/2023</option>
-                  <option>2023/2024</option>
+                <select class="form-control select2" style="width: 100%;" id="angkatan">
+                  <?php foreach($data_tahun_ajaran->result() as $row){ ?>
+                    <option><?=$row->angkatan?></option>
+                  <?php } ?>
                 </select>
               </div>
               <div class="form-group">
@@ -231,5 +164,5 @@
     </div>
 
     <script>
-      
+    	
     </script>

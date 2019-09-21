@@ -63,4 +63,12 @@ class M_mahasiswa extends CI_Model{
 		}
 	}
 
+  public function getAngkatan(){
+    $this->db->distinct();
+    $this->db->select("angkatan");
+    $this->db->from('mahasiswa');
+    $this->db->order_by('angkatan');
+    return $this->db->get();
+  }
+
 }
