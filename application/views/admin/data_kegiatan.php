@@ -69,7 +69,7 @@
                         15/02/2019
                       </td>
                       <td>15/03/2019</td>
-                      
+
                       <td>Tia</td>
                       <td>2019/2020</td>
                       <td>2</td>
@@ -144,108 +144,80 @@
 
   	});
   </script>
-        <div class="modal fade" id="modal-default">
+      <div class="modal fade" id="modal-kegiatan">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-
               <h4 class="modal-title">Form Kegiatan</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-
-
-            <!-- general form elements -->
-
-
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Kegiatan</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Kegiatan">
-                  </div>
+              <div class="card-body">
                 <div class="form-group">
-                  <label>Tanggal Mulai</label>
+                  <label for="exampleInputEmail1">Nama Kegiatan</label>
+                  <input type="text" class="form-control" id="nama_kegiatan" placeholder="Kegiatan">
+                </div>
+              <div class="form-group">
+                <label>Tanggal Mulai</label>
 
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="far fa-calendar-alt"></i>
-                      </span>
-                    </div>
-                    <input type="date" class="form-control float-right" id="reservation">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="far fa-calendar-alt"></i>
+                    </span>
                   </div>
-                  <!-- /.input group -->
+                  <input type="date" class="form-control float-right" id="tgl_mulai">
                 </div>
-                <div class="form-group">
-                  <label>Tanggal Selesai</label>
+                <!-- /.input group -->
+              </div>
+              <div class="form-group">
+                <label>Tanggal Selesai</label>
 
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="far fa-calendar-alt"></i>
-                      </span>
-                    </div>
-                    <input type="date" class="form-control float-right" id="reservation">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="far fa-calendar-alt"></i>
+                    </span>
                   </div>
-                  <!-- /.input group -->
+                  <input type="date" class="form-control float-right" id="tgl_selesai">
                 </div>
-                   <div class="form-group">
-                  <label>Dosen Koordinator</label>
-                  <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">Tia</option>
-                    <option>Upi</option>
-                    <option>Bin</option>
-
-                  </select>
-                </div>
-                  <div class="form-group">
-                  <label>Tahun Ajaran</label>
-                  <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">2016/2017</option>
-                    <option>2017/2018</option>
-                    <option>2019/2020</option>
-                    <option>2020/2021</option>
-                    <option>2021/2022</option>
-                    <option>2022/2023</option>
-                    <option>2023/2024</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Semester</label>
-                  <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                  </select>
-                </div>
-                  <div class="form-group">
-                  <label>Prodi</label>
-                  <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">D4 Teknik Informatika</option>
-
-                    <option>D3 Teknik Informatika</option>
-                  </select>
-                </div>
-
-
-                </div>
-                <!-- /.card-body -->
-
-
-              </form>
-
-
-
+                <!-- /.input group -->
+              </div>
+              <div class="form-group">
+                <label>Tahun Ajaran</label>
+                <select class="form-control select2" style="width: 100%;" id="tahun_ajaran">
+                  <option selected="selected">2016/2017</option>
+                  <option>2017/2018</option>
+                  <option>2019/2020</option>
+                  <option>2020/2021</option>
+                  <option>2021/2022</option>
+                  <option>2022/2023</option>
+                  <option>2023/2024</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Semester</label>
+                <select class="form-control select2" style="width: 100%;" id="semester">
+                  <option selected="selected">1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Prodi</label>
+                <select class="form-control select2" style="width: 100%;" id="prodi">
+                  <option selected="selected">D4 Teknik Informatika</option>
+                  <option>D3 Teknik Informatika</option>
+                </select>
+              </div>
+            </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button id="save" type="button" class="btn btn-primary">Save changes</button>
@@ -256,3 +228,8 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
+    </div>
+
+    <script>
+      
+    </script>

@@ -49,6 +49,13 @@
 <script src="<?=base_url('assets/theme/')?>plugins/datatables/dataTables.bootstrap4.js"></script>
 
 <script src="<?=base_url('assets/helper/main.js');?>"></script>
+<?php
+  if(isset($jscallurl)){
+    ?>
+    <script src="<?=base_url('assets/helper/views/').$jscallurl?>"></script>
+    <?php
+  }
+ ?>
 <script>
   <?php
     if(isset($notification)){

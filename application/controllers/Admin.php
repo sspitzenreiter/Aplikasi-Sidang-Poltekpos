@@ -13,6 +13,8 @@ class Admin extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('M_Admin');
+		$this->load->model('M_Mahasiswa');
+		$this->load->model('M_Dosen');
 		$con_config['navigation'] = "nav_admin";
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
@@ -34,49 +36,108 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/admin_dash', $data);
 	}
 
-	public function kegiatan()
+	public function Kegiatan($a="")
 	{
-		$data['nav_active'] = "kegiatan";
-		$data['nav_open'] = "";
-		$data = array_merge($data, $this->con_config);
-		$this->load->view('admin/index', $data);
-	}
+		switch($a){
+			case "":
+				$data['nav_active'] = "kegiatan";
+				$data['nav_open'] = "";
+				$data = array_merge($data, $this->con_config);
+				$this->load->view('admin/data_kegiatan', $data);
+			break;
 
-	public function dosen()
-	{
-		$data['nav_active'] = "dosen";
-		$data['nav_open'] = "data_master";
-		$data['data_dosen'] = $this->M_Admin->get_dosen();
-		$data = array_merge($data, $this->con_config);
-		$this->load->view('admin/data_dosen', $data);
-	}
-
-	public function Mahasiswa(){
-		$data['nav_active'] = "mahasiswa";
-		$data['nav_open'] = "data_master";
-		$data = array_merge($data, $this->con_config);
-		$this->load->view('admin/data_mahasiswa', $data);
-	}
-
-	public function Mahasiswa_Data(){
-		$this->load->model('M_Mahasiswa');
-		$db_call = $this->M_Mahasiswa->get_mahasiswa();
-		if($db_call['status']=='1'){
-			$data['data'] = $db_call['isi']->result();
-		}else{
-			$data['error_message'] = $db_call['message'];
+			case "Tambah":
+				$data = $this->input->post();
+				$this->Tambah_Data($data, 'kegiatan');
+			break;
 		}
-		echo json_encode($data);
+
 	}
 
-	public function upload_data_excel(){
+	public function Dosen($a="")
+	{
+		switch($a){
+			case "":
+				$data['nav_active'] = "dosen";
+				$data['nav_open'] = "data_master";
+				$data['jscallurl'] = "admin/data_dosen.js";
+				$data = array_merge($data, $this->con_config);
+				$this->load->view('admin/data_dosen', $data);
+			break;
+
+			case "Data":
+				$db_call = $this->M_Dosen->get_dosen();
+				if($db_call['status']=='1'){
+					$data['data'] = $db_call['isi']->result();
+				}else{
+					$data['error_message'] = $db_call['message'];
+				}
+				echo json_encode($data);
+			break;
+			case "Insert":
+				$data = $this->input->post();
+				$this->Tambah_Data($data, 'dosen');
+			break;
+		}
+	}
+
+	public function Tambah_Data($data, $table){
+		$query = "";
+		switch($table){
+			case "dosen": $query = $this->M_Dosen->insert_dosen($data); break;
+			case "kegiatan" : $query = $this->M_Kegiatan->insert_kegiatan($data); break;
+		}
+
+
+		if($query['status']=='1'){
+			$notification['status'] = "success";
+			$notification['message'] = "Data berhasil disinkron ke pusat data";
+			$notification['title'] = "YEAY!";
+		}else{
+			$notification['status'] = "error";
+			$notification['message'] = "Terdapat error ".$query['message']['message']." (".$query['message']['code'].")";
+			$notification['title'] = "Aww";
+		}
+		echo json_encode($notification);
+	}
+
+	public function Mahasiswa($a=""){
+		switch($a){
+			case "":
+				$data['nav_active'] = "mahasiswa";
+				$data['nav_open'] = "data_master";
+				$data['jscallurl'] = "admin/data_mahasiswa.js";
+				$data = array_merge($data, $this->con_config);
+				$this->load->view('admin/data_mahasiswa', $data);
+			break;
+			case "Data":
+				$this->load->model('M_Mahasiswa');
+				$db_call = $this->M_Mahasiswa->get_mahasiswa();
+				if($db_call['status']=='1'){
+					$data['data'] = $db_call['isi']->result();
+				}else{
+					$data['error_message'] = $db_call['message'];
+				}
+				echo json_encode($data);
+			break;
+			case "Download":
+				$this->download_format_excel();
+			break;
+			case "Upload":
+				$this->upload_data_excel($_FILES['file']);
+			break;
+		}
+
+	}
+
+	public function upload_data_excel($file){
 		$notification = array();
-		if(isset($_FILES['file'])){
-			$file = $_FILES['file']['tmp_name'];
-			$filename = $_FILES['file']['name'];
+		if(isset($file)){
+			$file_tmp = $file['tmp_name'];
+			$filename = $file['name'];
 			if(substr($filename, -4)==".xls" || substr($filename, -5)==".xlsx"){
 				$excelreader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
-				$loadexcel = $excelreader->load($file); // Load file yang telah diupload ke folder excel
+				$loadexcel = $excelreader->load($file_tmp); // Load file yang telah diupload ke folder excel
 				$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 
 			// Buat sebuah variabel array untuk menampung array data yg akan kita insert ke database
@@ -99,7 +160,7 @@ class Admin extends CI_Controller {
 				foreach($data as $row){
 					$isi[$col['a']] = $row[$col['a']];
 					$isi[$col['b']] = $row[$col['b']];
-					$query = $this->M_Admin->insert_mahasiswa($isi);
+					$query = $this->M_Mahasiswa->insert_mahasiswa($isi);
 					if($query['status']=='1'){
 						$total_masuk++;
 					}else if($query['message']['code']!='1062'){

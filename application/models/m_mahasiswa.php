@@ -35,7 +35,17 @@ class M_mahasiswa extends CI_Model{
 		}
 	}
 
-public function update($data){
+  public function insert_mahasiswa($data)
+  {
+    if($this->db->insert('mahasiswa',$data)){
+      return array('status'=>'1');
+    }else{
+      return array('status'=>'0', 'message'=>$this->db->error());
+    }
+    //$this->load->view('common/footer');
+  }
+
+  public function update($data){
 		$npm = $data['txt_hidden'];
 		$field = array(
 			'nama'=>$data['txt_namamahasiswa'],

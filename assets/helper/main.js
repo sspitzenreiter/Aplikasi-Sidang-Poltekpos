@@ -35,3 +35,9 @@ function alert_toast(value){
     Swal.fire({type:alert_config.status, title:alert_config.title, text:alert_config.message});
   }
 }
+
+function date_converter(tanggal){
+  var bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+  var date = new Date(tanggal);
+  return date.getDate()+" "+bulan[date.getMonth()]+" "+date.getFullYear()
+}
