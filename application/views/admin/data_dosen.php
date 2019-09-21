@@ -46,17 +46,7 @@
                 </div>
                 <table class="table" id="data-dosen">
                   <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>NIK</th>
-                      <th>Nama</th>
-                      <th>Tempat/Tanggal Lahir</th>
-                      <th>Alamat</th>
-                      <th>Jurnal</th>
-                      <th>Research Interest</th>
-                      <th style="width: 50px">Action</th>
-                      <th style="width: 50px"></th>
-                    </tr>
+                    
                   </thead>
                   <tbody>
 

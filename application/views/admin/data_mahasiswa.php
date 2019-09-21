@@ -49,15 +49,7 @@
                 </div>
                 <table class="table" id="data-mahasiswa">
                   <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>NPM</th>
-                      <th>Nama</th>
-                      <th>Alamat</th>
-                      <th>Angkatan</th>
-                      <th>Tempat & Tanggal Lahir</th>
-                      <th>Action</th>
-                    </tr>
+                    
                   </thead>
                   <tbody>
 

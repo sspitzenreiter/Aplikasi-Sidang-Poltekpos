@@ -29,23 +29,24 @@ var dsn_table = $('#data-dosen').DataTable({
     }
   },
   "columns": [
-    {"data": "nik"},
-    {"data": "nik"},
-    {"data": "nama"},
+    {"data": "nik", title:"#"},
+    {"data": "nik", title:"NIK"},
+    {"data": "nama", title:"Nama"},
     {"render":
       function(data, type, row, meta){
         return row.tempat_lahir+", "+date_converter(row.tgl_lahir);
-      }
+      }, title:"Tempat, Tanggal Lahir"
     },
-    {"data": "alamat"},
+    {"data": "alamat", title:"Alamat"},
     {"render":
       function(data, type, row, meta){
         return "<a href='https://"+row.link_jurnal+"'>"+row.judul_jurnal+"</a>";
-      }
+      }, title:"Jurnal"
     },
-    {"data": "research_interest"}
+    {"data": "research_interest", title:"Research Interest"}
   ],
   "paging": true,
+  "scrollX": true,
   "lengthChange": false,
   "searching": true,
   "ordering": true,

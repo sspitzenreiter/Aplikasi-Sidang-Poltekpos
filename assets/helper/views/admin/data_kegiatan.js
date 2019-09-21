@@ -30,17 +30,17 @@ $(function(){
       }
     },
     "columns": [
-      {"data": "nama_kegiatan"},
-      {"data": "nama_kegiatan"},
+      {"data": "nama_kegiatan", title:"#"},
+      {"data": "nama_kegiatan",title:"Kegiatan"},
       {"render":
         function(data, type, row, meta){
           return date_converter(row.tgl_mulai)+"-"+date_converter(row.tgl_selesai);
-        }
+        }, title:"Tanggal Kegiatan"
       },
-      {"data": "id_koordinator"},
-      {"data": "angkatan"},
-      {"data": "semester"},
-      {"data": "prodi"},
+      {"data": "id_koordinator", title:"Koordinator"},
+      {"data": "angkatan", title:"Tahun Ajaran"},
+      {"data": "semester", title:"Semester"},
+      {"data": "prodi", title:"Program Studi"},
       {"render":
         function(data, type, row, meta){
           switch(row.status){
@@ -48,10 +48,11 @@ $(function(){
             case "1": return "Berjalan"; break;
             case "2": return "Selesai"; break;
           }
-        }
+        }, title:"Status"
       }
     ],
     "paging": true,
+    "scrollX": true,
     "lengthChange": false,
     "searching": true,
     "ordering": true,
@@ -65,7 +66,7 @@ $(function(){
       kegiatan_table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
           cell.innerHTML = i+1;
       } );
-  } ).draw();
+  }).draw();
 
   $("#kegiatan_search").on('keyup', function(){
     kegiatan_table.search( this.value ).draw();
@@ -95,8 +96,8 @@ $(function(){
       success: function(response){
         alert_toast(response);
         if(JSON.parse(response).status=="success"){
-          //$('#modal-dosen').modal('toggle');
-          dsn_table.ajax.reload();
+          $('#modal-kegiatan').modal('toggle');
+          //kegiatan_table.ajax.reload();
         }
         document.getElementById('save').disabled=true;
       }

@@ -51,9 +51,9 @@
 
     <!-- Main content -->
 <?php
-foreach($data_mahasiswa->result() as $row){ ?>
-<section class="col-lg-12 connectedSortable">
-   <div class="container-fluid">
+      foreach($data_mahasiswa->result() as $row){ ?>
+      <section class="col-lg-12 connectedSortable">
+         <div class="container-fluid">
                  <div class="col-md-12">
             <div class="card">
               <div class="card-header">
@@ -118,7 +118,7 @@ foreach($data_mahasiswa->result() as $row){ ?>
             </div>
           </div>
         </div>
-</section>
+      </section>
 <?php } ?>
 
     <!-- /.content -->
@@ -131,7 +131,7 @@ foreach($data_mahasiswa->result() as $row){ ?>
   			Swal.fire('Success', 'Data Submitted ', 'success');
   		});
       $("#saveprof").click(function(){
-        
+
       });
       $('#timepicker').datetimepicker({
       format: 'LT'

@@ -45,18 +45,7 @@
                 </div>
                 <table class="table" id="data-kegiatan">
                   <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Kegiatan</th>
-                      <th>Tanggal Kegiatan</th>
-                      <th>Dosen Koordinator</th>
-                      <th>Tahun Ajaran</th>
-                      <th>Semester</th>
-                      <th>Prodi</th>
-                      <th>Status</th>
-                      <th style="width: 50px">Action</th>
-                      <th style="width: 50px"></th>
-                    </tr>
+                    
                   </thead>
                   <tbody>
 
@@ -164,5 +153,5 @@
     </div>
 
     <script>
-    	
+
     </script>

@@ -57,15 +57,16 @@ var mhs_table = $('#data-mahasiswa').DataTable({
     }
   },
   "columns": [
-    {"data": "npm"},
-    {"data": "npm"},
-    {"data": "nama"},
-    {"data": "alamat"},
-    {"data": "angkatan"},
-    {"data": "tempat_lahir"}
+    {"data": "npm", title:"#"},
+    {"data": "npm", title:"NPM"},
+    {"data": "nama", title:"Nama"},
+    {"data": "alamat", title:"Alamat"},
+    {"data": "angkatan", title:"Angkatan"},
+    {"data": "tempat_lahir", title:"Tempat Lahir"}
   ],
   "paging": true,
   "lengthChange": false,
+  "scrollX": true,
   "searching": true,
   "ordering": true,
   "info": false,
