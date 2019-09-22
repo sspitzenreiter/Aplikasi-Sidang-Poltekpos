@@ -4,8 +4,9 @@
     <p>Dashboard</p>
   </a>
 </li>
+
 <li class="nav-item has-treeview <?= nav_setting('menu', $nav_open, 'open'); ?>">
-  <a href="<?php echo base_url(); ?>assets/theme/#" class="nav-link">
+  <a href="" class="nav-link">
     <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>
       Menu
@@ -19,11 +20,28 @@
         <p>Bimbingan</p>
       </a>
     </li>
-    <li class="nav-item">
-      <a href="<?php echo base_url('dosen/nilai'); ?>" class="nav-link <?= nav_setting('penilaian', $nav_active); ?>">
+    <li class="nav-item has-treeview" >
+      <a href="" class="nav-link" >
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+    <p>
+      Penilaian
+      <i class="right fas fa-angle-left"></i>
+    </p>
+  </a>
+   <ul class="nav nav-treeview">
+    <li>
+      <a href="<?php echo base_url('dosen/nilai_pembimbing'); ?>" class="nav-link <?= nav_setting('nilai_pembimbing', $nav_active); ?>">
         <i class="far fa-circle nav-icon"></i>
-        <p>Penilaian</p>
+        <p>Penilaian Pembimbing</p>
       </a>
+    </li>
+    <li>
+      <a href="<?php echo base_url('dosen/nilai_penguji'); ?>" class="nav-link <?= nav_setting('nilai_penguji', $nav_active); ?>">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Penilaian Penguji</p>
+      </a>
+    </li>
+    </ul>
     </li>
   </ul>
 </li>

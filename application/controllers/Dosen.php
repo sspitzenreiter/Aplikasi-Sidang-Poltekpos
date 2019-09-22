@@ -35,13 +35,38 @@ class Dosen extends CI_Controller {
 		//$this->load->view('common/footer');
 	}
 
-	public function nilai()
+	public function nilai_pembimbing()
 	{
-		$data['nav_active'] = "nilai";
+
+		$data['nav_active'] = "nilai_pembimbing";
 		$data['nav_open'] = "menu";
 		$data = array_merge($data, $this->con_config);
-		$this->load->view('dosen/nilai_dosen',$data);
+		$this->load->view('dosen/nilai_pembimbing',$data);
 		//$this->load->view('common/footer');
+	}
+	public function nilai_penguji()
+	{
+
+		$data['nav_active'] = "nilai_penguji";
+		$data['nav_open'] = "menu";
+		$data = array_merge($data, $this->con_config);
+		$this->load->view('dosen/nilai_penguji',$data);
+		//$this->load->view('common/footer');
+	}
+
+	public function detil_proyek(){
+		
+		$data['nav_active'] = "dashboard";
+		$data['nav_open'] = "";
+		$data = array_merge($data, $this->con_config);
+		$this->load->view('dosen/detil_proyek',$data);
+	}
+	public function detil_bimbingan(){
+		
+		$data['nav_active'] = "bimbingan";
+		$data['nav_open'] = "menu";
+		$data = array_merge($data, $this->con_config);
+		$this->load->view('dosen/detil_bimbingan',$data);
 	}
 
 }
