@@ -19,11 +19,19 @@ class Admin extends CI_Controller {
 		$con_config['navigation'] = "nav_admin";
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
+		}
+
+		if($this->input->post('notification')!=null){
+			$con_config['notification'] = $this->input->post('notification');
+		}
+
+		if(isset($con_config['notification'])){
 			if(!isset($con_config['notification']['type'])){
 				$con_config['notification']['type'] = "normal";
 			}
 			$con_config['notification'] = json_encode($con_config['notification']);
 		}
+
 		$this->con_config = $con_config;
 	}
 
@@ -76,7 +84,7 @@ class Admin extends CI_Controller {
 			break;
 			case "PilihKoor:Insert":
 				$data = $this->input->post();
-				$this->Ubah_Data(array('id_koordinator'=>$data['id_dosen']), array('id_kegiatan'=>$data['id_kegiatan']), 'kegiatan');
+				$this->Ubah_Data(array('id_koordinator'=>$data['id_koordinator']), array('id_kegiatan'=>$data['id_kegiatan']), 'kegiatan');
 			break;
 		}
 
@@ -105,13 +113,21 @@ class Admin extends CI_Controller {
 	public function Tambah_Data($data, $table){
 		$query = "";
 		switch($table){
-			case "dosen": $query = $this->M_Dosen->insert_dosen($data); break;
-			case "kegiatan" : $query = $this->M_Kegiatan->insert_kegiatan($data); break;
+			case "dosen":
+				$query = $this->M_Dosen->insert_dosen($data);
+				$notification['message']="Dosen berhasil ditambahkan";
+			break;
+			case "kegiatan" :
+				$query = $this->M_Kegiatan->insert_kegiatan($data);
+				$notification['message']="Kegiatan berhasil ditambahkan";
+			break;
 		}
 
 		if($query['status']=='1'){
 			$notification['status'] = "success";
-			$notification['message'] = "Data berhasil disinkron ke pusat data";
+			if(!isset($notification['message'])){
+				$notification['message'] = "Data berhasil disetor ke pusat data";
+			}
 			$notification['title'] = "YEAY!";
 		}else{
 			$notification['status'] = "error";
@@ -122,35 +138,27 @@ class Admin extends CI_Controller {
 	}
 
 	public function Ubah_Data($data, $where, $table){
-		$status = array();
+		$query = "";
 		switch($table){
-			case "kegiatan":
-				$status = $this->M_Kegiatan->update_kegiatan($data, $where);
-				$notification['message'] = "Koordinator Berhasil Diganti";
-				$redirect_success = "Admin/Kegiatan";
-				$redirect_failed = "'Admin/Kegiatan/PilihKoor'";
-				$sess_key = 'id_kegiatan';
-				$sess_value = $data['id_kegiatan'];
+			//case "dosen": $query = $this->M_Dosen->insert_dosen($data); break;
+			case "kegiatan" :
+				$query = $this->M_Kegiatan->update_kegiatan($data, $where);
+				$notification['message'] = "Koordinator Berhasil Diubah";
 			break;
 		}
 
-		$notification['status'] = 'success';
-		$notification['title'] = 'Sukses!';
-		if($status['status']=="1"){
-			$this->session->set_flashdata('notification',$notification);
-			redirect($redirect_success);
-		}else{
-			$this->session->set_flashdata('notification',
-			array(
-				'message'=>'Terdapat error saat mengganti data '.$table.' : '.$status['message']['message'].'('.$status['message']['code'].')',
-				'status'=>'error',
-				'title'=>'Aww..'
-			));
-			if(isset($sess_key)){
-				$this->session->set_flashdata($sess_key, $sess_value);
+		if($query['status']=='1'){
+			$notification['status'] = "success";
+			if(!isset($notification['message'])){
+				$notification['message'] = "Data berhasil disetor ke pusat data";
 			}
-			redirect($redirect_failed);
+			$notification['title'] = "YEAY!";
+		}else{
+			$notification['status'] = "error";
+			$notification['message'] = "Terdapat error ".$query['message']['message']." (".$query['message']['code'].")";
+			$notification['title'] = "Aww";
 		}
+		echo json_encode($notification);
 	}
 
 	public function Mahasiswa($a=""){

@@ -83,14 +83,29 @@ $("#data-dosen tbody").on('click', '#pilih_dosen', function(){
     yes_text:"Ya",
     no_text:"Tidak",
     function_call:"pilih_koor",
-    param:'{"id_dosen":"'+data.nik+'"}',
+    param:'{"nik":"'+data.nik+'"}',
     type:"confirmation"
   };
   alert_toast(JSON.stringify(notif_config));
 });
 
 function pilih_koor(data){
-  alert(data);
   var isi = JSON.parse(data);
-  $.redirect(window.location.href+":Insert", {id_dosen:isi.id_dosen, id_kegiatan:id_kegiatan});
+  var fd = new FormData();
+  fd.append('id_koordinator', isi.nik);
+  fd.append('id_kegiatan', id_kegiatan);
+  $.ajax({
+    url:window.location.href+":Insert",
+    type:'post',
+    data: fd,
+    contentType: false,
+    processData: false,
+    success: function(response){
+      if(JSON.parse(response).status=="success"){
+        $.redirect(document.referrer, {notification:JSON.parse(response)});
+      }else{
+        alert_toast(response);
+      }
+    }
+  });
 }
