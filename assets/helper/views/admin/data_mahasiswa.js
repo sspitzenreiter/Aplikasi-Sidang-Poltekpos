@@ -57,7 +57,7 @@ var mhs_table = $('#data-mahasiswa').DataTable({
     }
   },
   "columns": [
-    {"data": "npm", title:"#"},
+    {"render":function(data, type, row, meta){return '';}, title:"#", "orderable":false},
     {"data": "npm", title:"NPM"},
     {"data": "nama", title:"Nama"},
     {"data": "alamat", title:"Alamat"},
@@ -70,8 +70,9 @@ var mhs_table = $('#data-mahasiswa').DataTable({
   "searching": true,
   "ordering": true,
   "info": false,
+  "responsive":true,
   "autoWidth": false,
-  "order": [[ 0, 'asc' ]],
+  "order": [[ 1, 'asc' ]],
   "dom":'t<"bottom"p>'
 });
 

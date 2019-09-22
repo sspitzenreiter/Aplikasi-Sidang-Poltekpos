@@ -30,7 +30,7 @@ $(function(){
       }
     },
     "columns": [
-      {"data": "nama_kegiatan", title:"#"},
+      {"render":function(data, type, row, meta){return '';}, title:"#", "orderable":false},
       {"data": "nama_kegiatan",title:"Kegiatan"},
       {"render":
         function(data, type, row, meta){
@@ -66,7 +66,8 @@ $(function(){
     "ordering": true,
     "info": false,
     "autoWidth": false,
-    "order": [[ 0, 'asc' ]],
+    "responsive":true,
+    "order": [[ 1, 'asc' ]],
     "dom":'t<"bottom"p>'
   });
 

@@ -31,7 +31,7 @@ var dsn_table = $('#data-dosen').DataTable({
     }
   },
   "columns": [
-    {"data": "nik", title:"#"},
+    {"render":function(data, type, row, meta){return '';}, title:"#", "orderable":false},
     {"data": "nik", title:"NIK"},
     {"data": "nama", title:"Nama"},
     {"render":
@@ -54,7 +54,8 @@ var dsn_table = $('#data-dosen').DataTable({
   "ordering": true,
   "info": false,
   "autoWidth": false,
-  "order": [[ 0, 'asc' ]],
+  "responsive":true,
+  "order": [[ 1, 'asc' ]],
   "dom":'t<"bottom"p>'
 });
 

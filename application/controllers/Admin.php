@@ -38,7 +38,7 @@ class Admin extends CI_Controller {
 	public function index()
 	{
 		//$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success', 'title'=>'Apa ')); //Alert Ditengah
-		$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success', 'type'=>'top-end')); //Alert di kanan atas
+		//$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success', 'type'=>'top-end')); //Alert di kanan atas
 		$data['nav_active'] = "dashboard";
 		$data['nav_open'] = "";
 		$data = array_merge($data, $this->con_config);
