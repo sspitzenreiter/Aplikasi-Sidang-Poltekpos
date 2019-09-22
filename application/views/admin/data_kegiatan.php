@@ -45,7 +45,7 @@
                 </div>
                 <table class="table" id="data-kegiatan">
                   <thead>
-                    
+
                   </thead>
                   <tbody>
 

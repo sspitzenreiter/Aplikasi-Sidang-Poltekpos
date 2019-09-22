@@ -29,7 +29,7 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		//$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success', 'title'=>'Apa anjing')); //Alert Ditengah
+		//$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success', 'title'=>'Apa ')); //Alert Ditengah
 		$this->session->set_flashdata('notification', array('message'=>'Tes Alert', 'status'=>'success', 'type'=>'top-end')); //Alert di kanan atas
 		$data['nav_active'] = "dashboard";
 		$data['nav_open'] = "";
@@ -55,6 +55,28 @@ class Admin extends CI_Controller {
 			break;
 			case "Data":
 				$this->Tampil_Data('kegiatan');
+			break;
+			case "PilihKoor":
+				if(!isset($_SESSION['id_kegiatan'])){
+					$this->session->set_flashdata('id_kegiatan', $this->input->post('id_kegiatan'));
+				}else{
+					$this->session->set_flashdata('id_kegiatan', $_SESSION['id_kegiatan']);
+				}
+				$data['nav_active'] = "kegiatan";
+				$data['nav_open'] = "";
+				$data['jscallurl'] = "admin/data_kegiatan_pilih_koor.js";
+				$data = array_merge($data, $this->con_config);
+				$this->load->view('admin/data_dosen', $data);
+			break;
+			case "PilihKoor:Data":
+				$data = $_SESSION['id_kegiatan'];
+				$queryextras[0]['type']="where";
+				$queryextras[0]['value']="nik not in (select id_koordinator from kegiatan)";
+				$this->Tampil_Data('dosen', array('id_kegiatan'=>$data), $queryextras);
+			break;
+			case "PilihKoor:Insert":
+				$data = $this->input->post();
+				$this->Ubah_Data(array('id_koordinator'=>$data['id_dosen']), array('id_kegiatan'=>$data['id_kegiatan']), 'kegiatan');
 			break;
 		}
 
@@ -99,6 +121,38 @@ class Admin extends CI_Controller {
 		echo json_encode($notification);
 	}
 
+	public function Ubah_Data($data, $where, $table){
+		$status = array();
+		switch($table){
+			case "kegiatan":
+				$status = $this->M_Kegiatan->update_kegiatan($data, $where);
+				$notification['message'] = "Koordinator Berhasil Diganti";
+				$redirect_success = "Admin/Kegiatan";
+				$redirect_failed = "'Admin/Kegiatan/PilihKoor'";
+				$sess_key = 'id_kegiatan';
+				$sess_value = $data['id_kegiatan'];
+			break;
+		}
+
+		$notification['status'] = 'success';
+		$notification['title'] = 'Sukses!';
+		if($status['status']=="1"){
+			$this->session->set_flashdata('notification',$notification);
+			redirect($redirect_success);
+		}else{
+			$this->session->set_flashdata('notification',
+			array(
+				'message'=>'Terdapat error saat mengganti data '.$table.' : '.$status['message']['message'].'('.$status['message']['code'].')',
+				'status'=>'error',
+				'title'=>'Aww..'
+			));
+			if(isset($sess_key)){
+				$this->session->set_flashdata($sess_key, $sess_value);
+			}
+			redirect($redirect_failed);
+		}
+	}
+
 	public function Mahasiswa($a=""){
 		switch($a){
 			case "":
@@ -120,15 +174,18 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function Tampil_Data($table){
+	public function Tampil_Data($table, $data_extras="", $query_extras=""){
 		$db_call = "";
 		switch($table){
-			case "mahasiswa": $db_call = $this->M_Mahasiswa->get_mahasiswa(); break;
-			case "dosen": $db_call = $this->M_Dosen->get_dosen(); break;
-			case "kegiatan": $db_call = $this->M_Kegiatan->get_kegiatan(); break;
+			case "mahasiswa": $db_call = $this->M_Mahasiswa->get_mahasiswa($query_extras); break;
+			case "dosen": $db_call = $this->M_Dosen->get_dosen($query_extras); break;
+			case "kegiatan": $db_call = $this->M_Kegiatan->get_kegiatan($query_extras); break;
 		}
 		if($db_call['status']=='1'){
 			$data['data'] = $db_call['isi']->result();
+			if($data_extras!=""){
+				$data['extras'] = $data_extras;
+			}
 		}else{
 			$data['error_message'] = $db_call['message'];
 		}

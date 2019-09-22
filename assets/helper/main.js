@@ -20,7 +20,11 @@ function alert_toast(value){
       cancelButtonText: alert_config.no_text
     }).then((result) => {
       if (result.value) {
-        window[alert_config.function_call]();
+        if(alert_config.param!=null){
+          window[alert_config.function_call](alert_config.param);
+        }else{
+          window[alert_config.function_call]();
+        }
       }
     });
   }else if(alert_config.type=="loading"){

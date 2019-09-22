@@ -10,6 +10,7 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>assets/theme/plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libraries/jquery.redirect.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url(); ?>assets/theme/plugins/jquery-ui/jquery-ui.min.js"></script>
 
@@ -59,6 +60,7 @@
 <script>
   <?php
     if(isset($notification)){
+      $notification = str_replace("'", "\'", $notification);
       ?>
         alert_toast('<?=$notification?>');
       <?php

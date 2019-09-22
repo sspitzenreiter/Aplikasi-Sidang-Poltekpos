@@ -42,4 +42,14 @@ class M_Kegiatan extends CI_Model {
       return array('status'=>'0', 'message'=>$this->db->error());
     }
   }
+
+	public function update_kegiatan($data, $where)
+	{
+		$this->db->where($where);
+    if($this->db->update('kegiatan',$data)){
+      return array('status'=>'1');
+    }else{
+      return array('status'=>'0', 'message'=>$this->db->error());
+    }
+	}
 }

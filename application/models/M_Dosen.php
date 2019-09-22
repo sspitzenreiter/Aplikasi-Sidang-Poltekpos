@@ -27,6 +27,10 @@ class M_Dosen extends CI_Model {
 					for($a=0;$a<sizeof($value); $a++){
 						$this->db->where_in($value[$a]['name'], $value[$a]['value']);
 					}
+				}else if($key=="where_not_in"){
+					for($a=0;$a<sizeof($value); $a++){
+						$this->db->where_not_in($value[$a]['name'], $value[$a]['value']);
+					}
 				}else if($key=="order_by"){
 					$this->db->order_by($value);
 				}else if($key=="limit"){

@@ -31,7 +31,7 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-2">
+                  <div class="col-md-2" id="button-placement">
                      <button data-toggle="modal" data-target="#modal-dosen" type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-plus"></i> ADD</button>
                   </div>
                   <div class="col-md-7"></div>
@@ -46,7 +46,7 @@
                 </div>
                 <table class="table" id="data-dosen">
                   <thead>
-                    
+
                   </thead>
                   <tbody>
 

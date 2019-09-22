@@ -37,7 +37,15 @@ $(function(){
           return date_converter(row.tgl_mulai)+"-"+date_converter(row.tgl_selesai);
         }, title:"Tanggal Kegiatan"
       },
-      {"data": "id_koordinator", title:"Koordinator"},
+      {"render":
+      function(data, type, row, meta){
+        if(row.id_koordinator!=""){
+          return row.id_koordinator;
+        }else{
+          var button = "<button class='btn btn-block btn-default' id='btn_pilih_koor'>Pilih Koor</button>";
+          return button;
+        }
+      }, title: "Koordinator"},
       {"data": "angkatan", title:"Tahun Ajaran"},
       {"data": "semester", title:"Semester"},
       {"data": "prodi", title:"Program Studi"},
@@ -72,6 +80,11 @@ $(function(){
     kegiatan_table.search( this.value ).draw();
   });
 
+  $("#data-kegiatan tbody").on('click', '#btn_pilih_koor', function(){
+    var data = kegiatan_table.row( $(this).parents('tr') ).data();
+    $.redirect(window.location.href+"/PilihKoor", {id_kegiatan: data.id_kegiatan}, "POST");
+  });
+
   $("#save").click(function(){
     var fd = new FormData();
     var data = {
@@ -97,7 +110,7 @@ $(function(){
         alert_toast(response);
         if(JSON.parse(response).status=="success"){
           $('#modal-kegiatan').modal('toggle');
-          //kegiatan_table.ajax.reload();
+          kegiatan_table.ajax.reload();
         }
         document.getElementById('save').disabled=true;
       }
