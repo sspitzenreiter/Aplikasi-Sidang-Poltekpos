@@ -34,6 +34,10 @@ $(function(){
     document.getElementById('file-label').innerHTML=filename;
     document.getElementById('button_upload').disabled=false;
   });
+  
+  $('#button_download_format').click(function(){
+		document.location = window.location.href+"/Download";
+  });
 });
 
 var mhs_table = $('#data-mahasiswa').DataTable({
@@ -84,10 +88,6 @@ mhs_table.on( 'order.dt search.dt', function () {
 
 $("#mhs_search").on('keyup', function(){
   mhs_table.search( this.value ).draw();
-});
-
-$('#button_download_format').click(function(){
-  document.location = window.location.href+"/Download";
 });
 
 function cobain(){

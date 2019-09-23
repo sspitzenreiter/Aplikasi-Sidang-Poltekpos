@@ -5,7 +5,7 @@
   </a>
 </li>
 <li class="nav-item has-treeview <?= nav_setting('menu', $nav_open, 'open'); ?>">
-  <a href="<?php echo base_url(); ?>assets/theme/#" class="nav-link">
+  <a href="" class="nav-link">
     <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>
       Menu

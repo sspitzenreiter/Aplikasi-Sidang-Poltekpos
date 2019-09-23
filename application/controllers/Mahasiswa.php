@@ -23,9 +23,11 @@ class Mahasiswa extends CI_Controller {
 
 		$data['nav_active'] = "dashboard";
 		$data['nav_open'] = "";
-		$db_call = $this->m->get_mahasiswa();
+		$search[0]['type']="where";
+		$search[0]['value']=array('npm'=>'1174000');
+		$db_call = $this->m->get_mahasiswa($search);
 		if($db_call['status']=='1'){
-			$data['data_mahasiswa'] = $this->m->get_mahasiswa()['isi'];
+			$data['data_mahasiswa'] = $db_call['isi'];
 		}else{
 			$data['error_message'] = json_encode($db_call['message']);
 		}
