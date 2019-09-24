@@ -23,14 +23,7 @@ class Mahasiswa extends CI_Controller {
 
 		$data['nav_active'] = "dashboard";
 		$data['nav_open'] = "";
-		$search[0]['type']="where";
-		$search[0]['value']=array('npm'=>'1174000');
-		$db_call = $this->m->get_mahasiswa($search);
-		if($db_call['status']=='1'){
-			$data['data_mahasiswa'] = $db_call['isi'];
-		}else{
-			$data['error_message'] = json_encode($db_call['message']);
-		}
+		
 		$data = array_merge($data, $this->con_config);
 
 		$this->load->view('mahasiswa/mhsw_dash',$data);
@@ -73,6 +66,23 @@ class Mahasiswa extends CI_Controller {
 				)
 			);
 		}
-		redirect(base_url('Mahasiswa/'));
+		redirect(base_url('Mahasiswa/profil'));
+	}
+
+	public function profil()
+	{
+		$data['nav_active'] = "profil";
+		$data['nav_open'] = "";
+		$search[0]['type']="where";
+		$search[0]['value']=array('npm'=>'1174000');
+		$db_call = $this->m->get_mahasiswa($search);
+		if($db_call['status']=='1'){
+			$data['data_mahasiswa'] = $db_call['isi'];
+		}else{
+			$data['error_message'] = json_encode($db_call['message']);
+		}
+		$data = array_merge($data, $this->con_config);
+		$this->load->view('mahasiswa/profil_mhsw', $data);
+		//$this->load->view('common/footer');
 	}
 }
