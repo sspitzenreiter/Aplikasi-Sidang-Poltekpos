@@ -34,9 +34,15 @@ $(function(){
     document.getElementById('file-label').innerHTML=filename;
     document.getElementById('button_upload').disabled=false;
   });
+
   
   $('#button_download_format').click(function(){
 		document.location = window.location.href+"/Download";
+
+
+  $('#button_download_format').on('click', function(){
+    document.location = window.location.href+"/Download";
+
   });
 });
 
@@ -89,6 +95,7 @@ mhs_table.on( 'order.dt search.dt', function () {
 $("#mhs_search").on('keyup', function(){
   mhs_table.search( this.value ).draw();
 });
+
 
 function cobain(){
   Swal.fire('Sukses', 'Data Berhasil Dihapus', 'success');
