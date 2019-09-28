@@ -1,93 +1,80 @@
 <?php $this->load->view('common/header'); ?>
   <div class="content-wrapper">
     <div class="content-header">
-<?php
-
-      foreach($data_mahasiswa->result() as $row){ ?>
+    <?php $row = $data_mahasiswa->row(); ?>
       <section class="col-lg-12 connectedSortable">
-         <div class="container-fluid">
-                 <div class="col-md-12">
+        <div class="container-fluid">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-header">
                 <div class="row">
-
-                <h5 style="font-size:30px">Profile</h5>
-
-              <div class="col-7">
+                  <div class="col">
+                    <h2>Profile</h2>
+                  </div>
+                  <div class="col-md-2">
+                    <button id="lengkapi" data-toggle="modal" data-target="#modal2" type="button" class="btn btn-block btn-success"> Lengkapi</button>
+                  </div>
+                  <div class="col-md-2">
+                    <button id="lengkapi" data-toggle="modal" data-target="#modal1" type="button" class="btn btn-block btn-success"> Ganti Password</button>
+                  </div>
+                </div>
               </div>
-              <div class="col-sm-2">
-              <button id="lengkapi" data-toggle="modal" data-target="#modal2" type="button" class="btn btn-block btn-success"> Lengkapi</button></div>
-              <div class="col-sm-2">
-              <button id="lengkapi" data-toggle="modal" data-target="#modal1" type="button" class="btn btn-block btn-success"> Ganti Password</button></div>
-              </div>
-            </div>
               <div class="card-body">
-               <div class="row">
+              <form id="form-profile-preview">
+                <div class="row">
                   <div class="col-sm-2">
-                <div class="form-group" >
-                    <label >NPM</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->npm; ?>" id="exampleInputEmail1" placeholder="NPM" readonly>
+                    <div class="form-group" >
+                      <label >NPM</label>
+                      <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->npm; ?>" id="npm" placeholder="NPM" readonly>
+                    </div>
+                  </div>
+                  <div class ="col-sm-2"></div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label >NAMA</label>
+                      <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->nama; ?>"id="nama" placeholder="NONE" width="10px" readonly>
+                    </div>
                   </div>
                 </div>
-                <div class ="col-sm-2">
-              </div>
-                <div class="col-sm-6">
-                <div class="form-group">
-                    <label >NAMA</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->nama; ?>"id="exampleInputEmail1" placeholder="NONE" width="10px" readonly>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-group">
+                      <label >ALAMAT</label>
+                      <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->alamat; ?>"id="alamat" placeholder="NONE" width="10px" readonly>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-              <div class="col-sm-10">
-                <div class="form-group">
-                    <label >ALAMAT</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->alamat; ?>"id="exampleInputEmail1" placeholder="NONE" width="10px" readonly>
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group" >
+                      <label >Angkatan</label>
+                      <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->angkatan; ?>"id="angkatan" placeholder="NONE" readonly>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-2">
-                <div class="form-group" >
-                    <label >Angkatan</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->angkatan; ?>"id="exampleInputEmail1" placeholder="NONE" readonly>
-                  </div>
-                </div>
-              </div>
                 <div class="row">
                   <div class="col-sm-3">
-                <div class="form-group" >
-                    <label >Tempat Lahir</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->tempat_lahir; ?>"id="exampleInputEmail1" placeholder="NONE" readonly>
+                    <div class="form-group" >
+                      <label >Tempat Lahir</label>
+                      <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->tempat_lahir; ?>"id="tempat_lahir" placeholder="NONE" readonly>
+                   </div>
                   </div>
-                </div>
-                 <div class="col-sm-3">
-                <div class="form-group" >
+                <div class="col-sm-3">
+                  <div class="form-group" >
                     <label >Tanggal Lahir</label>
-                    <input style ="border:none" type="date" class="form-control" value ="<?php echo $row->tgl_lahir; ?>"id="exampleInputEmail1" placeholder="NONE" readonly>
+                    <input style ="border:none" type="date" class="form-control" value ="<?php echo $row->tgl_lahir; ?>"id="tgl_lahir" placeholder="NONE" readonly>
                   </div>
                 </div>
-                </div>
-            </div>
+              </div>
+              </form>
             </div>
           </div>
         </div>
       </section>
-<?php } ?>
 </div>
 </div>
 <?php $this->load->view('common/footer'); ?>
-<script>
-    $(function(){
-      $("#save").click(function(){
-        $('#modal1').modal('toggle');
-        Swal.fire('Success', 'Data Submitted ', 'success');
-      });
-      
-    });
-    </script>
- <?php
-      foreach($data_mahasiswa->result() as $row){ ?>
+
     <div class="modal fade" id="modal2">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -99,12 +86,12 @@
               </button>
             </div>
             <div class="modal-body">
-              <form action="<?php echo base_url('Mahasiswa/update') ?>" method="post">
+              <form id="form-profile">
                 <div class="row">
                   <div class="col-sm-2">
                     <div class="form-group" >
                       <label >NPM</label>
-                      <input  type="text" class="form-control" value="<?php echo $row->npm; ?>" name="txt_hidden" placeholder="NPM"  readonly>
+                      <input  type="text" class="form-control" value="<?php echo $row->npm; ?>" name="npm" placeholder="NPM"  readonly>
                     </div>
                   </div>
                   <div class ="col-sm-2">
@@ -112,7 +99,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label >NAMA</label>
-                      <input  type="text" class="form-control" value="<?php echo $row->nama; ?>"name="txt_namamahasiswa" placeholder="NONE" width="10px" >
+                      <input  type="text" class="form-control" value="<?php echo $row->nama; ?>"name="nama" placeholder="NONE" width="10px" >
                     </div>
                   </div>
                 </div>
@@ -120,7 +107,7 @@
                   <div class="col-sm-10">
                     <div class="form-group">
                       <label >ALAMAT</label>
-                      <input  type="text" class="form-control" value="<?php echo $row->alamat; ?>"name="txt_alamatmahasiswa" placeholder="NONE" width="10px" >
+                      <input  type="text" class="form-control" value="<?php echo $row->alamat; ?>"name="alamat" placeholder="NONE" width="10px" >
                     </div>
                   </div>
                 </div>
@@ -128,7 +115,7 @@
                   <div class="col-sm-2">
                     <div class="form-group" >
                       <label >Angkatan</label>
-                      <input  type="text" class="form-control" value="<?php echo $row->angkatan; ?>"name="txt_angkatanmahasiswa" placeholder="NONE" >
+                      <input  type="text" class="form-control" value="<?php echo $row->angkatan; ?>"name="angkatan" placeholder="NONE" >
                     </div>
                   </div>
                 </div>
@@ -136,20 +123,20 @@
                   <div class="col-sm-3">
                     <div class="form-group" >
                       <label >Tempat Lahir</label>
-                      <input  type="text" class="form-control" value="<?php echo $row->tempat_lahir; ?>" name="txt_tmptlhrmahasiswa" placeholder="NONE" >
+                      <input  type="text" class="form-control" value="<?php echo $row->tempat_lahir; ?>" name="tempat_lahir" placeholder="NONE" >
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group" >
                       <label >Tanggal Lahir</label>
-                      <input  type="date" class="form-control" value="<?php echo $row->tgl_lahir; ?>"name="txt_tgllhrmahasiswa" placeholder="NONE" >
+                      <input  type="date" class="form-control" value="<?php echo $row->tgl_lahir; ?>"name="tgl_lahir" placeholder="NONE" >
                     </div>
                   </div>
                 </div>
 
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button id="saveprof" type="submit" class="btn btn-primary" value="Update">Save changes</button>
+              <button id="save" type="button" class="btn btn-primary" value="Update">Save changes</button>
             </div>
             </form>
           </div>
@@ -158,8 +145,6 @@
         <!-- /.modal-dialog -->
       </div>
     </div>
-
-     <?php } ?>
 <div class="modal fade" id="modal1">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">

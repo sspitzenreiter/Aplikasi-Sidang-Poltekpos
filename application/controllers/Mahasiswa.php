@@ -10,6 +10,11 @@ class Mahasiswa extends CI_Controller {
 		$this->load->model('M_Kegiatan');
 		$this->load->model('M_Proyek');
 		$con_config['navigation'] = "nav_mhs";
+		$this->load->helper('auth');
+		if(CallLogin($this->session->userdata, "M")!=""){
+			redirect(CallLogin($this->session->userdata));
+		}
+		
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
 			if(!isset($con_config['notification']['type'])){
@@ -17,6 +22,8 @@ class Mahasiswa extends CI_Controller {
 			}
 			$con_config['notification'] = json_encode($con_config['notification']);
 		}
+		$con_config['profile_link'] = base_url('Mahasiswa/Profile');
+		$con_config['profile_name'] = $_SESSION['nama'];
 		$this->con_config = $con_config;
 	}
 
@@ -43,7 +50,7 @@ class Mahasiswa extends CI_Controller {
 			break;
 			case "Data":  
 				$search[0]['type']="where";
-				$search[0]['value']="npm='1174035'";
+				$search[0]['value']=array('npm'=>$_SESSION['id_user']);
 				$data = json_decode($this->Tampil_Data('detail', "", $search), true);
 				if($data['num_rows']<1){
 					$data['col_config'] = "kegiatan";
@@ -63,12 +70,12 @@ class Mahasiswa extends CI_Controller {
 			break;
 			case "Data:Proyek":
 				$search[0]['type']="where";
-				$search[0]['value'] = "npm='1174035'";
+				$search[0]['value'] = array('prodi'=>$_SESSION['prodi']);
 				echo $this->Tampil_Data($this->input->post('config'), "",$search);
 			break;
 			case "Insert":
 				$data = $this->input->post();
-				$data['npm'] = "1174035";
+				$data['npm'] = $_SESSION['id_user'];
 				echo $this->Tambah_Data($data, 'detail');
 			break;
 		}
@@ -149,20 +156,52 @@ class Mahasiswa extends CI_Controller {
 		redirect(base_url('Mahasiswa/profil'));
 	}
 
-	public function profil()
-	{
-		$data['nav_active'] = "profil";
-		$data['nav_open'] = "";
-		$search[0]['type']="where";
-		$search[0]['value']=array('npm'=>'1174000');
-		$db_call = $this->m->get_mahasiswa($search);
-		if($db_call['status']=='1'){
-			$data['data_mahasiswa'] = $db_call['isi'];
-		}else{
-			$data['error_message'] = json_encode($db_call['message']);
+	public function Ubah_Data($data, $where, $table){
+		$query = "";
+		switch($table){
+			//case "dosen": $query = $this->M_Dosen->insert_dosen($data); break;
+			case "profile" :
+				$query = $this->M_Mahasiswa->update($data);
+				$notification['message'] = "Profile Berhasil Diupdate";
+			break;
 		}
-		$data = array_merge($data, $this->con_config);
-		$this->load->view('mahasiswa/profil_mhsw', $data);
-		//$this->load->view('common/footer');
+
+		if($query['status']=='1'){
+			$notification['status'] = "success";
+			if(!isset($notification['message'])){
+				$notification['message'] = "Data berhasil disetor ke pusat data";
+			}
+			$notification['title'] = "YEAY!";
+		}else{
+			$notification['status'] = "error";
+			$notification['message'] = "Terdapat error ".$query['message']['message']." (".$query['message']['code'].")";
+			$notification['title'] = "Aww";
+		}
+		return json_encode($notification);
+	}
+
+	public function Profile($a="")
+	{
+		switch($a){
+			case "":
+				$search[0]['type']="where";
+				$search[0]['value']=array('npm'=>$_SESSION['id_user']);
+				$data['jscallurl']="mahasiswa/mhs_profile.js";
+				$data['nav_open'] = "";
+				$data['nav_active']="";
+				$db_call = $this->M_Mahasiswa->get_mahasiswa($search);
+				if($db_call['status']=='1'){
+					$data['data_mahasiswa'] = $db_call['isi'];
+				}else{
+					$data['error_message'] = json_encode($db_call['message']);
+				}
+				$data = array_merge($data, $this->con_config);
+				$this->load->view('mahasiswa/mhs_profile', $data);
+			break;
+			case "Update":
+				$data = $this->input->post();
+				echo $this->Ubah_Data($data, "", 'profile');
+			break;
+		}
 	}
 }

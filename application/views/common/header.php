@@ -177,7 +177,7 @@
           <img src="<?php echo base_url(); ?>assets/theme/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="<?php echo base_url('admin/index'); ?>" class="d-block">Alexander Pierce</a>
+          <a href="<?php echo $profile_link; ?>" class="d-block"><?=$profile_name?></a>
         </div>
       </div>
 
@@ -187,6 +187,18 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <?php $this->load->view('common/navigation/'.$navigation); ?>
+
+            <?php 
+              if(isset($navigation_2)){
+                $this->load->view('common/navigation/'.$navigation_2); 
+              }
+            ?>
+            <li class="nav-item">
+              <a href="<?php echo base_url('Login/'); ?>" class="nav-link <?= nav_setting('penjadwalan', $nav_active); ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Logout</p>
+              </a>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -44,18 +44,10 @@ class M_mahasiswa extends CI_Model{
     //$this->load->view('common/footer');
   }
 
-  public function update($data){
-		$npm = $data['txt_hidden'];
-		$field = array(
-			'nama'=>$data['txt_namamahasiswa'],
-			'alamat'=>$data['txt_alamatmahasiswa'],
-			'angkatan'=>$data['txt_angkatanmahasiswa'],
-			'tempat_lahir'=>$data['txt_tmptlhrmahasiswa'],
-			'tgl_lahir'=>$data['txt_tgllhrmahasiswa']
-			);
-		$this->db->where('npm', $npm);
-		$isi = $this->db->update('mahasiswa', $field);
-    if($isi){
+  	public function update($data){
+		$this->db->where('npm', $data['npm']);
+		$isi = $this->db->update('mahasiswa', $data);
+    	if($isi){
 			return array('status'=>'1');
 		}else{
 			return array('status'=>'0', 'message'=>$this->db->error());

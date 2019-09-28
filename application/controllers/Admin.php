@@ -17,6 +17,10 @@ class Admin extends CI_Controller {
 		$this->load->model('M_Dosen');
 		$this->load->model('M_Kegiatan');
 		$con_config['navigation'] = "nav_admin";
+		$this->load->helper('auth');
+		if(CallLogin($this->session->userdata, "A")!=""){
+			redirect(CallLogin($this->session->userdata));
+		}
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
 		}
@@ -62,7 +66,9 @@ class Admin extends CI_Controller {
 				$this->Tambah_Data($data, 'kegiatan');
 			break;
 			case "Data":
-				echo $this->Tampil_Data('kegiatan');
+				$search[0]['type']="where";
+				$search[0]['value']=array('prodi'=>$_SESSION['prodi']);
+				echo $this->Tampil_Data('kegiatan', "", $search);
 			break;
 			case "PilihKoor":
 				if(!isset($_SESSION['id_kegiatan'])){
@@ -78,9 +84,11 @@ class Admin extends CI_Controller {
 			break;
 			case "PilihKoor:Data":
 				$data = $_SESSION['id_kegiatan'];
-				$queryextras[0]['type']="where";
-				$queryextras[0]['value']="nik not in (select id_koordinator from kegiatan)";
-				echo $this->Tampil_Data('dosen', array('id_kegiatan'=>$data), $queryextras);
+				$search[0]['type']="where";
+				$search[0]['value']="nik not in (select id_koordinator from kegiatan)";
+				$search[1]['type']="where";
+				$search[1]['value']=array('prodi'=>$_SESSION['prodi']);
+				echo $this->Tampil_Data('dosen', array('id_kegiatan'=>$data), $search);
 			break;
 			case "PilihKoor:Insert":
 				$data = $this->input->post();
@@ -101,10 +109,13 @@ class Admin extends CI_Controller {
 				$this->load->view('admin/data_dosen', $data);
 			break;
 			case "Data":
-				$this->Tampil_Data('dosen');
+				$search[0]['type']="where";
+				$search[0]['value']=array('prodi'=>$_SESSION['prodi']);
+				echo $this->Tampil_Data('dosen', "", $search);
 			break;
 			case "Insert":
 				$data = $this->input->post();
+				$data['prodi'] = $_SESSION['prodi'];
 				echo $this->Tambah_Data($data, 'dosen');
 			break;
 		}
@@ -230,6 +241,7 @@ class Admin extends CI_Controller {
 				foreach($data as $row){
 					$isi[$col['a']] = $row[$col['a']];
 					$isi[$col['b']] = $row[$col['b']];
+					$isi['prodi'] = $_SESSION['prodi'];
 					$query = $this->M_Mahasiswa->insert_mahasiswa($isi);
 					if($query['status']=='1'){
 						$total_masuk++;

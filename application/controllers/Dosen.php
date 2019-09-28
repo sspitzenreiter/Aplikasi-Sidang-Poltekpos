@@ -6,8 +6,34 @@ class Dosen extends CI_Controller {
 	public $con_config;
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('M_Dosen', 'm');
+		$this->load->model('M_Dosen');
 		$con_config['navigation'] = "nav_dosen";
+		$this->load->helper('auth');
+		if(CallLogin($this->session->userdata, "D")!=""){
+			redirect(CallLogin($this->session->userdata));
+		}
+
+		if(!isset($_SESSION['stat_koor'])){
+			$this->load->model('M_Kegiatan');
+			$search[0]['type']="where";
+			$search[0]['value']=array('id_koordinator'=>$_SESSION['id_user']);
+			$data = $this->M_Kegiatan->get_kegiatan($search);
+			$stat_koor = "";
+			if($data['isi']->num_rows()>0){
+				$stat_koor['status']="1";
+			}else{
+				$stat_koor['status']="0";
+			}
+			$this->session->set_userdata('stat_koor', $stat_koor);
+		}
+		
+		if(isset($_SESSION['stat_koor'])){
+			if($_SESSION['stat_koor']['status']=="1"){
+				$con_config['navigation_2'] = "nav_koor";
+			}
+		}
+		
+
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
 			if(!isset($con_config['notification']['type'])){
@@ -108,5 +134,16 @@ class Dosen extends CI_Controller {
 			);
 		}
 		redirect(base_url('dosen/profil'));
+	}
+
+	//Koordinator
+
+	public function Approval()
+	{
+		$data['nav_active'] = "approval_proposal";
+		$data['nav_open'] = "koordinator";
+		$data = array_merge($data, $this->con_config);
+		$this->load->view('koordinator/koor_app',$data);
+		//$this->load->view('common/footer');
 	}
 }

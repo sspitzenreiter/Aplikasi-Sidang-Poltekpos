@@ -56,13 +56,25 @@ function form_data(form_id){
 }
 
 function form_setter(data){
-  $.each(data, function (i) {
-    $.each(data[i], function (key, val) {
-        if($('#'+key).length){
-          $('#'+key).val(val);
-        }
+  if(data instanceof FormData){
+    var temp = {};
+    data.forEach(function(value, key){
+      temp[key] = value;
     });
-  });
+    $.each(temp, function (key, val) {
+      if($('#'+key).length){
+        $('#'+key).val(val);
+      }
+    });
+  }else{
+    $.each(data, function (i) {
+      $.each(data[i], function (key, val) {
+          if($('#'+key).length){
+            $('#'+key).val(val);
+          }
+      });
+    });
+  }
 }
 
 function base_url(sub_url){

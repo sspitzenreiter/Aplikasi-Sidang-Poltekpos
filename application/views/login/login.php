@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/theme/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?=base_url('assets/theme/')?>plugins/sweetalert2/sweetalert2.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="<?php echo base_url(); ?>assets/theme/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -28,9 +29,9 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="../../index3.html" method="post">
+      <form id="form-login">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="NPM">
+          <input type="text" name="id_user" class="form-control">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -38,7 +39,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" name="pass" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -56,21 +57,11 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+            <button type="button" class="btn btn-primary btn-block btn-flat" id="login">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
-
-      
-      <!-- /.social-auth-links -->
-
-      <p class="mb-1">
-        <a href="<?php echo base_url(); ?>assets/theme/#">I forgot my password</a>
-      </p>
-      <p class="mb-0">
-        <a href="<?php echo base_url(); ?>assets/theme/register.html" class="text-center">Register a new membership</a>
-      </p>
     </div>
     <!-- /.login-card-body -->
   </div>
@@ -79,8 +70,17 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>assets/theme/plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libraries/jquery.redirect.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script src="<?=base_url("assets/theme/plugins/sweetalert2/sweetalert2.min.js")?>"></script>
+<script src="<?=base_url('assets/helper/main.js');?>"></script>
+<?php
+  if(isset($jscallurl)){
+    ?>
+    <script src="<?=base_url('assets/helper/views/').$jscallurl?>"></script>
+    <?php
+  }
+ ?>
 </body>
 </html>
