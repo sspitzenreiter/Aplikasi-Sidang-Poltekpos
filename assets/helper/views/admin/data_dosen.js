@@ -70,22 +70,7 @@ $("#dsn_search").on('keyup', function(){
 
 $(function(){
   $("#save").click(function(){
-      var fd = new FormData();
-      var data = {
-        nik:document.getElementById('nik').value,
-        nama : document.getElementById('nama').value,
-        tempat_lahir : document.getElementById('tempat_lahir').value,
-        tgl_lahir : document.getElementById('tgl_lahir').value,
-        alamat : document.getElementById('alamat').value,
-        judul_jurnal : document.getElementById('judul_jurnal').value,
-        link_jurnal : document.getElementById('link_jurnal').value,
-        research_interest : document.getElementById('research_interest').value
-      };
-
-      for(var key in data){
-        fd.append(key, data[key]);
-      }
-
+      var fd = form_data('form-dosen');
       $.ajax({
         url:window.location.href+"/Insert",
         type:'post',

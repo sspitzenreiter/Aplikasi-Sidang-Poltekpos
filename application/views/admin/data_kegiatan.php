@@ -80,65 +80,62 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="card-body">
+              <form id="form-kegiatan">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nama Kegiatan</label>
-                  <input type="text" class="form-control" id="nama_kegiatan" placeholder="Kegiatan">
+                  <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan" placeholder="Kegiatan">
                 </div>
-              <div class="form-group">
+                <div class="form-group">
                 <label>Tanggal Mulai</label>
-
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="far fa-calendar-alt"></i>
-                    </span>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="far fa-calendar-alt"></i>
+                      </span>
+                    </div>
+                    <input type="date" class="form-control float-right" id="tgl_mulai" name="tgl_mulai">
                   </div>
-                  <input type="date" class="form-control float-right" id="tgl_mulai">
                 </div>
-                <!-- /.input group -->
-              </div>
-              <div class="form-group">
-                <label>Tanggal Selesai</label>
-
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="far fa-calendar-alt"></i>
-                    </span>
+                <div class="form-group">
+                  <label>Tanggal Selesai</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="far fa-calendar-alt"></i>
+                      </span>
+                    </div>
+                    <input type="date" class="form-control float-right" id="tgl_selesai" name="tgl_selesai">
                   </div>
-                  <input type="date" class="form-control float-right" id="tgl_selesai">
                 </div>
-                <!-- /.input group -->
-              </div>
-              <div class="form-group">
-                <label>Tahun Ajaran</label>
-                <select class="form-control select2" style="width: 100%;" id="angkatan">
-                  <?php foreach($data_tahun_ajaran->result() as $row){ ?>
-                    <option><?=$row->angkatan?></option>
-                  <?php } ?>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Semester</label>
-                <select class="form-control select2" style="width: 100%;" id="semester">
-                  <option selected="selected">1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Prodi</label>
-                <select class="form-control select2" style="width: 100%;" id="prodi">
-                  <option selected="selected">D4 Teknik Informatika</option>
-                  <option>D3 Teknik Informatika</option>
-                </select>
-              </div>
+                <div class="form-group">
+                  <label>Tahun Ajaran</label>
+                  <select class="form-control select2" style="width: 100%;" id="angkatan" name="angkatan">
+                    <?php foreach($data_tahun_ajaran->result() as $row){ ?>
+                      <option><?=$row->angkatan?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Semester</label>
+                  <select class="form-control select2" style="width: 100%;" id="semester" name="semester">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Prodi</label>
+                  <select class="form-control select2" style="width: 100%;" id="prodi" name="prodi">
+                    <option selected="selected">D4 Teknik Informatika</option>
+                    <option>D3 Teknik Informatika</option>
+                  </select>
+                </div>
+              </form>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -62,7 +62,7 @@ class Admin extends CI_Controller {
 				$this->Tambah_Data($data, 'kegiatan');
 			break;
 			case "Data":
-				$this->Tampil_Data('kegiatan');
+				echo $this->Tampil_Data('kegiatan');
 			break;
 			case "PilihKoor":
 				if(!isset($_SESSION['id_kegiatan'])){
@@ -80,7 +80,7 @@ class Admin extends CI_Controller {
 				$data = $_SESSION['id_kegiatan'];
 				$queryextras[0]['type']="where";
 				$queryextras[0]['value']="nik not in (select id_koordinator from kegiatan)";
-				$this->Tampil_Data('dosen', array('id_kegiatan'=>$data), $queryextras);
+				echo $this->Tampil_Data('dosen', array('id_kegiatan'=>$data), $queryextras);
 			break;
 			case "PilihKoor:Insert":
 				$data = $this->input->post();
@@ -105,7 +105,7 @@ class Admin extends CI_Controller {
 			break;
 			case "Insert":
 				$data = $this->input->post();
-				$this->Tambah_Data($data, 'dosen');
+				echo $this->Tambah_Data($data, 'dosen');
 			break;
 		}
 	}
@@ -171,7 +171,7 @@ class Admin extends CI_Controller {
 				$this->load->view('admin/data_mahasiswa', $data);
 			break;
 			case "Data":
-				$this->Tampil_Data('mahasiswa');
+				echo $this->Tampil_Data('mahasiswa');
 			break;
 			case "Download":
 				$this->download_format_excel();
@@ -197,7 +197,7 @@ class Admin extends CI_Controller {
 		}else{
 			$data['error_message'] = $db_call['message'];
 		}
-		echo json_encode($data);
+		return json_encode($data);
 	}
 
 	public function upload_data_excel($file){
@@ -210,7 +210,7 @@ class Admin extends CI_Controller {
 				$loadexcel = $excelreader->load($file_tmp); // Load file yang telah diupload ke folder excel
 				$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 
-			// Buat sebuah variabel array untuk menampung array data yg akan kita insert ke database
+				// Buat sebuah variabel array untuk menampung array data yg akan kita insert ke database
 				$data = array();
 				$numrow = 0;
 				$col = array();

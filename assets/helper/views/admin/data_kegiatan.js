@@ -87,19 +87,7 @@ $(function(){
   });
 
   $("#save").click(function(){
-    var fd = new FormData();
-    var data = {
-      nama_kegiatan: document.getElementById('nama_kegiatan').value,
-      tgl_mulai: document.getElementById('tgl_mulai').value,
-      tgl_selesai: document.getElementById('tgl_selesai').value,
-      semester: document.getElementById('semester').value,
-      angkatan: document.getElementById('angkatan').value,
-      prodi: document.getElementById('prodi').value
-    };
-
-    for(var key in data){
-      fd.append(key, data[key]);
-    }
+    var fd = form_data('form-kegiatan');
 
     $.ajax({
       url:window.location.href+"/Insert",
@@ -120,5 +108,4 @@ $(function(){
   $("#delete").click(function(){
     Swal.fire('Success', 'Data Deleted', 'success');
   });
-
 });

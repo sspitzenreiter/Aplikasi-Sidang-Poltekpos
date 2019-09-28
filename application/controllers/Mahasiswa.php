@@ -6,8 +6,10 @@ class Mahasiswa extends CI_Controller {
 	public $con_config;
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('M_Mahasiswa', 'm');
-		$con_config['navigation'] = "nav_mhsw";
+		$this->load->model('M_Mahasiswa');
+		$this->load->model('M_Kegiatan');
+		$this->load->model('M_Proyek');
+		$con_config['navigation'] = "nav_mhs";
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
 			if(!isset($con_config['notification']['type'])){
@@ -29,18 +31,96 @@ class Mahasiswa extends CI_Controller {
 		$this->load->view('mahasiswa/mhsw_dash',$data);
 		//$this->load->view('common/footer');
 	}
-	public function detail()
+	public function Proyek($a="")
 	{
-		$data['nav_active'] = "detail_kegiatan";
-		$data['nav_open'] = "menu";
-		$data = array_merge($data, $this->con_config);
-		$this->load->view('mahasiswa/dtl_mhsw',$data);
-		//$this->load->view('common/footer');
+		switch($a){
+			case "":  
+				$data['nav_active'] = "proyek";
+				$data['nav_open'] = "kegiatan";
+				$data['jscallurl'] = "mahasiswa/mhs_proyek.js";
+				$data = array_merge($data, $this->con_config);
+				$this->load->view('mahasiswa/mhs_proyek',$data);
+			break;
+			case "Data":  
+				$search[0]['type']="where";
+				$search[0]['value']="npm='1174035'";
+				$data = json_decode($this->Tampil_Data('detail', "", $search), true);
+				if($data['num_rows']<1){
+					$data['col_config'] = "kegiatan";
+				}else{
+					$data['col_config'] = "detail";
+				}
+				$data = json_encode($data);
+				echo $data;
+			break;
+			case "Content":
+				$data = $this->input->post('content');
+				switch($data){
+					case "kegiatan": $data = "mhs_proyek_kegiatan"; break;
+					case "detail": $data = "mhs_proyek_detail"; break;
+				}
+				$this->load->view('mahasiswa/content_template/'.$data);
+			break;
+			case "Data:Proyek":
+				$search[0]['type']="where";
+				$search[0]['value'] = "npm='1174035'";
+				echo $this->Tampil_Data($this->input->post('config'), "",$search);
+			break;
+			case "Insert":
+				$data = $this->input->post();
+				$data['npm'] = "1174035";
+				echo $this->Tambah_Data($data, 'detail');
+			break;
+		}
 	}
-	public function bimbingan()
+
+	public function Tambah_Data($data, $table){
+		$query = "";
+		$notification = "";
+		switch($table){
+			case "detail":
+				$query = $this->M_Proyek->insert($data);
+				$notification['message']="Proyek berhasil ditambahkan";
+			break;
+		}
+
+		if($query['status']=='1'){
+			$notification['status'] = "success";
+			if(!isset($notification['message'])){
+				$notification['message'] = "Data berhasil disetor ke pusat data";
+			}
+			$notification['title'] = "YEAY!";
+		}else{
+			$notification['status'] = "error";
+			$notification['message'] = "Terdapat error ".$query['message']['message']." (".$query['message']['code'].")";
+			$notification['title'] = "Aww";
+		}
+		return json_encode($notification);
+	}
+
+	public function Tampil_Data($table, $data_extras="", $query_extras=""){
+		$db_call = "";
+		switch($table){
+			case "kegiatan": $db_call = $this->M_Kegiatan->get_kegiatan($query_extras); break;
+			case "detail": $db_call = $this->M_Proyek->get_proyek($query_extras); break;
+		}
+
+		if($db_call['status']=='1'){
+			$data['data'] = $db_call['isi']->result();
+			$data['num_rows'] = $db_call['isi']->num_rows();
+			if($data_extras!=""){
+				$data['extras'] = $data_extras;
+			}
+		}else{
+			$data['error_message'] = $db_call['message'];
+		}
+		return json_encode($data);
+	}
+
+	public function Bimbingan()
 	{
 		$data['nav_active'] = "bimbingan";
-		$data['nav_open'] = "menu";
+		$data['nav_open'] = "proyek";
 		$data = array_merge($data, $this->con_config);
 		$this->load->view('mahasiswa/bimb_mhsw',$data);
 		//$this->load->view('common/footer');

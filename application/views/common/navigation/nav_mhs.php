@@ -10,19 +10,19 @@
     <p>Profil</p>
   </a>
 </li>
-<li class="nav-item has-treeview <?= nav_setting('menu', $nav_open, 'open'); ?>">
+<li class="nav-item has-treeview <?= nav_setting('kegiatan', $nav_open, 'open'); ?>">
   <a href="" class="nav-link">
     <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>
-      Menu
+      Kegiatan
       <i class="right fas fa-angle-left"></i>
     </p>
   </a>
   <ul class="nav nav-treeview">
     <li class="nav-item">
-      <a href="<?php echo base_url('Mahasiswa/Detail'); ?>" class="nav-link <?= nav_setting('detail_kegiatan', $nav_active); ?>">
+      <a href="<?php echo base_url('Mahasiswa/Proyek'); ?>" class="nav-link <?= nav_setting('proyek', $nav_active); ?>">
         <i class="far fa-circle nav-icon"></i>
-        <p>Detail Kegiatan</p>
+        <p>Proyek</p>
       </a>
     </li>
     <li class="nav-item">

@@ -89,58 +89,51 @@
 
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              <form role="form" id="form-dosen">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">NIK</label>
-                    <input type="text" class="form-control" id="nik" placeholder="NIK">
+                    <input type="text" class="form-control" id="nik" placeholder="NIK" name="nik">
                   </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama</label>
-                    <input type="text" class="form-control" id="nama" placeholder="Nama">
+                    <input type="text" class="form-control" id="nama" placeholder="Nama" name="nama">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tempat Lahir</label>
-                    <input type="text" class="form-control" id="tempat_lahir" placeholder="Tempat Lahir">
+                    <input type="text" class="form-control" id="tempat_lahir" placeholder="Tempat Lahir" name="tempat_lahir">
                   </div>
                 <div class="form-group">
                   <label>Tanggal Lahir</label>
-
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
                         <i class="far fa-calendar-alt"></i>
                       </span>
                     </div>
-                    <input type="date" class="form-control float-right" id="tgl_lahir">
+                    <input type="date" class="form-control float-right" id="tgl_lahir" name="tgl_lahir">
                   </div>
                   <!-- /.input group -->
                 </div>
                    <div class="form-group">
                     <label for="exampleInputEmail1">Alamat</label>
-                    <input type="text" class="form-control" id="alamat" placeholder="Alamat">
+                    <input type="text" class="form-control" id="alamat" placeholder="Alamat" name="alamat">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Judul Jurnal</label>
-                    <input type="text" class="form-control" id="judul_jurnal" placeholder="Judul Jurnal">
+                    <input type="text" class="form-control" id="judul_jurnal" placeholder="Judul Jurnal" name="judul_jurnal">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Link Jurnal</label>
-                    <input type="text" class="form-control" id="link_jurnal" placeholder="Link Jurnal">
+                    <input type="text" class="form-control" id="link_jurnal" placeholder="Link Jurnal" name="link_jurnal">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Research Interest</label>
-                    <input type="text" class="form-control" id="research_interest" placeholder="Research Interest">
+                    <input type="text" class="form-control" id="research_interest" placeholder="Research Interest" name="research_interest">
                   </div>
-
                 </div>
                 <!-- /.card-body -->
-
-
               </form>
-
-
-
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button id="save" type="button" class="btn btn-primary">Save changes</button>

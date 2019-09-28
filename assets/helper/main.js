@@ -45,3 +45,26 @@ function date_converter(tanggal){
   var date = new Date(tanggal);
   return date.getDate()+" "+bulan[date.getMonth()]+" "+date.getFullYear()
 }
+
+function form_data(form_id){
+  var data = $('#'+form_id).serializeArray();
+  var fd = new FormData();
+  $.each(data, function(i, field){
+    fd.append(field.name, field.value);
+  });
+  return fd;
+}
+
+function form_setter(data){
+  $.each(data, function (i) {
+    $.each(data[i], function (key, val) {
+        if($('#'+key).length){
+          $('#'+key).val(val);
+        }
+    });
+  });
+}
+
+function base_url(sub_url){
+  return window.location.protocol+"//"+window.location.host+"/"+window.location.pathname.split('/')[1]+"/"+sub_url;
+}

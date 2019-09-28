@@ -124,4 +124,5 @@ function upload_data(){
       document.getElementById('button_upload').disabled=true;
     }
   });
-}
+  }
+});
