@@ -11,9 +11,7 @@ class Mahasiswa extends CI_Controller {
 		$this->load->model('M_Proyek');
 		$con_config['navigation'] = "nav_mhs";
 		$this->load->helper('auth');
-		if(CallLogin($this->session->userdata, "M")!=""){
-			redirect(CallLogin($this->session->userdata));
-		}
+		
 		
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
@@ -24,20 +22,30 @@ class Mahasiswa extends CI_Controller {
 		}
 		$con_config['profile_link'] = base_url('Mahasiswa/Profile');
 		$con_config['profile_name'] = $_SESSION['nama'];
+		$this->CekProyek();
 		$this->con_config = $con_config;
 	}
 
 	public function index()
 	{
-
 		$data['nav_active'] = "dashboard";
 		$data['nav_open'] = "";
-		
 		$data = array_merge($data, $this->con_config);
-
 		$this->load->view('mahasiswa/mhsw_dash',$data);
 		//$this->load->view('common/footer');
 	}
+
+	public function CekProyek(){
+		$search[0]['type']="where";
+		$search[0]['value']=array('npm'=>$_SESSION['id_user']);
+		$data = json_decode($this->Tampil_Data('detail', "", $search), true);
+		if($data['num_rows']>0){
+			if($data['data'][0]['status']=="1"){
+				$this->session->set_userdata('id_proyek', $data['data'][0]['id_proyek']);
+			}
+		}
+	}
+
 	public function Proyek($a="")
 	{
 		switch($a){
@@ -135,7 +143,8 @@ class Mahasiswa extends CI_Controller {
 				$this->load->view('mahasiswa/bimb_mhs',$data);
 			break;
 			case "Data":
-				
+				$search[0]['type']="where";
+				$search[0]['value']=array('id_proyek');
 			break;
 		}
 		
