@@ -65,6 +65,7 @@ class Admin extends CI_Controller {
 			case "Insert":
 				$data = $this->input->post();
 				$data['status_mulai'] = "0";
+				$data['prodi']=$_SESSION['prodi'];
 				$this->Tambah_Data($data, 'kegiatan');
 			break;
 			case "Data":

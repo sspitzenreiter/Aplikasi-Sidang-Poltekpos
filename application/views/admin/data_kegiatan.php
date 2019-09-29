@@ -128,13 +128,6 @@
                     <option>8</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label>Prodi</label>
-                  <select class="form-control select2" style="width: 100%;" id="prodi" name="prodi">
-                    <option selected="selected">D4 Teknik Informatika</option>
-                    <option>D3 Teknik Informatika</option>
-                  </select>
-                </div>
               </form>
             </div>
             <div class="modal-footer justify-content-between">

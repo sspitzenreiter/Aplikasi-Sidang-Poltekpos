@@ -41,21 +41,39 @@ var bimb_table = $('#data-bimbingan').DataTable({
 $(function(){
     $("#data-bimbingan tbody").on('click', '#approve', function(){
         var data = bimb_table.row( $(this).parents('tr') ).data();
-        var fd = new FormData();
-        fd.append('id_bimbingan', data.id_bimbingan);
-        $.ajax({
-            url:window.location.href+":Approve",
-            data:fd,
-            type:'POST',
-            contentType: false,
-            processData: false,
-            success: function(response){
-                var result = JSON.parse(response);
-                if(result.status=="success"){
-                    bimb_table.ajax.reload();
-                }
-                alert_toast(response);
-            }
-        });
+        var fd = {id_bimbingan:data.id_bimbingan};
+        var notif_config = {
+            title:"Approve Bimbingan?",
+            message:"Yang sudah di approve tidak bisa di cancel",
+            status:"question",
+            yes_text:"Ya",
+            no_text:"Tidak",
+            function_call:"approve_bimbingan",
+            param:fd,
+            type:"confirmation"
+          };
+        alert_toast(JSON.stringify(notif_config));
     });
 });
+function approve_bimbingan(data){
+    var fd = new FormData();
+    for ( var key in data ) {
+        fd.append(key, data[key]);
+    }
+    
+    $.ajax({
+        url:window.location.href+":Approve",
+        data:fd,
+        type:'POST',
+        contentType: false,
+        processData: false,
+        success: function(response){
+            alert(response);
+            var result = JSON.parse(response);
+            if(result.status=="success"){
+                bimb_table.ajax.reload();
+            }
+            alert_toast(response);
+        }
+    });
+}
