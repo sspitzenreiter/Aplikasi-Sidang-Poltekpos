@@ -47,6 +47,7 @@ var approval_table = $('#data-approval').DataTable({
           alert_toast(response);
           if(JSON.parse(response).status=="success"){
             approval_table.ajax.reload();
+            
           }
         }
       });

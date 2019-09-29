@@ -9,6 +9,7 @@ class Mahasiswa extends CI_Controller {
 		$this->load->model('M_Mahasiswa');
 		$this->load->model('M_Kegiatan');
 		$this->load->model('M_Proyek');
+		$this->load->model('M_Bimbingan');
 		$con_config['navigation'] = "nav_mhs";
 		$this->load->helper('auth');
 		
@@ -84,6 +85,7 @@ class Mahasiswa extends CI_Controller {
 			case "Insert":
 				$data = $this->input->post();
 				$data['npm'] = $_SESSION['id_user'];
+				$data['status']="1";
 				echo $this->Tambah_Data($data, 'detail');
 			break;
 		}
@@ -96,6 +98,10 @@ class Mahasiswa extends CI_Controller {
 			case "detail":
 				$query = $this->M_Proyek->insert($data);
 				$notification['message']="Proyek berhasil ditambahkan";
+			break;
+			case "bimbingan":
+				$query = $this->M_Bimbingan->insert($data);
+				$notification['message']="Bimbingan berhasil ditambahkan";
 			break;
 		}
 
@@ -118,7 +124,7 @@ class Mahasiswa extends CI_Controller {
 		switch($table){
 			case "kegiatan": $db_call = $this->M_Kegiatan->get_kegiatan($query_extras); break;
 			case "detail": $db_call = $this->M_Proyek->get_proyek($query_extras); break;
-			case "bimbingan": break;
+			case "bimbingan": $db_call = $this->M_Bimbingan->get_bimbingan($query_extras); break;
 		}
 
 		if($db_call['status']=='1'){
@@ -140,12 +146,19 @@ class Mahasiswa extends CI_Controller {
 				case "": 
 					$data['nav_active'] = "bimbingan";
 					$data['nav_open'] = "kegiatan";
+					$data['jscallurl']="mahasiswa/mhs_bimbingan.js";
 					$data = array_merge($data, $this->con_config);
-					$this->load->view('mahasiswa/bimb_mhs',$data);
+					$this->load->view('mahasiswa/mhs_bimb',$data);
 				break;
 				case "Data":
 					$search[0]['type']="where";
 					$search[0]['value']=array('id_proyek'=>$_SESSION['id_proyek']);
+					echo $this->Tampil_Data('bimbingan', '', $search);
+				break;
+				case "Insert":
+					$data = $this->input->post();
+					$data['id_proyek'] = $_SESSION['id_proyek'];
+					echo $this->Tambah_Data($data, 'bimbingan');
 				break;
 			}
 		}else{
@@ -155,30 +168,6 @@ class Mahasiswa extends CI_Controller {
 			$this->load->view('mahasiswa/content_template/mhs_bimb_error', $data);
 		}
 		//$this->load->view('common/footer');
-	}
-
-	public function update(){
-		$result = $this->m->update($this->input->post());
-		if($result['status']=='1'){
-			$this->session->set_flashdata(
-				'notification',
-				array(
-					'message'=>'Update Berhasil',
-					'status'=>'success',
-					'type'=>'top-end'
-				)
-			);
-		}else{
-			$this->session->set_flashdata(
-				'notification',
-				array(
-					'message'=>'Update Gagal',
-					'status'=>'success',
-					'type'=>'top-end'
-				)
-			);
-		}
-		redirect(base_url('Mahasiswa/profil'));
 	}
 
 	public function Ubah_Data($data, $where, $table){

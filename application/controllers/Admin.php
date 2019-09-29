@@ -35,6 +35,8 @@ class Admin extends CI_Controller {
 			}
 			$con_config['notification'] = json_encode($con_config['notification']);
 		}
+		$con_config['profile_name'] = $_SESSION['nama'];
+		$con_config['profile_link'] = "";
 
 		$this->con_config = $con_config;
 	}
