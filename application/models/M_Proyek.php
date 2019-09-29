@@ -21,6 +21,8 @@ class M_Proyek extends CI_Model {
           for($a=0;$a<sizeof($value); $a++){
             $this->db->where_in($value[$a]['name'], $value[$a]['value']);
           }
+        }else if($key=="group_by"){
+          $this->db->group_by($value);
         }else if($key=="order_by"){
           $this->db->order_by($value);
         }else if($key=="limit"){
@@ -39,6 +41,26 @@ class M_Proyek extends CI_Model {
 
   public function insert($data){
     $query = $this->db->insert('proyek', $data);
+    if($query){
+      return array('status'=>'1','isi'=>$query);
+    }else{
+      return array('status'=>'0', 'message'=>$this->db->error());
+    }
+  }
+
+  public function update($data, $where)
+	{
+		$this->db->where($where);
+    if($this->db->update('proyek',$data)){
+      return array('status'=>'1');
+    }else{
+      return array('status'=>'0', 'message'=>$this->db->error());
+    }
+	}
+
+  public function delete($data){
+    $this->db->where($data);
+    $query = $this->db->delete('proyek');
     if($query){
       return array('status'=>'1','isi'=>$query);
     }else{

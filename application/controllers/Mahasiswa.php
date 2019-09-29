@@ -110,6 +110,7 @@ class Mahasiswa extends CI_Controller {
 		switch($table){
 			case "kegiatan": $db_call = $this->M_Kegiatan->get_kegiatan($query_extras); break;
 			case "detail": $db_call = $this->M_Proyek->get_proyek($query_extras); break;
+			case "bimbingan": break;
 		}
 
 		if($db_call['status']=='1'){
@@ -124,14 +125,23 @@ class Mahasiswa extends CI_Controller {
 		return json_encode($data);
 	}
 
-	public function Bimbingan()
+	public function Bimbingan($a="")
 	{
-		$data['nav_active'] = "bimbingan";
-		$data['nav_open'] = "proyek";
-		$data = array_merge($data, $this->con_config);
-		$this->load->view('mahasiswa/bimb_mhsw',$data);
+		switch($a){
+			case "": 
+				$data['nav_active'] = "bimbingan";
+				$data['nav_open'] = "kegiatan";
+				$data = array_merge($data, $this->con_config);
+				$this->load->view('mahasiswa/bimb_mhs',$data);
+			break;
+			case "Data":
+				
+			break;
+		}
+		
 		//$this->load->view('common/footer');
 	}
+
 	public function update(){
 		$result = $this->m->update($this->input->post());
 		if($result['status']=='1'){

@@ -42,39 +42,11 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
-                <table class="table">
+                <table class="table" id="data-approval">
                   <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Nama</th>
-                      <th>Judul</th>
-                      <th>Dosen Pembimbing</th>
-                      <th style="width: 50px">Action</th>
-                      <th style="width: 50px"></th>
-                    </tr>
+                   
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1.</td>
-                      <td>
-                        Hagan
-                      </td>
-                      <td>Sistem Informasi Komputerisasi</td>
-                      <td>Bin</td>
-                      <td><button id="edit" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-warning"> PILIH</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>
-                        Budi
-                      </td>
-                      <td>Sistem Informasi Bajaj Online</td>
-                      <td>- </td>
-                      <td><button id="edit" data-toggle="modal" data-target="#modal-default" type="button" class="btn btn-block btn-warning"> PILIH</button>
-                      </td>
-                    </tr>
-
                   </tbody>
                 </table>
               </div>
