@@ -97,7 +97,6 @@
 
   			Swal.fire('Success', 'Data Deleted', 'success');
   		});
-
   	});
   </script>
         <div class="modal fade" id="modal-default">

@@ -135,19 +135,25 @@ class Mahasiswa extends CI_Controller {
 
 	public function Bimbingan($a="")
 	{
-		switch($a){
-			case "": 
-				$data['nav_active'] = "bimbingan";
-				$data['nav_open'] = "kegiatan";
-				$data = array_merge($data, $this->con_config);
-				$this->load->view('mahasiswa/bimb_mhs',$data);
-			break;
-			case "Data":
-				$search[0]['type']="where";
-				$search[0]['value']=array('id_proyek');
-			break;
+		if(isset($_SESSION['id_proyek'])){
+			switch($a){
+				case "": 
+					$data['nav_active'] = "bimbingan";
+					$data['nav_open'] = "kegiatan";
+					$data = array_merge($data, $this->con_config);
+					$this->load->view('mahasiswa/bimb_mhs',$data);
+				break;
+				case "Data":
+					$search[0]['type']="where";
+					$search[0]['value']=array('id_proyek');
+				break;
+			}
+		}else{
+			$data['nav_active'] = "bimbingan";
+			$data['nav_open'] = "kegiatan";
+			$data = array_merge($data, $this->con_config);
+			$this->load->view('mahasiswa/content_template/mhs_bimb_error', $data);
 		}
-		
 		//$this->load->view('common/footer');
 	}
 
