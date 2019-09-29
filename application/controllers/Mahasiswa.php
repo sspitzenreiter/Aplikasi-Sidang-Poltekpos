@@ -145,7 +145,7 @@ class Mahasiswa extends CI_Controller {
 				break;
 				case "Data":
 					$search[0]['type']="where";
-					$search[0]['value']=array('id_proyek');
+					$search[0]['value']=array('id_proyek'=>$_SESSION['id_proyek']);
 				break;
 			}
 		}else{
