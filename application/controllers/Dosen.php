@@ -23,6 +23,7 @@ class Dosen extends CI_Controller {
 			$stat_koor = "";
 			if($data['isi']->num_rows()>0){
 				$stat_koor['status']="1";
+				$stat_koor['id_kegiatan']=$data['isi']->row()->id_kegiatan;
 			}else{
 				$stat_koor['status']="0";
 			}
@@ -240,8 +241,10 @@ class Dosen extends CI_Controller {
 				$search[0]['value']=array('kegiatan.prodi'=>$_SESSION['prodi']);
 				$search[1]['type']="where";
 				$search[1]['value']=array('proyek.status'=>'0');
-				$search[2]['type']="group_by";
-				$search[2]['value']="proyek.id_kegiatan";
+				$search[2]['type']="where";
+				$search[2]['value']=array('proyek.id_kegiatan'=>$_SESSION['id_kegiatan']);
+				//$search[3]['type']="group_by";
+				//$search[3]['value']="proyek.judul_proyek";
 				echo $this->Tampil_Data('approval', "", $search);
 			break;
 			case "Tolak":
