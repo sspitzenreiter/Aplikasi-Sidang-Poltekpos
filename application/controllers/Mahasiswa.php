@@ -12,7 +12,9 @@ class Mahasiswa extends CI_Controller {
 		$this->load->model('M_Bimbingan');
 		$con_config['navigation'] = "nav_mhs";
 		$this->load->helper('auth');
-		
+		if(CallLogin($this->session->userdata, "M")!=""){
+			redirect(CallLogin($this->session->userdata));
+		}
 		
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
@@ -79,13 +81,17 @@ class Mahasiswa extends CI_Controller {
 			break;
 			case "Data:Proyek":
 				$search[0]['type']="where";
-				$search[0]['value'] = array('prodi'=>$_SESSION['prodi']);
+				$search[0]['value']=array('npm'=>$_SESSION['id_user']);
+				if($this->input->post('config')=="kegiatan"){
+					$search[0]['type']="where";
+					$search[0]['value'] = array('prodi'=>$_SESSION['prodi']);
+				}
 				echo $this->Tampil_Data($this->input->post('config'), "",$search);
 			break;
 			case "Insert":
 				$data = $this->input->post();
 				$data['npm'] = $_SESSION['id_user'];
-				$data['status']="1";
+				$data['status']="0";
 				echo $this->Tambah_Data($data, 'detail');
 			break;
 		}

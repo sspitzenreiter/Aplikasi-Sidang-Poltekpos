@@ -104,6 +104,7 @@ class Dosen extends CI_Controller {
 				$data = $this->input->post();
 				$data['status_bimbingan']="1";
 				$where = array('id_bimbingan'=>$data['id_bimbingan']);
+				$this->session->set_flashdata('id_proyek', $data['id_proyek']);
 				echo $this->Ubah_Data($data, $where, 'bimbingan');
 			break;
 		}

@@ -41,7 +41,7 @@ var bimb_table = $('#data-bimbingan').DataTable({
 $(function(){
     $("#data-bimbingan tbody").on('click', '#approve', function(){
         var data = bimb_table.row( $(this).parents('tr') ).data();
-        var fd = {id_bimbingan:data.id_bimbingan};
+        var fd = {id_bimbingan:data.id_bimbingan, id_proyek:data.id_proyek};
         var notif_config = {
             title:"Approve Bimbingan?",
             message:"Yang sudah di approve tidak bisa di cancel",
@@ -60,7 +60,7 @@ function approve_bimbingan(data){
     for ( var key in data ) {
         fd.append(key, data[key]);
     }
-    
+
     $.ajax({
         url:window.location.href+":Approve",
         data:fd,
@@ -68,7 +68,6 @@ function approve_bimbingan(data){
         contentType: false,
         processData: false,
         success: function(response){
-            alert(response);
             var result = JSON.parse(response);
             if(result.status=="success"){
                 bimb_table.ajax.reload();

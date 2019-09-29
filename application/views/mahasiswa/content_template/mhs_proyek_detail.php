@@ -15,7 +15,7 @@
                 </div>
                 <div class="form-group">
                     <label >Dosen Pembimbing</label>
-                    <input type="text" style ="border:none" class="form-control" placeholder="Nilai" readonly>
+                    <input type="text" style ="border:none" class="form-control" placeholder="Nilai" id="nama_dosen_pembimbing" readonly>
                 </div>
                 <div class="form-group">
                     <label >Status Proyek</label>
