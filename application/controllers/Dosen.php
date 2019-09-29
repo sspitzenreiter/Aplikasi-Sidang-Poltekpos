@@ -8,6 +8,7 @@ class Dosen extends CI_Controller {
 		parent::__construct();
 		$this->load->model('M_Dosen');
 		$this->load->model('M_Proyek');
+		$this->load->model('M_Bimbingan');
 		$con_config['navigation'] = "nav_dosen";
 		$this->load->helper('auth');
 		if(CallLogin($this->session->userdata, "D")!=""){
@@ -76,16 +77,40 @@ class Dosen extends CI_Controller {
 			break;
 			case "Data":
 				$search[0]['type']="where";
-				$search[0]['value']=array('proyekid_dosen_pembimbing'=>$_SESSION['nik']);
+				$search[0]['value']=array('proyek.id_dosen_pembimbing'=>$_SESSION['id_user']);
 				$search[1]['type']="group_by";
 				$search[1]['value']="judul_proyek";
+				echo $this->Tampil_Data('proyek', '', $search);
+			break;
+			case "Detail":
+				if(!isset($_SESSION['id_proyek'])){
+					$this->session->set_flashdata('id_proyek', $this->input->post('id_proyek'));
+				}else{
+					$this->session->set_flashdata('id_proyek', $_SESSION['id_proyek']);
+				}
+				$data['nav_active'] = "bimbingan";
+				$data['nav_open'] = "menu";
+				$data['jscallurl'] = "dosen/dosen_bimb_detail.js";
+				$data = array_merge($data, $this->con_config);
+				$this->load->view('dosen/dosen_bimb_detail',$data);
+			break;
+			case "Detail:Data":
+				$data = $_SESSION['id_proyek'];
+				$search[0]['type']="where";
+				$search[0]['value']=array('id_proyek'=>$data);
+				echo $this->Tampil_Data('bimbingan', '', $search);
+			break;
+			case "Detail:Approve":
+				$data = $this->input->post();
+				$data['status_bimbingan']="1";
+				$where = array('id_bimbingan'=>$data['id_bimbingan']);
+				echo $this->Ubah_Data($data, $where, 'bimbingan');
 			break;
 		}
 	}
 
 	public function nilai_pembimbing()
 	{
-
 		$data['nav_active'] = "nilai_pembimbing";
 		$data['nav_open'] = "menu";
 		$data = array_merge($data, $this->con_config);
@@ -132,6 +157,8 @@ class Dosen extends CI_Controller {
 		switch($table){
 			case "approval": $db_call = $this->M_Proyek->get_proyek($query_extras); break;
 			case "dosen": $db_call = $this->M_Dosen->get_dosen($query_extras); break;
+			case "bimbingan": $db_call = $this->M_Bimbingan->get_bimbingan($query_extras); break;
+			case "proyek": $db_call = $this->M_Proyek->get_proyek($query_extras); break;
 		}
 		if($db_call['status']=='1'){
 			$data['data'] = $db_call['isi']->result();
@@ -174,6 +201,10 @@ class Dosen extends CI_Controller {
 			case "proyek" :
 				$query = $this->M_Proyek->update($data, $where);
 				$notification['message'] = "Proyek Berhasil Di Approve";
+			break;
+			case "bimbingan":
+				$query = $this->M_Bimbingan->update($data, $where);
+				$notification['message'] = "Bimbingan Berhasil Di Approve";
 			break;
 		}
 

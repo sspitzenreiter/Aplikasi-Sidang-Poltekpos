@@ -12,7 +12,7 @@ var bimb_table = $('#data-bimbingan').DataTable({
       {"data": "judul_proyek", title:"Judul"},
       {"render":
         function(data, type, row, meta){
-            return "<button class='btn btn-success'>Tampilkan</button>";
+            return "<button class='btn btn-success' id='tampilkan'>Tampilkan</button>";
         }, title:"Aksi"
       }
     ],
@@ -33,3 +33,9 @@ var bimb_table = $('#data-bimbingan').DataTable({
           cell.innerHTML = i+1;
       });
   }).draw();
+  $(function(){
+    $("#data-bimbingan tbody").on('click', '#tampilkan', function(){
+        var data = bimb_table.row( $(this).parents('tr') ).data();
+        $.redirect(window.location.href+"/Detail", {id_proyek:data.id_proyek});
+    });
+  });

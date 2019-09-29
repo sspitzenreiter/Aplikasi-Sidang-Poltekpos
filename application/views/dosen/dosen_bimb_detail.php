@@ -27,42 +27,17 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-<div class="col-md-2">
+                  <div class="col-md-2">
                    <button id="tolol"  type="button" class="btn btn-block btn-primary"> SIDANG</button>
-               </div>
-                <div class="card-tools">
-                  <ul class="pagination pagination-sm m-0 float-right">
-                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                  </ul>
-                </div>
+                  </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
-                <table class="table">
+              <div class="card-body">
+                <table class="table" id="data-bimbingan">
                   <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Tanggal Bimbingan</th>
-                      <th>Pembahasan</th>
-                      <th>Approval Dosen</th>
-                      <th style="width: 50px">Action</th>
-                      <th style="width: 50px"></th>
-                    </tr>
+                    
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1.</td>
-                      <td>
-                        15/02/2019
-                      </td>
-                      <td>Membahas rancangan database</td>
-                      <td>Belum di Approved</td>
-                      <td><button id="delete"  type="button" class="btn btn-block btn-primary"> APPROVE</button></td>
-                    </tr>
 
                   </tbody>
                 </table>

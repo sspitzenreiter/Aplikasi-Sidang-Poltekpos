@@ -44,4 +44,15 @@ class M_Bimbingan extends CI_Model {
       return array('status'=>'0', 'message'=>$this->db->error());
     }
   }
+
+  public function update($data, $where)
+	{
+		$this->db->where($where);
+    if($this->db->update('bimbingan',$data)){
+      return array('status'=>'1');
+    }else{
+      return array('status'=>'0', 'message'=>$this->db->error());
+    }
+	}
+
 }

@@ -51,7 +51,7 @@ $(function(){
       {"data": "prodi", title:"Program Studi"},
       {"render":
         function(data, type, row, meta){
-          switch(row.status){
+          switch(row.status_mulai){
             case "0": return "Belum Dimulai"; break;
             case "1": return "Berjalan"; break;
             case "2": return "Selesai"; break;
