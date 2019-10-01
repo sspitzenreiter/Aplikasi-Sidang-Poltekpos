@@ -24,7 +24,8 @@
 <script src="<?php echo base_url(); ?>assets/theme/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 <script src="<?php echo base_url(); ?>assets/theme/plugins/sparklines/sparkline.js"></script>
-
+<!--Select2-->
+<script src="<?php echo base_url(); ?>assets/theme/plugins/select2/js/select2.full.min.js"></script>
 <!-- jQuery Knob Chart -->
 <script src="<?php echo base_url(); ?>assets/theme/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->

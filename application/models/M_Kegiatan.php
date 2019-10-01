@@ -14,7 +14,9 @@ class M_Kegiatan extends CI_Model {
 
   public function get_kegiatan($cond=""){
     $this->db->select("*");
+    $this->db->select("(select nama from dosen where nik=kegiatan.id_koordinator) as nama_koor");
     $this->db->from("kegiatan");
+    $this->db->join("prodi", "kegiatan.prodi = prodi.id_prodi");
     //$this->db->where('npm', '1174040');
     //Dari sini mah bukan contoh, ini mah buat kondisi dinamis
     if($cond!=""){

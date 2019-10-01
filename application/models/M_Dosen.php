@@ -47,20 +47,9 @@ class M_Dosen extends CI_Model {
 		}
 	}
 
-	 public function update($data){
-		$nik = $data['txt_hidden'];
-		$field = array(
-			'nama'=>$data['txt_namadosen'],
-			'alamat'=>$data['txt_alamatdosen'],
-			'angk'=>$data['txt_angkatandosen'],
-			'tempat_lahir'=>$data['txt_tmptlhrdosen'],
-			'tgl_lahir'=>$data['txt_tgllhrdosen'],
-			'judul_jurnal'=>$data['txt_juduljurnal'],
-			'link_jurnal'=>$data['txt_linkjurnal'],
-			'research_interest'=>$data['txt_research']
-			);
-		$this->db->where('nik', $nik);
-		$isi = $this->db->update('dosen', $field);
+	 public function update($data, $where){
+		$this->db->where($where);
+		$isi = $this->db->update('dosen', $data);
     if($isi){
 			return array('status'=>'1');
 		}else{

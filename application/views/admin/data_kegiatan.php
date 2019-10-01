@@ -31,7 +31,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-2">
-                     <button data-toggle="modal" data-target="#modal-kegiatan" type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-plus"></i> ADD</button>
+                     <button id="form-kegiatan-modal" data-toggle="modal" data-target="#modal-kegiatan" type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-plus"></i> ADD</button>
                   </div>
                   <div class="col-md-7"></div>
                   <div class="col-md-3 text-right">
@@ -86,6 +86,12 @@
                   <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan" placeholder="Kegiatan">
                 </div>
                 <div class="form-group">
+                  <label>Koordinator</label>
+                  <select class="form-control select2" style="width:100%;" name="id_koordinator" id="id_koordinator">
+                    <option selected disabled>Pilih</option>
+                  </select>
+                </div>
+                <div class="form-group">
                 <label>Tanggal Mulai</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -109,7 +115,7 @@
                 </div>
                 <div class="form-group">
                   <label>Tahun Ajaran</label>
-                  <select class="form-control select2" style="width: 100%;" id="angkatan" name="angkatan">
+                  <select class="form-control" style="width: 100%;" id="angkatan" name="angkatan">
                     <?php foreach($data_tahun_ajaran->result() as $row){ ?>
                       <option><?=$row->angkatan?></option>
                     <?php } ?>
@@ -117,7 +123,7 @@
                 </div>
                 <div class="form-group">
                   <label>Semester</label>
-                  <select class="form-control select2" style="width: 100%;" id="semester" name="semester">
+                  <select class="form-control" style="width: 100%;" id="semester" name="semester">
                     <option selected="selected">1</option>
                     <option>2</option>
                     <option>3</option>
@@ -141,7 +147,3 @@
       </div>
       <!-- /.modal -->
     </div>
-
-    <script>
-
-    </script>

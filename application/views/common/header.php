@@ -29,10 +29,12 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/theme/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?=base_url('assets/libraries/select2-bootstrap/dist/')?>select2-bootstrap.css">
   <!--Sweet Alert-->
   <link rel="stylesheet" href="<?=base_url('assets/theme/')?>plugins/sweetalert2/sweetalert2.min.css">
   <!-- DataTables -->
-<link rel="stylesheet" href="<?=base_url('assets/theme/')?>plugins/datatables/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="<?=base_url('assets/theme/')?>plugins/datatables/dataTables.bootstrap4.css">
+  
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

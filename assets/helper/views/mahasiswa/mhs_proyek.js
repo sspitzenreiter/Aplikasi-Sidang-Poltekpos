@@ -56,7 +56,7 @@ $(function(){
               return date_converter(row.tgl_mulai)+"-"+date_converter(row.tgl_selesai);
             }, title:"Tanggal Kegiatan"
           },
-          {"data": "prodi", title:"Program Studi"},
+          {"data": "nama_prodi", title:"Program Studi"},
           {"render":
             function(data, type, row, meta){
               return '<button type="button" class="btn btn-default" id="btn-pilih-kegiatan">Ikuti</button>';

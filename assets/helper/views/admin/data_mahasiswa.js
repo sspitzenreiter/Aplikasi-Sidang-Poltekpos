@@ -1,3 +1,43 @@
+var mhs_table = $('#data-mahasiswa').DataTable({
+  "ajax": {
+    "type":"GET",
+    "url":window.location.href+"/Data",
+    "dataSrc": function(json){
+      var dump = JSON.parse(JSON.stringify(json));
+      if(dump.data!=null){
+        return json.data;
+      }else if(dump.error_message!=null){
+        var alert_config = {
+          type: "normal",
+          title: "Aww..",
+          message: "Saat memanggil data, terdapat error : '"+dump.error_message.message+"' (Code : "+dump.error_message.code+")",
+          status: "error"
+        };
+        alert_toast(JSON.stringify(alert_config));
+        return '';
+      }
+    }
+  },
+  "columns": [
+    {"render":function(data, type, row, meta){return '';}, title:"#", "orderable":false},
+    {"data": "npm", title:"NPM"},
+    {"data": "nama", title:"Nama"},
+    {"data": "alamat", title:"Alamat"},
+    {"data": "angkatan", title:"Angkatan"},
+    {"data": "tempat_lahir", title:"Tempat Lahir"}
+  ],
+  "paging": true,
+  "lengthChange": false,
+  "scrollX": true,
+  "searching": true,
+  "ordering": true,
+  "info": false,
+  "responsive":true,
+  "autoWidth": false,
+  "order": [[ 1, 'asc' ]],
+  "dom":'t<"bottom"p>'
+});
+
 $(function(){
   $("#save").click(function(){
     $('#modal-default').modal('toggle');
@@ -46,46 +86,6 @@ $(function(){
   });
 });
 
-var mhs_table = $('#data-mahasiswa').DataTable({
-  "ajax": {
-    "type":"GET",
-    "url":window.location.href+"/Data",
-    "dataSrc": function(json){
-      var dump = JSON.parse(JSON.stringify(json));
-      if(dump.data!=null){
-        return json.data;
-      }else if(dump.error_message!=null){
-        var alert_config = {
-          type: "normal",
-          title: "Aww..",
-          message: "Saat memanggil data, terdapat error : '"+dump.error_message.message+"' (Code : "+dump.error_message.code+")",
-          status: "error"
-        };
-        alert_toast(JSON.stringify(alert_config));
-        return '';
-      }
-    }
-  },
-  "columns": [
-    {"render":function(data, type, row, meta){return '';}, title:"#", "orderable":false},
-    {"data": "npm", title:"NPM"},
-    {"data": "nama", title:"Nama"},
-    {"data": "alamat", title:"Alamat"},
-    {"data": "angkatan", title:"Angkatan"},
-    {"data": "tempat_lahir", title:"Tempat Lahir"}
-  ],
-  "paging": true,
-  "lengthChange": false,
-  "scrollX": true,
-  "searching": true,
-  "ordering": true,
-  "info": false,
-  "responsive":true,
-  "autoWidth": false,
-  "order": [[ 1, 'asc' ]],
-  "dom":'t<"bottom"p>'
-});
-
 mhs_table.on( 'order.dt search.dt', function () {
     mhs_table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
         cell.innerHTML = i+1;
@@ -100,6 +100,7 @@ $("#mhs_search").on('keyup', function(){
 function cobain(){
   Swal.fire('Sukses', 'Data Berhasil Dihapus', 'success');
 }
+});
 
 function upload_data(){
   var fd = new FormData();
@@ -125,4 +126,3 @@ function upload_data(){
     }
   });
   }
-});

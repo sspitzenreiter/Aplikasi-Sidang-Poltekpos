@@ -37,7 +37,7 @@ class Dosen extends CI_Controller {
 		}
 		
 		$con_config['profile_name'] = $_SESSION['nama'];
-		$con_config['profile_link'] = "";
+		$con_config['profile_link'] = base_url('Dosen/Profile');
 
 		if(isset($_SESSION['notification'])){
 			$con_config['notification'] = $_SESSION['notification'];
@@ -137,21 +137,29 @@ class Dosen extends CI_Controller {
 		$this->load->view('dosen/detil_proyek',$data);
 	}
 
-	public function profil()
+	public function Profile($a="")
 	{
-		$data['nav_active'] = "profil";
-		$data['nav_open'] = "";
-		$search[0]['type']="where";
-		$search[0]['value']=array('nik'=>'112313');
-		$db_call = $this->m->get_dosen($search);
-		if($db_call['status']=='1'){
-			$data['data_dosen'] = $db_call['isi'];
-		}else{
-			$data['error_message'] = json_encode($db_call['message']);
+		switch($a){
+			case "":
+				$data['nav_active'] = "";
+				$data['nav_open'] = "";
+				$data['jscallurl']="Dosen/dosen_profile.js";
+				$search[0]['type']="where";
+				$search[0]['value']=array('nik'=>$_SESSION['id_user']);
+				$db_call = $this->M_Dosen->get_dosen($search);
+				if($db_call['status']=='1'){
+					$data['data_dosen'] = $db_call['isi'];
+				}else{
+					$data['error_message'] = json_encode($db_call['message']);
+				}
+				$data = array_merge($data, $this->con_config);
+				$this->load->view('dosen/dosen_profile', $data);
+			break;
+			case "Update": 
+				$data = $this->input->post();
+				echo $this->Ubah_Data($data, array('nik'=>$_SESSION['id_user']), 'profile');
+			break;
 		}
-		$data = array_merge($data, $this->con_config);
-		$this->load->view('dosen/profil_dosen', $data);
-		//$this->load->view('common/footer');
 	}
 
 	public function Tampil_Data($table, $data_extras="", $query_extras=""){
@@ -208,6 +216,10 @@ class Dosen extends CI_Controller {
 				$query = $this->M_Bimbingan->update($data, $where);
 				$notification['message'] = "Bimbingan Berhasil Di Approve";
 			break;
+			case "profile":
+				$query = $this->M_Dosen->update($data, $where);
+				$notification['message'] = "Dosen Berhasil diubah";
+			break;
 		}
 
 		if($query['status']=='1'){
@@ -242,7 +254,7 @@ class Dosen extends CI_Controller {
 				$search[1]['type']="where";
 				$search[1]['value']=array('proyek.status'=>'0');
 				$search[2]['type']="where";
-				$search[2]['value']=array('proyek.id_kegiatan'=>$_SESSION['id_kegiatan']);
+				$search[2]['value']=array('proyek.id_kegiatan'=>$_SESSION['stat_koor']['id_kegiatan']);
 				//$search[3]['type']="group_by";
 				//$search[3]['value']="proyek.judul_proyek";
 				echo $this->Tampil_Data('approval', "", $search);

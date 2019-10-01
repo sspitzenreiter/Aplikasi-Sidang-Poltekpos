@@ -14,13 +14,13 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="<?php echo base_url('koordinator/jadwal'); ?>" class="nav-link <?= nav_setting('penjadwalan', $nav_active); ?>">
+      <a href="<?php echo base_url('Dosen/jadwal'); ?>" class="nav-link <?= nav_setting('penjadwalan', $nav_active); ?>">
         <i class="far fa-circle nav-icon"></i>
         <p>Penjadwalan</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="<?php echo base_url('koordinator/nilai'); ?>" class="nav-link <?= nav_setting('nilai', $nav_active); ?>">
+      <a href="<?php echo base_url('Dosen/nilai'); ?>" class="nav-link <?= nav_setting('nilai', $nav_active); ?>">
         <i class="far fa-circle nav-icon"></i>
         <p>Penetapan Nilai</p>
       </a>

@@ -85,6 +85,8 @@ class Mahasiswa extends CI_Controller {
 				if($this->input->post('config')=="kegiatan"){
 					$search[0]['type']="where";
 					$search[0]['value'] = array('prodi'=>$_SESSION['prodi']);
+					$search[1]['type']="where";
+					$search[1]['value']=array('status_mulai'=>'1');
 				}
 				echo $this->Tampil_Data($this->input->post('config'), "",$search);
 			break;

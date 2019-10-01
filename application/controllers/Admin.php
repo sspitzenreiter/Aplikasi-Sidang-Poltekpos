@@ -73,29 +73,17 @@ class Admin extends CI_Controller {
 				$search[0]['value']=array('prodi'=>$_SESSION['prodi']);
 				echo $this->Tampil_Data('kegiatan', "", $search);
 			break;
-			case "PilihKoor":
-				if(!isset($_SESSION['id_kegiatan'])){
-					$this->session->set_flashdata('id_kegiatan', $this->input->post('id_kegiatan'));
-				}else{
-					$this->session->set_flashdata('id_kegiatan', $_SESSION['id_kegiatan']);
-				}
-				$data['nav_active'] = "kegiatan";
-				$data['nav_open'] = "";
-				$data['jscallurl'] = "admin/data_kegiatan_pilih_koor.js";
-				$data = array_merge($data, $this->con_config);
-				$this->load->view('admin/data_dosen', $data);
-			break;
-			case "PilihKoor:Data":
-				$data = $_SESSION['id_kegiatan'];
+			case "DataKoor":
 				$search[0]['type']="where";
 				$search[0]['value']="nik not in (select id_koordinator from kegiatan)";
 				$search[1]['type']="where";
 				$search[1]['value']=array('prodi'=>$_SESSION['prodi']);
-				echo $this->Tampil_Data('dosen', array('id_kegiatan'=>$data), $search);
+				echo $this->Tampil_Data('dosen', '', $search);
 			break;
-			case "PilihKoor:Insert":
+			case "UpdateStatus":
 				$data = $this->input->post();
-				$this->Ubah_Data(array('id_koordinator'=>$data['id_koordinator']), array('id_kegiatan'=>$data['id_kegiatan']), 'kegiatan');
+				$isi['status_mulai']="1";
+				echo $this->Ubah_Data($isi, $data, 'kegiatan');
 			break;
 		}
 
@@ -157,7 +145,7 @@ class Admin extends CI_Controller {
 			//case "dosen": $query = $this->M_Dosen->insert_dosen($data); break;
 			case "kegiatan" :
 				$query = $this->M_Kegiatan->update_kegiatan($data, $where);
-				$notification['message'] = "Koordinator Berhasil Diubah";
+				$notification['message'] = "Kegiatan Berhasil Diubah";
 			break;
 		}
 
@@ -185,7 +173,9 @@ class Admin extends CI_Controller {
 				$this->load->view('admin/data_mahasiswa', $data);
 			break;
 			case "Data":
-				echo $this->Tampil_Data('mahasiswa');
+				$search[0]['type']="where";
+				$search[0]['value']=array('prodi'=>$_SESSION['prodi']);
+				echo $this->Tampil_Data('mahasiswa', "", $search);
 			break;
 			case "Download":
 				$this->download_format_excel();
@@ -232,10 +222,12 @@ class Admin extends CI_Controller {
 					if($numrow>0){
 						$data_sub[$col['a']] = $row['A'];
 						$data_sub[$col['b']] = $row['B'];
+						$data_sub[$col['c']] = $row['C'];
 						array_push($data, $data_sub);
 					}else{
 						$col['a'] = $row['A'];
 						$col['b'] = $row['B'];
+						$col['c'] = $row['C'];
 					}
 					$numrow++;
 				}
@@ -244,6 +236,7 @@ class Admin extends CI_Controller {
 				foreach($data as $row){
 					$isi[$col['a']] = $row[$col['a']];
 					$isi[$col['b']] = $row[$col['b']];
+					$isi[$col['c']] = $row[$col['c']];
 					$isi['prodi'] = $_SESSION['prodi'];
 					$query = $this->M_Mahasiswa->insert_mahasiswa($isi);
 					if($query['status']=='1'){
@@ -290,6 +283,7 @@ class Admin extends CI_Controller {
 			$sheet = $spreadsheet->getActiveSheet();
 			$sheet->setCellValue('A1','npm');
 			$sheet->setCellValue('B1','nama');
+			$sheet->setCellValue('C1', 'angkatan');
 			$writer = new Xlsx($spreadsheet);
 			$writer->save('php://output');
 		});

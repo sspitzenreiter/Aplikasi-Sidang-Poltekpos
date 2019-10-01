@@ -54,7 +54,11 @@ function form_data(form_id){
   });
   return fd;
 }
-
+$(function(){
+  $(".select2").select2({
+    theme:"bootstrap"
+  });
+});
 function form_setter(data){
   if(data instanceof FormData){
     var temp = {};
@@ -75,6 +79,11 @@ function form_setter(data){
       });
     });
   }
+}
+
+function form_clear(id){
+  $("#"+id).find("input[type=text], textarea, input[type=password], input[type=date]").val("");
+
 }
 
 function base_url(sub_url){
