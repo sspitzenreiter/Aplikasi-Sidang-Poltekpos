@@ -12,8 +12,13 @@ class M_Dosen extends CI_Model {
     }
 	}
 
-	public function get_dosen($cond=""){
-    $this->db->select("*");
+	public function get_dosen($cond="", $query_extras=""){
+	$this->db->select("*");
+	if($query_extras!=""){
+		for($a=0;$a<sizeof($query_extras);$a++){
+			$this->db->select($query_extras);
+		}		
+	}
     $this->db->from("dosen");
     //$this->db->where('npm', '1174040');
 		//Dari sini mah bukan contoh, ini mah buat kondisi dinamis
@@ -33,6 +38,8 @@ class M_Dosen extends CI_Model {
 					}
 				}else if($key=="order_by"){
 					$this->db->order_by($value);
+				}else if($key=="group_by"){
+					$this->db->group_by($value);
 				}else if($key=="limit"){
 					$this->db->limit($value);
 				}

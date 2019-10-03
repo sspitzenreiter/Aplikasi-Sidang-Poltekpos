@@ -42,10 +42,19 @@ var dsn_table = $('#data-dosen').DataTable({
         }, title:"Jurnal"
         },
         {"data": "research_interest", title:"Research Interest"},
+        {"data": "total_pembimbing", title:"Total Anak Bimbingan"},
         {
         "render":
         function (data, type, row, meta){
-            return "<button class='btn btn-block btn-default' id='pilih_dosen'>Pilih Dosen</button>";
+            var maks_anak = row.maks_anak;
+            if(maks_anak-parseInt(maks_anak)>=0.5){
+                maks_anak = parseInt(maks_anak)+1;
+            }
+            if(parseInt(row.total_pembimbing) < parseInt(maks_anak)){
+                return "<button class='btn btn-block btn-default' id='pilih_dosen'>Pilih Dosen</button>";
+            }else{
+                return "<button class='btn btn-block btn-warning' id='pilih_dosen_error'>Pilih Dosen</button>";
+            }
         }, title:"Aksi"
         }
     ],
@@ -57,7 +66,7 @@ var dsn_table = $('#data-dosen').DataTable({
     "info": false,
     "autoWidth": false,
     "responsive":true,
-    "order": [[ 1, 'asc' ]],
+    "order": [[ 5, 'asc' ]],
     "dom":'t<"bottom"p>'
 });
   
@@ -102,6 +111,18 @@ $(function(){
           };
           alert_toast(JSON.stringify(notif_config));
     });
+
+    $("#data-dosen tbody").on('click', '#pilih_dosen_error', function(){
+        var data = dsn_table.row( $(this).parents('tr') ).data();
+        var notif_config = {
+            title:"Dosen Ini tidak bisa dipilih",
+            message:"Kebanyakan Anak bimbingan dengan total : "+data.total_pembimbing,
+            status:"warning",
+            type:"normal"
+          };
+          alert_toast(JSON.stringify(notif_config));
+    });
+
     $("#button-placement").html('<button id="button_kembali" type="button" class="btn btn-block btn-default btn-sm"><i class="fa fa-backspace"></i> Back</button>');
 
     $("#button_kembali").click(function(){

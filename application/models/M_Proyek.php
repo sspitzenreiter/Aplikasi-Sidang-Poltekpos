@@ -4,11 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_Proyek extends CI_Model {
 
   public function get_proyek($cond=""){
-    $this->db->select("*, dosen.nama as nama_koordinator");
+    $this->db->select("*");
     $this->db->select("(select nama from dosen where nik = proyek.id_dosen_pembimbing) as nama_dosen_pembimbing");
+    $this->db->select("(select nama from dosen where nik = kegiatan.id_koordinator) as nama_koordinator");
     $this->db->from("proyek");
-    $this->db->join('kegiatan', 'proyek.id_kegiatan = kegiatan.id_kegiatan');
-    $this->db->join('dosen', 'kegiatan.id_koordinator = dosen.nik');
+    $this->db->join('kegiatan', 'proyek.id_kegiatan = kegiatan.id_kegiatan', 'left');
     //$this->db->where('npm', '1174040');
     //Dari sini mah bukan contoh, ini mah buat kondisi dinamis
     if($cond!=""){

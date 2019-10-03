@@ -162,13 +162,13 @@ class Dosen extends CI_Controller {
 		}
 	}
 
-	public function Tampil_Data($table, $data_extras="", $query_extras=""){
+	public function Tampil_Data($table, $data_extras="", $where="", $query_extras=""){
 		$db_call = "";
 		switch($table){
-			case "approval": $db_call = $this->M_Proyek->get_proyek($query_extras); break;
-			case "dosen": $db_call = $this->M_Dosen->get_dosen($query_extras); break;
-			case "bimbingan": $db_call = $this->M_Bimbingan->get_bimbingan($query_extras); break;
-			case "proyek": $db_call = $this->M_Proyek->get_proyek($query_extras); break;
+			case "approval": $db_call = $this->M_Proyek->get_proyek($where); break;
+			case "dosen": $db_call = $this->M_Dosen->get_dosen($where, $query_extras); break;
+			case "bimbingan": $db_call = $this->M_Bimbingan->get_bimbingan($where); break;
+			case "proyek": $db_call = $this->M_Proyek->get_proyek($where); break;
 		}
 		if($db_call['status']=='1'){
 			$data['data'] = $db_call['isi']->result();
@@ -275,7 +275,9 @@ class Dosen extends CI_Controller {
 			case "PilihPembimbing:Data":
 				$search[0]['type']="where";
 				$search[0]['value']=array('prodi'=>$_SESSION['prodi']);
-				echo $this->Tampil_Data('dosen', array('id_proyek'=>$_SESSION['id_proyek'], 'judul_proyek'=>$_SESSION['judul_proyek']), $search);
+				$query_extras[0] = "(select count(*) from proyek where id_dosen_pembimbing = dosen.nik) as total_pembimbing";
+				$query_extras[1] = "(select count(*) from mahasiswa where prodi=dosen.prodi) / (select count(*) from dosen as a where a.prodi = dosen.prodi) as maks_anak";
+				echo $this->Tampil_Data('dosen', array('id_proyek'=>$_SESSION['id_proyek'], 'judul_proyek'=>$_SESSION['judul_proyek']), $search, $query_extras);
 			break;
 			case "PilihPembimbing:Update":
 				$data = $this->input->post();
@@ -289,6 +291,15 @@ class Dosen extends CI_Controller {
 				redirect($data['link']);
 			break;
 		}
+		//$this->load->view('common/footer');
+	}
+
+	public function Jadwal()
+	{
+		$data['nav_active'] = "jadwal";
+		$data['nav_open'] = "koordinator";
+		$data = array_merge($data, $this->con_config);
+		$this->load->view('koordinator/koor_jadwal',$data);
 		//$this->load->view('common/footer');
 	}
 }
