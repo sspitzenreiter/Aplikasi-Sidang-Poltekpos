@@ -86,6 +86,7 @@ $(function(){
         var data = kegiatan_table.row( $(this).parents('tr') ).data();
         id_kegiatan = data.id_kegiatan;
         $("#modal-pilih-kegiatan").modal('toggle');
+        refreshComboAnggota();
       });
       $("#modal-pilih-kegiatan").on('click', '#save-pilih-kegiatan', function(){
         $("#modal-pilih-kegiatan").modal('toggle');
@@ -111,6 +112,30 @@ $(function(){
           }
         });
       });
+      $("#npm_anggota").select2(
+        {
+          theme:"bootstrap"
+        }
+      );
     }
   }
 });
+function refreshComboAnggota(){
+  $("#npm_anggota").empty();
+    $.ajax({
+      url:window.location.href+"/Data:Anggota",
+      type:'get',
+      contentType: false,
+      processData: false,
+      success: function(response){
+        var data = JSON.parse(response);
+        if(data.data.length>0){
+          $("#npm_anggota").append('<option value = "" disabled selected>Pilih Anggota</option>');
+          $.each(data.data, function(i){
+            var row = data.data[i];
+            $("#npm_anggota").append('<option value = "'+row.npm+'">'+row.nama+' ('+row.npm+')</option>');
+          });
+        }
+      }
+    });
+}

@@ -45,6 +45,12 @@
                             <label>Daftar Pustaka</label>
                             <textarea class="form-control" placeholder="Daftar Pustaka" name="daftar_pustaka"></textarea>
                         </div>
+                        <div class="form-group">
+                            <label>Anggota</label>
+                            <select class="form-control select2" style="width:100%;" name="npm_anggota" id="npm_anggota">
+                                <option selected disabled>Pilih</option>
+                            </select>
+                        </div>
                     </form>
                 </div>
             </div>              

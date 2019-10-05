@@ -6,7 +6,7 @@ class M_mahasiswa extends CI_Model{
 
     public function get_mahasiswa($cond=""){
     $this->db->select("*");
-    $this->db->from("mahasiswa");
+    $this->db->from("mahassiswa");
 		//Dari sini mah bukan contoh, ini mah buat kondisi dinamis
 		if($cond!=""){
 			foreach($cond as $row){
@@ -15,9 +15,9 @@ class M_mahasiswa extends CI_Model{
 				if($key=="where"){
 					$this->db->where($value);
 				}else if($key=="where_in"){
-					for($a=0;$a<sizeof($value); $a++){
-						$this->db->where_in($value[$a]['name'], $value[$a]['value']);
-					}
+					$this->db->where_in($value['column'], $value['value']);
+				}else if($key=="where_not_in"){
+					$this->db->where_not_in($value['column'], $value['value']);
 				}else if($key=="order_by"){
 					$this->db->order_by($value);
 				}else if($key=="limit"){
@@ -30,6 +30,7 @@ class M_mahasiswa extends CI_Model{
 		if($isi){
 			return array('status'=>'1','isi'=>$isi);
 		}else{
+			//echo $this->db->last_query();
 			return array('status'=>'0', 'message'=>$this->db->error());
 		}
 	}

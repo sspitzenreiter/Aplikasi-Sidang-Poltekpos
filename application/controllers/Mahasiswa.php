@@ -40,7 +40,7 @@ class Mahasiswa extends CI_Controller {
 
 	public function CekProyek(){
 		$search[0]['type']="where";
-		$search[0]['value']=array('npm'=>$_SESSION['id_user']);
+		$search[0]['value']="npm_ketua = '".$_SESSION['id_user']."' || npm_anggota = '".$_SESSION['id_user']."'";
 		$data = json_decode($this->Tampil_Data('detail', "", $search), true);
 		if($data['num_rows']>0){
 			if($data['data'][0]['status']=="1"){
@@ -61,7 +61,7 @@ class Mahasiswa extends CI_Controller {
 			break;
 			case "Data":  
 				$search[0]['type']="where";
-				$search[0]['value']=array('npm'=>$_SESSION['id_user']);
+				$search[0]['value']="npm_ketua = '".$_SESSION['id_user']."' || npm_anggota = '".$_SESSION['id_user']."'";
 				$data = json_decode($this->Tampil_Data('detail', "", $search), true);
 				if($data['num_rows']<1){
 					$data['col_config'] = "kegiatan";
@@ -81,7 +81,7 @@ class Mahasiswa extends CI_Controller {
 			break;
 			case "Data:Proyek":
 				$search[0]['type']="where";
-				$search[0]['value']=array('npm'=>$_SESSION['id_user']);
+				$search[0]['value']="npm_ketua = '".$_SESSION['id_user']."' || npm_anggota = '".$_SESSION['id_user']."'";
 				if($this->input->post('config')=="kegiatan"){
 					$search[0]['type']="where";
 					$search[0]['value'] = array('prodi'=>$_SESSION['prodi']);
@@ -90,9 +90,18 @@ class Mahasiswa extends CI_Controller {
 				}
 				echo $this->Tampil_Data($this->input->post('config'), "",$search);
 			break;
+			case "Data:Anggota":
+				$search[0]['type']="where";
+				$search[0]['value']="npm not in ((select npm_ketua from proyek where npm_ketua is not null)) and npm not in ((select npm_anggota from proyek where npm_anggota is not null))";
+				$search[1]['type']="where";
+				$search[1]['value']="npm != '".$_SESSION['id_user']."'";
+				$search[2]['type']="where";
+				$search[2]['value']=array('prodi'=>$_SESSION['prodi']);
+				echo $this->Tampil_Data('anggota', '', $search);
+			break;
 			case "Insert":
 				$data = $this->input->post();
-				$data['npm'] = $_SESSION['id_user'];
+				$data['npm_ketua'] = $_SESSION['id_user'];
 				$data['status']="0";
 				echo $this->Tambah_Data($data, 'detail');
 			break;
@@ -133,6 +142,7 @@ class Mahasiswa extends CI_Controller {
 			case "kegiatan": $db_call = $this->M_Kegiatan->get_kegiatan($query_extras); break;
 			case "detail": $db_call = $this->M_Proyek->get_proyek($query_extras); break;
 			case "bimbingan": $db_call = $this->M_Bimbingan->get_bimbingan($query_extras); break;
+			case "anggota": $db_call = $this->M_Mahasiswa->get_mahasiswa($query_extras); break;
 		}
 
 		if($db_call['status']=='1'){
