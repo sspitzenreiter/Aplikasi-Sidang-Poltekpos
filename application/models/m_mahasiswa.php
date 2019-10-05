@@ -6,7 +6,7 @@ class M_mahasiswa extends CI_Model{
 
     public function get_mahasiswa($cond=""){
     $this->db->select("*");
-    $this->db->from("mahassiswa");
+    $this->db->from("mahasiswa");
 		//Dari sini mah bukan contoh, ini mah buat kondisi dinamis
 		if($cond!=""){
 			foreach($cond as $row){
