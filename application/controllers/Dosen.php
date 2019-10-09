@@ -297,7 +297,7 @@ class Dosen extends CI_Controller {
 			case "PilihPembimbing:Data":
 				$search[0]['type']="where";
 				$search[0]['value']=array('prodi'=>$_SESSION['prodi']);
-				$query_extras[0] = "(select count(*) from proyek where id_dosen_pembimbing = dosen.nik) as total_pembimbing";
+				$query_extras[0] = "(select count(*) from proyek where id_dosen_pembimbing = dosen.nik && status_proyek='1' && id_kegiatan = '".$_SESSION['stat_koor']['id_kegiatan']."') as total_pembimbing";
 				$query_extras[1] = "(select count(*) from mahasiswa where prodi=dosen.prodi) / (select count(*) from dosen as a where a.prodi = dosen.prodi) as maks_anak";
 				echo $this->Tampil_Data('dosen', array('id_proyek'=>$_SESSION['id_proyek'], 'judul_proyek'=>$_SESSION['judul_proyek']), $search, $query_extras);
 			break;
