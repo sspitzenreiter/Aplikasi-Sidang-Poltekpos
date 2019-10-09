@@ -29,9 +29,9 @@ $(function(){
         processData: false,
         success: function(response){
           var data = JSON.parse(response);
-          switch(data.data[0].status){
-            case "0": data.data[0].status="Belum Diterima"; break;
-            case "1": data.data[0].status="Diterima"; break;
+          switch(data.data[0].status_proyek){
+            case "0": data.data[0].status_proyek="Belum Diterima"; break;
+            case "1": data.data[0].status_proyek="Diterima"; break;
           }
           form_setter(data.data);
         }

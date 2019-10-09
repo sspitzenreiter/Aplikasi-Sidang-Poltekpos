@@ -28,11 +28,19 @@
             <div class="card">
               <div class="card-header">
                   <div class="col-md-2">
-                   <button id="tolol"  type="button" class="btn btn-block btn-primary"> SIDANG</button>
+                   <button id="button-sidang"  type="button" class="btn btn-block btn-primary"> SIDANG</button>
                   </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+                <div class="row">
+                  <div class="col-md-3">
+                    <select class="form-control" id="opsi-tampil">
+                      <option value="0">Daftar Bimbingan</option>
+                      <option value="1">Daftar Riwayat</option>
+                    </select>
+                  </div>
+                </div>
                 <table class="table" id="data-bimbingan">
                   <thead>
                     
@@ -61,9 +69,7 @@
   <?php $this->load->view('common/footer');?>
   <script>
   	$(function(){
-  		
   		$("#delete").click(function(){
-
   			Swal.fire('Success', 'Data Approved', 'success');
   		});
 

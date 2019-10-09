@@ -68,6 +68,9 @@ class Dosen extends CI_Controller {
 
 	public function Bimbingan($a="")
 	{
+		if($a!="Detail" && $a!="Detail:Data" && isset($_SESSION['id_proyek'])){
+			unset($_SESSION['id_proyek']);
+		}
 		switch($a){
 			case "":
 				$data['nav_active'] = "bimbingan";
@@ -85,9 +88,7 @@ class Dosen extends CI_Controller {
 			break;
 			case "Detail":
 				if(!isset($_SESSION['id_proyek'])){
-					$this->session->set_flashdata('id_proyek', $this->input->post('id_proyek'));
-				}else{
-					$this->session->set_flashdata('id_proyek', $_SESSION['id_proyek']);
+					$this->session->set_userdata('id_proyek', $this->input->post('id_proyek'));
 				}
 				$data['nav_active'] = "bimbingan";
 				$data['nav_open'] = "menu";
@@ -99,14 +100,21 @@ class Dosen extends CI_Controller {
 				$data = $_SESSION['id_proyek'];
 				$search[0]['type']="where";
 				$search[0]['value']=array('id_proyek'=>$data);
-				echo $this->Tampil_Data('bimbingan', '', $search);
+				$search[1]['type']="where";
+				$search[1]['value']=array('status_bimbingan'=>$this->input->post('opsi_tampil'));
+				$tampil_bimbingan = $this->M_Bimbingan->get_jumlah_bimbingan($data);
+				$result = json_decode($this->Tampil_Data('bimbingan', '', $search), true);
+				$result = array_merge($result, $tampil_bimbingan);
+				echo json_encode($result);
 			break;
 			case "Detail:Approve":
 				$data = $this->input->post();
 				$data['status_bimbingan']="1";
 				$where = array('id_bimbingan'=>$data['id_bimbingan']);
-				$this->session->set_flashdata('id_proyek', $data['id_proyek']);
 				echo $this->Ubah_Data($data, $where, 'bimbingan');
+			break;
+			case "Detail:Sidang":
+				$data = $this->input->post();
 			break;
 		}
 	}
@@ -252,7 +260,7 @@ class Dosen extends CI_Controller {
 				$search[0]['type']="where";
 				$search[0]['value']=array('kegiatan.prodi'=>$_SESSION['prodi']);
 				$search[1]['type']="where";
-				$search[1]['value']=array('proyek.status'=>'0');
+				$search[1]['value']=array('proyek.status_proyek'=>'0');
 				$search[2]['type']="where";
 				$search[2]['value']=array('proyek.id_kegiatan'=>$_SESSION['stat_koor']['id_kegiatan']);
 				//$search[3]['type']="group_by";
@@ -281,7 +289,7 @@ class Dosen extends CI_Controller {
 			break;
 			case "PilihPembimbing:Update":
 				$data = $this->input->post();
-				$data['status']="1";
+				$data['status_proyek']="1";
 				$where = array('id_proyek'=>$data['id_proyek']);
 				echo $this->Ubah_Data($data, $where, 'proyek');
 			break;

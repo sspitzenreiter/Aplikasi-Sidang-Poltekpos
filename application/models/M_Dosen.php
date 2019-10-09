@@ -46,7 +46,7 @@ class M_Dosen extends CI_Model {
 			}
 		}
 		//end of kondisi dinamis
-    $isi = $this->db->get();
+    	$isi = $this->db->get();
 		if($isi){
 			return array('status'=>'1','isi'=>$isi);
 		}else{
@@ -57,7 +57,7 @@ class M_Dosen extends CI_Model {
 	 public function update($data, $where){
 		$this->db->where($where);
 		$isi = $this->db->update('dosen', $data);
-    if($isi){
+    	if($isi){
 			return array('status'=>'1');
 		}else{
 			return array('status'=>'0', 'message'=>$this->db->error());

@@ -36,6 +36,13 @@ class M_Bimbingan extends CI_Model {
     }
   }
 
+  public function get_jumlah_bimbingan($id_proyek){
+    $this->db->select('count(*) as total_bimbingan');
+    $this->db->from('bimbingan');
+    $this->db->where(array('status_bimbingan'=>'1', 'id_proyek'=>$id_proyek));
+    return $this->db->get()->row_array();
+  }
+
   public function insert($data){
     $query = $this->db->insert('bimbingan', $data);
     if($query){

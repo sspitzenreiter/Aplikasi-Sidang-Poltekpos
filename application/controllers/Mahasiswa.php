@@ -43,7 +43,7 @@ class Mahasiswa extends CI_Controller {
 		$search[0]['value']="npm_ketua = '".$_SESSION['id_user']."' || npm_anggota = '".$_SESSION['id_user']."'";
 		$data = json_decode($this->Tampil_Data('detail', "", $search), true);
 		if($data['num_rows']>0){
-			if($data['data'][0]['status']=="1"){
+			if($data['data'][0]['status_proyek']=="1"){
 				$this->session->set_userdata('id_proyek', $data['data'][0]['id_proyek']);
 			}
 		}
@@ -102,7 +102,7 @@ class Mahasiswa extends CI_Controller {
 			case "Insert":
 				$data = $this->input->post();
 				$data['npm_ketua'] = $_SESSION['id_user'];
-				$data['status']="0";
+				$data['status_proyek']="0";
 				echo $this->Tambah_Data($data, 'detail');
 			break;
 		}

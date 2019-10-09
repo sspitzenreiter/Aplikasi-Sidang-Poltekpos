@@ -1,8 +1,12 @@
 var bimb_table = $('#data-bimbingan').DataTable({
     "ajax": {
-      "type":"GET",
+      "type":"POST",
+      "data":function(d){
+          d.opsi_tampil = $('#opsi-tampil').children('option:selected').val();
+      },
       "url":window.location.href+":Data",
       "dataSrc": function(json){
+        activate_tombol_sidang(json.total_bimbingan);
         return json.data;
       }
     },
@@ -54,6 +58,12 @@ $(function(){
           };
         alert_toast(JSON.stringify(notif_config));
     });
+    $('#opsi-tampil').on('change', function(){
+        bimb_table.ajax.reload();
+    });
+    $('#button-sidang').on('click', function(){
+        alert('sidang');
+    });
 });
 function approve_bimbingan(data){
     var fd = new FormData();
@@ -75,4 +85,12 @@ function approve_bimbingan(data){
             alert_toast(response);
         }
     });
+}
+function activate_tombol_sidang(total){
+    var tombol_sidang = $('#button-sidang');
+    if(total>=8){
+        tombol_sidang.prop('disabled', false);
+    }else{
+        tombol_sidang.prop('disabled', true);
+    }
 }
