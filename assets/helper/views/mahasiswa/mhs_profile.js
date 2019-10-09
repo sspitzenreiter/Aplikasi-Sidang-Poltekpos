@@ -12,7 +12,7 @@ $(function(){
               alert_toast(response);
               if(data.status=="success"){
                   $('#modal2').modal('toggle');
-                  form_setter(fd);
+                  text_setter(fd, 'form');
               }
             },error: function (xhr, ajaxOptions, thrownError) {
                 alert(xhr.status);

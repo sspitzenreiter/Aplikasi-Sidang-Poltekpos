@@ -10,6 +10,16 @@ var bimb_table = $('#data-bimbingan').DataTable({
       {"render":function(data, type, row, meta){return '';}, title:"#", "orderable":false},
       {"data": "nama_kegiatan", title:"Kegiatan"},
       {"data": "judul_proyek", title:"Judul"},
+      {"data": "total_bimbingan", title:"Total Bimbingan",  width:"10%"},
+      {"render":
+        function(data, type, row, meta){
+          var anggota = "";
+          if(row.npm_anggota!=null){
+            anggota = '<p>'+row.nama_anggota+'('+row.npm_anggota+')</p>';
+          }
+          return '<p>'+row.nama_ketua+'('+row.npm_ketua+')</p>'+anggota;
+        }, title:"Peserta"
+      },
       {"render":
         function(data, type, row, meta){
             return "<button class='btn btn-success' id='tampilkan'>Tampilkan</button>";

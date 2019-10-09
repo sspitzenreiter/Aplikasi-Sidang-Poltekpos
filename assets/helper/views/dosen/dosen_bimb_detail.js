@@ -61,9 +61,6 @@ $(function(){
     $('#opsi-tampil').on('change', function(){
         bimb_table.ajax.reload();
     });
-    $('#button-sidang').on('click', function(){
-        alert('sidang');
-    });
 });
 function approve_bimbingan(data){
     var fd = new FormData();
@@ -89,6 +86,9 @@ function approve_bimbingan(data){
 function activate_tombol_sidang(total){
     var tombol_sidang = $('#button-sidang');
     if(total>=8){
+        $('#button-sidang').on('click', function(){
+            $.redirect(window.location.href+":Sidang", {total_bimbingan:total});
+        });
         tombol_sidang.prop('disabled', false);
     }else{
         tombol_sidang.prop('disabled', true);

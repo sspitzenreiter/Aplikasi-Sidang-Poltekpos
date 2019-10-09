@@ -7,6 +7,9 @@ class M_Proyek extends CI_Model {
     $this->db->select("*");
     $this->db->select("(select nama from dosen where nik = proyek.id_dosen_pembimbing) as nama_dosen_pembimbing");
     $this->db->select("(select nama from dosen where nik = kegiatan.id_koordinator) as nama_koordinator");
+    $this->db->select("(select nama from mahasiswa where npm = proyek.npm_ketua) as nama_ketua");
+    $this->db->select("(select nama from mahasiswa where npm = proyek.npm_anggota) as nama_anggota");
+    $this->db->select("(select count(*) from bimbingan where status_bimbingan = '1' and id_proyek = proyek.id_proyek) as total_bimbingan");
     $this->db->from("proyek");
     $this->db->join('kegiatan', 'proyek.id_kegiatan = kegiatan.id_kegiatan', 'left');
     //$this->db->where('npm', '1174040');

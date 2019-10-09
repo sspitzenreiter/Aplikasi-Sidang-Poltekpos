@@ -68,9 +68,10 @@ class Dosen extends CI_Controller {
 
 	public function Bimbingan($a="")
 	{
-		if($a!="Detail" && $a!="Detail:Data" && isset($_SESSION['id_proyek'])){
-			unset($_SESSION['id_proyek']);
+		if(isset($_SESSION['id_proyek'])){
+			$this->session->set_flashdata('id_proyek', $_SESSION['id_proyek']);
 		}
+
 		switch($a){
 			case "":
 				$data['nav_active'] = "bimbingan";
@@ -88,7 +89,9 @@ class Dosen extends CI_Controller {
 			break;
 			case "Detail":
 				if(!isset($_SESSION['id_proyek'])){
-					$this->session->set_userdata('id_proyek', $this->input->post('id_proyek'));
+					$this->session->set_flashdata('id_proyek', $this->input->post('id_proyek'));
+				}else if(isset($_SESSION['id_proyek'])){
+					$this->session->set_flashdata('id_proyek', $_SESSION['id_proyek']);
 				}
 				$data['nav_active'] = "bimbingan";
 				$data['nav_open'] = "menu";
@@ -114,7 +117,18 @@ class Dosen extends CI_Controller {
 				echo $this->Ubah_Data($data, $where, 'bimbingan');
 			break;
 			case "Detail:Sidang":
-				$data = $this->input->post();
+				$total_bimbingan = $this->input->post('total_bimbingan');
+				if($total_bimbingan>=8){
+					$where = array('id_proyek'=>$_SESSION['id_proyek']);
+					$data['status_proyek'] = "2";
+					$notif = json_decode($this->Ubah_Data($data, $where, 'proyek'), true);
+					if($notif['status']=="success"){
+						$notif['message'] = "Mahasiswa Berhasil Disiapkan untuk sidang";
+						$notif['type']="normal";
+						$this->session->set_flashdata('notification', $notif);
+						redirect('Dosen/Bimbingan');
+					}
+				}
 			break;
 		}
 	}
@@ -241,7 +255,7 @@ class Dosen extends CI_Controller {
 			$notification['message'] = "Terdapat error ".$query['message']['message']." (".$query['message']['code'].")";
 			$notification['title'] = "Aww";
 		}
-		echo json_encode($notification);
+		return json_encode($notification);
 	}
 
 	//Koordinator

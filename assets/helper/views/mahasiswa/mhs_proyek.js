@@ -33,7 +33,8 @@ $(function(){
             case "0": data.data[0].status_proyek="Belum Diterima"; break;
             case "1": data.data[0].status_proyek="Diterima"; break;
           }
-          form_setter(data.data);
+          //GN01 Ini Yang Diganti (Text)
+          text_setter(data.data, 'form');
         }
       });
     }else{
