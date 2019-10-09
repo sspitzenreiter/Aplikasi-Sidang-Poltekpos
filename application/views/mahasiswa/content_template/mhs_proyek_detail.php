@@ -6,20 +6,20 @@
             <div class="card-header"><h2>Detail Proyek</h2></div>
             <div class="card-body">
                 <div class="form-group">
-                    <label>Kegiatan</label>
-                    <input type="text" style ="border:none" class="form-control" placeholder="Nilai" id="nama_kegiatan" readonly>
+                    <label>Kegiatan</label><br>
+                    <label id="nama_kegiatan" >Kegiatan</label>
                 </div>
                 <div class="form-group">
-                    <label >Koordinator</label>
-                    <input type="text" style ="border:none" class="form-control" placeholder="Nilai" id="nama_koordinator" readonly>
+                    <label >Koordinator</label><br>
+                    <label id="nama_koordinator">Koordinator</label>
                 </div>
                 <div class="form-group">
-                    <label >Dosen Pembimbing</label>
-                    <input type="text" style ="border:none" class="form-control" placeholder="Nilai" id="nama_dosen_pembimbing" readonly>
+                    <label >Dosen Pembimbing</label><br>
+                    <label id="nama_dosen_pembimbing">Dosen Pembimbing</label>
                 </div>
                 <div class="form-group">
-                    <label >Status Proyek</label>
-                    <input type="text" style ="border:none" class="form-control" placeholder="Nilai" id="status" readonly>
+                    <label>Status Proyek</label><br>
+                    <label id="status_proyek">Status</label>
                 </div>
             </div>
         </div>
@@ -31,24 +31,28 @@
             <div class="card-header">Detail Sidang</div>
             <div class="card-body">
                 <div class="form-group">
+                    <label >Tanggal Sidang</label><br>
                     <label >Tanggal Sidang</label>
-                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Nilai" readonly>
                 </div>
                 <div class="form-group">
                     <label>Ruangan</label>
-                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Nilai" readonly>
+                    <br>
+                    <label >Ruangan</label>
                 </div>
                 <div class="form-group">
                     <label >Dosen Penguji</label>
-                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Nilai" readonly>
+                    <br>
+                    <label >Dosen Penguji</label>
                 </div>
                 <div class="form-group">
                     <label >Nilai</label>
-                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Nilai" readonly>
+                    <br>
+                    <label >Nilai</label>
                 </div>
                 <div class="form-group">
                     <label >Status Nilai</label>
-                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Nilai" readonly>
+                    <br>
+                    <label >Status Nilai</label>
                 </div>
             </div>
         </div>
@@ -82,6 +86,16 @@
             <div class="form-group">
                 <label>Daftar Pustaka</label>
                 <textarea class="form-control" style ="border:none" rows="3" id="daftar_pustaka" placeholder="Daftar Pustaka" readonly></textarea>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                </div>
+               
+            <div class="col-md-3">
+            <div class="form-group">
+            <button id="lengkapi"  type="button" class="btn btn-block btn-success"> Edit</button>
+            </div>
+            </div>
             </div>
         </div>
     </div>

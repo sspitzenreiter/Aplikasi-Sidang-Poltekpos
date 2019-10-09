@@ -24,24 +24,24 @@
                   <div class="col-sm-2">
                   <form id="form-profile-preview">
                 <div class="form-group" >
-                    <label >NIK</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->nik; ?>" id="nik" placeholder="npm" readonly>
+                    <label >NIK</label><br>
+                    <label  id="nik"><?php echo $row->nik; ?></label>
                   </div>
                 </div>
-                <div class ="col-sm-2">
+                <div class ="col-sm-1">
               </div>
                 <div class="col-sm-6">
                 <div class="form-group">
-                    <label >NAMA</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->nama; ?>"id="nama" placeholder="NONE" width="10px" readonly>
+                    <label >NAMA</label><br>
+                    <label id="nama"><?php echo $row->nama; ?></label>
                   </div>
                 </div>
               </div>
               <div class="row">
               <div class="col-sm-10">
                 <div class="form-group">
-                    <label >ALAMAT</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->alamat; ?>"id="alamat" placeholder="NONE" width="10px" readonly>
+                    <label >ALAMAT</label><br>
+                    <label id="alamat" ><?php echo $row->alamat; ?></label>
                   </div>
                 </div>
               </div>
@@ -49,29 +49,29 @@
                 <div class="row">
                   <div class="col-sm-3">
                 <div class="form-group" >
-                    <label >Tempat Lahir</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->tempat_lahir; ?>" id="tempat_lahir" placeholder="NONE" readonly>
+                    <label >Tempat Lahir</label><br>
+                    <label id="tempat_lahir"><?php echo $row->tempat_lahir; ?></label>
                   </div>
                 </div>
                  <div class="col-sm-3">
                 <div class="form-group" >
-                    <label >Tanggal Lahir</label>
-                    <input style ="border:none" type="date" class="form-control" value ="<?php echo $row->tgl_lahir; ?>"id="tgl_lahir" placeholder="NONE" readonly>
+                    <label >Tanggal Lahir</label><br>
+                    <label id="tgl_lahir"><?php echo $row->tgl_lahir; ?></label>
                   </div>
                 </div>
                 </div>
                 <div class="row">
                 <div class="col-sm-2">
                 <div class="form-group" >
-                    <label >Judul jurnal</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->judul_jurnal; ?>"id="judul_jurnal" placeholder="NONE" readonly>
+                    <label >Judul jurnal</label><br>
+                    <label id="judul_jurnal"><?php echo $row->judul_jurnal; ?></label>
                   </div>
 
                 </div>
                 <div class="col-sm-2">
                 <div class="form-group" >
-                    <label >Link jurnal</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->link_jurnal; ?>"id="link_jurnal" placeholder="NONE" readonly>
+                    <label >Link jurnal</label><br>
+                    <label id="link_jurnal"><?php echo $row->link_jurnal; ?></label>
                   </div>
                   
                 </div>
@@ -79,8 +79,8 @@
               <div class="row">
               <div class="col-sm-2">
                 <div class="form-group" >
-                    <label >Research Interest</label>
-                    <input style ="border:none" type="text" class="form-control" value ="<?php echo $row->research_interest; ?>"id="research_interest" placeholder="NONE" readonly>
+                    <label >Research Interest</label><br>
+                    <label id="research_interest"><?php echo $row->research_interest; ?></label>
                   </div>
                   </form>
                 </div>

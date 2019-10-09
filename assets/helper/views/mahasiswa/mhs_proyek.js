@@ -34,7 +34,7 @@ $(function(){
             case "1": data.data[0].status_proyek="Diterima"; break;
           }
           //GN01 Ini Yang Diganti (Text)
-          text_setter(data.data, 'form');
+          text_setter(data.data, 'text');
         }
       });
     }else{

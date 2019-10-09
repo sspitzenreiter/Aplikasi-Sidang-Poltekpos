@@ -19,8 +19,8 @@
                <div class="col-sm-6">
                 <div class="form-group">
                   
-                    <label >Judul Proyek</label>
-                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Judul Proyek" readonly>
+                    <label >Judul Proyek</label><br>
+                    <label  >NULL</label>
                   </div>
                 </div>
                 <div class="col-sm-1">
@@ -28,15 +28,15 @@
                 <div class="col-sm-2">
                 <div class="form-group">
                   
-                    <label >NPM</label>
-                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="NPM" readonly>
+                    <label >NPM</label><br>
+                    <label  >NULL</label>
                   </div>
                 </div>
                 <div class="col-sm-3">
                 <div class="form-group">
                   
-                    <label >Nama</label>
-                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Nama" readonly>
+                    <label >Nama</label><br>
+                    <label  >NULL</label>
                   </div>
                 </div>
               </div>
@@ -44,8 +44,8 @@
                 <div class="col-sm-6">
                    <div class="form-group">
                    
-                    <label>Abstrak</label>
-                    <textarea class="form-control" style ="border:none" rows="3" placeholder="Abstrak" readonly></textarea>
+                    <label>Abstrak</label><br>
+                    <label  >NULL</label>
                   </div>
                 </div>
 <div class="col-sm-1">
@@ -54,7 +54,8 @@
                 <div class="form-group">
                   
                     <label >Dosen Penguji</label>
-                    <input type="text" style ="border:none"  class="form-control" id="exampleInputEmail1" placeholder="Dosen Penguji" readonly>
+                    <br>
+                    <label  >NULL</label>
                   </div>
                 </div>
               </div>
@@ -63,7 +64,8 @@
                   <div class="form-group">
                     
                     <label>Latar Belakang</label>
-                    <textarea class="form-control" style ="border:none" rows="3" placeholder="Latar Belakang" readonly></textarea>
+                    <br>
+                    <label  >NULL</label>
                   </div>
                 </div>
 
@@ -73,7 +75,8 @@
                   <div class="form-group">
                     
                     <label>Identifikasi Masalah</label>
-                    <textarea class="form-control" style ="border:none" rows="3" placeholder="Identifikasi Masalah" readonly></textarea readonly>
+                    <br>
+                    <label  >NULL</label>
                   </div>
                 </div>
                 <div class="col-sm-1">
@@ -82,14 +85,16 @@
                 <div class="form-group">
                   
                     <label >Tanggal Sidang</label>
-                    <input type="date" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Tanggal Sidang" readonly>
+                    <br>
+                    <label  >NULL</label>
                   </div>
                 </div>
                 <div class="col-sm-2">
                 <div class="form-group">
                   
                     <label >Ruangan</label>
-                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Ruangan" readonly>
+                  <br>
+                    <label  >NULL</label>
                   </div>
                 </div>
               </div>
@@ -98,7 +103,8 @@
                   <div class="form-group">
                     
                     <label>Daftar Pustaka</label>
-                    <textarea class="form-control" style ="border:none" rows="3" placeholder="Daftar Pustaka" readonly></textarea>
+                    <br>
+                    <label  >NULL</label>
                   </div>
                 </div>
                 <div class="col-sm-1">
@@ -107,14 +113,16 @@
                 <div class="form-group">
                   
                     <label >Nilai</label>
-                    <input type="text" style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Nilai" readonly>
+                  <br>
+                    <label  >NULL</label>
                   </div>
                 </div>
                 <div class="col-sm-3">
                 <div class="form-group">
                   
                     <label >Status Nilai</label>
-                    <input type="text"style ="border:none" class="form-control" id="exampleInputEmail1" placeholder="Status" readonly>
+                   <br>
+                    <label  >NULL</label>
                   </div>
                 </div>
               </div>
