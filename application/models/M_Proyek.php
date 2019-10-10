@@ -55,6 +55,7 @@ class M_Proyek extends CI_Model {
 	{
 		$this->db->where($where);
     if($this->db->update('proyek',$data)){
+      //echo $this->db->last_query();
       return array('status'=>'1');
     }else{
       return array('status'=>'0', 'message'=>$this->db->error());

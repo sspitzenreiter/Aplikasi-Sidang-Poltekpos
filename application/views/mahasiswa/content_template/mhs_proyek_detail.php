@@ -7,19 +7,19 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Kegiatan</label><br>
-                    <label id="nama_kegiatan" >Kegiatan</label>
+                    <p id="nama_kegiatan" >Kegiatan</p>
                 </div>
                 <div class="form-group">
-                    <label >Koordinator</label><br>
-                    <label id="nama_koordinator">Koordinator</label>
+                    <label >Koordinator</label>
+                    <p id="nama_koordinator">Koordinator</p>
                 </div>
                 <div class="form-group">
-                    <label >Dosen Pembimbing</label><br>
-                    <label id="nama_dosen_pembimbing">Dosen Pembimbing</label>
+                    <label >Dosen Pembimbing</label>
+                    <p id="nama_dosen_pembimbing">Dosen Pembimbing</p>
                 </div>
                 <div class="form-group">
                     <label>Status Proyek</label><br>
-                    <label id="status_proyek">Status</label>
+                    <p id="status_proyek">Status</p>
                 </div>
             </div>
         </div>
@@ -31,28 +31,24 @@
             <div class="card-header">Detail Sidang</div>
             <div class="card-body">
                 <div class="form-group">
-                    <label >Tanggal Sidang</label><br>
                     <label >Tanggal Sidang</label>
+                    <p >Tanggal Sidang</p>
                 </div>
                 <div class="form-group">
                     <label>Ruangan</label>
-                    <br>
-                    <label >Ruangan</label>
+                    <p>Ruangan</p>
                 </div>
                 <div class="form-group">
                     <label >Dosen Penguji</label>
-                    <br>
-                    <label >Dosen Penguji</label>
+                    <p>Dosen Penguji</p>
                 </div>
                 <div class="form-group">
                     <label >Nilai</label>
-                    <br>
-                    <label >Nilai</label>
+                    <p>Nilai</p>
                 </div>
                 <div class="form-group">
                     <label >Status Nilai</label>
-                    <br>
-                    <label >Status Nilai</label>
+                    <p>Status Nilai</p>
                 </div>
             </div>
         </div>
@@ -69,7 +65,7 @@
         <div class="card-body">
             <div class="form-group">
                 <label >Judul Proyek</label>
-                <input type="text" style ="border:none" class="form-control" id="judul_proyek" placeholder="Judul Proyek" readonly>
+                <textarea rows="3" style ="border:none" class="form-control" id="judul_proyek" placeholder="Judul Proyek" readonly>
             </div>
             <div class="form-group">     
                 <label>Abstrak</label>

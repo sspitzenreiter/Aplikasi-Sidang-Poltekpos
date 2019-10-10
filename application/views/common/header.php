@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="<?=base_url('assets/theme/')?>plugins/sweetalert2/sweetalert2.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="<?=base_url('assets/theme/')?>plugins/datatables/dataTables.bootstrap4.css">
-  
+  <link rel="stylesheet" href="<?=base_url('assets/theme/')?>plugins/daterangepicker/daterangepicker.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

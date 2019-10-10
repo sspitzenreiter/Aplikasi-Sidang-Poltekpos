@@ -58,6 +58,23 @@ $(function(){
   $(".select2").select2({
     theme:"bootstrap"
   });
+  $('[data-mask]').inputmask();
+  $('.timemask').inputmask('23:59', {
+    definitions:{
+      '2': {
+        validator: "[0-2]",
+        cardinality:1
+      },
+      '3':{
+        validator: "[0-3]",
+        cardinality:1
+      },
+      '5':{
+        validator: "[0-5]",
+        cardinality:1
+      }
+    }, placeholder:'12:00'
+  });
 });
 function form_setter(data){
   if(data instanceof FormData){

@@ -187,7 +187,6 @@ class Dosen extends CI_Controller {
 	public function Tampil_Data($table, $data_extras="", $where="", $query_extras=""){
 		$db_call = "";
 		switch($table){
-			case "approval": $db_call = $this->M_Proyek->get_proyek($where); break;
 			case "dosen": $db_call = $this->M_Dosen->get_dosen($where, $query_extras); break;
 			case "bimbingan": $db_call = $this->M_Bimbingan->get_bimbingan($where); break;
 			case "proyek": $db_call = $this->M_Proyek->get_proyek($where); break;
@@ -279,7 +278,7 @@ class Dosen extends CI_Controller {
 				$search[2]['value']=array('proyek.id_kegiatan'=>$_SESSION['stat_koor']['id_kegiatan']);
 				//$search[3]['type']="group_by";
 				//$search[3]['value']="proyek.judul_proyek";
-				echo $this->Tampil_Data('approval', "", $search);
+				echo $this->Tampil_Data('proyek', "", $search);
 			break;
 			case "Tolak":
 				$data = $this->input->post();
@@ -316,12 +315,39 @@ class Dosen extends CI_Controller {
 		//$this->load->view('common/footer');
 	}
 
-	public function Jadwal()
+	public function Jadwal($a="")
 	{
-		$data['nav_active'] = "jadwal";
-		$data['nav_open'] = "koordinator";
-		$data = array_merge($data, $this->con_config);
-		$this->load->view('koordinator/koor_jadwal',$data);
+		switch($a){
+			case "":
+				$data['jscallurl']="dosen/koor_jadwal.js";
+				$data['nav_active'] = "jadwal";
+				$data['nav_open'] = "koordinator";
+				$data = array_merge($data, $this->con_config);
+				$this->load->view('koordinator/koor_jadwal',$data);
+			break;
+			case "Data":
+				$search[0]['type']="where";
+				$search[0]['value']=array('kegiatan.prodi'=>$_SESSION['prodi']);
+				$search[1]['type']="where";
+				$search[1]['value']=array('proyek.status_proyek'=>'2');
+				$search[2]['type']="where";
+				$search[2]['value']=array('proyek.id_kegiatan'=>$_SESSION['stat_koor']['id_kegiatan']);
+				echo $this->Tampil_Data('proyek', "", $search);
+			break;
+			case "DataPenguji":
+				$id_dosen_pembimbing = $this->input->post('id_dosen_pembimbing');
+				$search[0]['type']="where";
+				$search[0]['value']="nik != '".$id_dosen_pembimbing."'";
+				$search[1]['type']="where";
+				$search[1]['value']=array('prodi'=>$_SESSION['prodi']);
+				echo $this->Tampil_Data('dosen', '', $search);
+			break;
+			case "Jadwalkan":
+				$data = $this->input->post();
+				$where = array('id_proyek'=>$data['id_proyek']);
+				echo $this->Ubah_Data($data, $where, 'proyek');
+			break;
+		}
 		//$this->load->view('common/footer');
 	}
 }
