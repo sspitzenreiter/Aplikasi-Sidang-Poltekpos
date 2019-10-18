@@ -32,15 +32,15 @@
             <div class="card-body">
                 <div class="form-group">
                     <label >Tanggal Sidang</label>
-                    <p >Tanggal Sidang</p>
+                    <p id="tgl_sidang">Tanggal Sidang</p>
                 </div>
                 <div class="form-group">
                     <label>Ruangan</label>
-                    <p>Ruangan</p>
+                    <p id="ruangan">Ruangan</p>
                 </div>
                 <div class="form-group">
                     <label >Dosen Penguji</label>
-                    <p>Dosen Penguji</p>
+                    <p id="id_dosen_penguji">Dosen Penguji</p>
                 </div>
                 <div class="form-group">
                     <label >Nilai</label>

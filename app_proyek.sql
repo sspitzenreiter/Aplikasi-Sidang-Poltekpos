@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2019 at 09:08 AM
+-- Generation Time: Oct 18, 2019 at 07:35 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -95,7 +95,23 @@ INSERT INTO `bimbingan` (`id_bimbingan`, `tgl_bimbingan`, `keterangan`, `status_
 (14, '2019-10-13', 'wgwegwegwewwegwegweeg', 1, 7),
 (15, '2019-10-14', 'wgwegwegwwegwegewgwewwegwegweega', 1, 7),
 (16, '2019-10-15', 'wgwegwegwwegwegewgwewwegwegweega', 1, 7),
-(17, '2019-10-16', 'wgwegwegwwegwegewgwewwegwegweega', 1, 7);
+(17, '2019-10-16', 'wgwegwegwwegwegewgwewwegwegweega', 1, 7),
+(18, '2019-10-10', 'awfaw', 1, 4),
+(19, '2019-10-11', 'awfaw', 1, 4),
+(20, '2019-10-12', 'awfaw', 1, 4),
+(21, '2019-10-14', 'awfaw', 1, 4),
+(22, '2019-10-15', 'awfaw', 1, 4),
+(23, '2019-10-16', 'awfaw', 1, 4),
+(24, '2019-10-17', 'awfaw', 1, 4),
+(25, '2019-10-18', 'awfaw', 1, 4),
+(26, '2019-10-10', 'ugvtyvty', 1, 6),
+(27, '2019-10-15', 'hahahaha', 1, 6),
+(28, '2019-10-24', 'protyekkfcakepoojd', 1, 6),
+(29, '2019-10-31', 'geloood', 1, 6),
+(30, '2019-11-06', 'geloood wkwk', 1, 6),
+(31, '2019-11-13', 'GELUD TEROOOS', 1, 6),
+(32, '2019-11-14', 'GELUD TEROOOS', 1, 6),
+(33, '2019-11-15', 'GELUD TEROOOS', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -362,8 +378,8 @@ CREATE TABLE `proyek` (
   `id_kegiatan` int(8) NOT NULL,
   `id_dosen_pembimbing` char(16) DEFAULT NULL,
   `id_dosen_penguji` char(16) DEFAULT NULL,
-  `tgl_sidang` datetime DEFAULT NULL,
-  `tgl_sidang_ulang` datetime DEFAULT NULL,
+  `tgl_sidang` date DEFAULT NULL,
+  `tgl_sidang_ulang` date DEFAULT NULL,
   `nilai_pembimbing` decimal(5,0) DEFAULT NULL,
   `nilai_penguji` decimal(5,0) DEFAULT NULL,
   `ruangan` varchar(4) DEFAULT NULL,
@@ -378,10 +394,10 @@ CREATE TABLE `proyek` (
 
 INSERT INTO `proyek` (`id_proyek`, `judul_proyek`, `abstrak`, `latar_belakang`, `identifikasi_masalah`, `daftar_pustaka`, `id_kegiatan`, `id_dosen_pembimbing`, `id_dosen_penguji`, `tgl_sidang`, `tgl_sidang_ulang`, `nilai_pembimbing`, `nilai_penguji`, `ruangan`, `npm_ketua`, `status_proyek`, `npm_anggota`) VALUES
 (3, 'qfasfsg', 'qwegweg', 'wegwe', 'wegew', 'wegew', 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174001', 1, '1174007'),
-(4, 'qfwfqeefwef', 'weew', 'wefew', 'wegew', 'wegwegw', 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174002', 1, NULL),
+(4, 'qfwfqeefwef', 'weew', 'wefew', 'wegew', 'wegwegw', 18, '3217061702990004', '3217061702990007', '2019-10-31', NULL, NULL, NULL, '101', '1174002', 2, NULL),
 (5, 'eqwfewgew', 'wegewg', 'gwegweg', 'wewgwegw', 'eqwgwegw', 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174003', 1, NULL),
-(6, 'wefwef', 'wegwewf', 'gwewgfew', 'wegweg', 'wwegewgwe', 18, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1174004', 0, NULL),
-(7, 'qwflknqhwoifqw', 'qwqoefweoif', 'qoweifweoif', 'oiwehfoiwejf', 'wefeoiwfwoie', 18, '3217061702990007', NULL, NULL, NULL, NULL, NULL, NULL, '1174009', 2, '1174005'),
+(6, 'wefwef', 'wegwewf', 'gwewgfew', 'wegweg', 'wwegewgwe', 18, '3217061702990005', '3217061702990006', '2019-10-11', NULL, NULL, NULL, '102', '1174004', 2, NULL),
+(7, 'qwflknqhwoifqw', 'qwqoefweoif', 'qoweifweoif', 'oiwehfoiwejf', 'wefeoiwfwoie', 18, '3217061702990007', '3217061702990004', '2019-10-10', NULL, NULL, NULL, '111', '1174009', 2, '1174005'),
 (8, 'wegwe', 'weew', 'wegweg', 'wegweg', 'wegewg', 18, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1174006', 0, '1174008');
 
 -- --------------------------------------------------------
@@ -594,7 +610,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `bimbingan`
 --
 ALTER TABLE `bimbingan`
-  MODIFY `id_bimbingan` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_bimbingan` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `kegiatan`

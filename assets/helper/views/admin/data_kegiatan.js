@@ -1,65 +1,25 @@
-var kegiatan_table = $('#data-kegiatan').DataTable({
-  "ajax": {
-    "type":"GET",
-    "url":window.location.href+"/Data",
-    "dataSrc": function(json){
-      var dump = JSON.parse(JSON.stringify(json));
-      if(dump.data!=null){
-        if(dump.data.length>0){
-          return json.data;
-        }else{
-          var alert_config = {
-            type: "top-end",
-            message: "Data Kosong",
-            status: "warning"
-          };
-          alert_toast(JSON.stringify(alert_config));
-          return '';
-        }
-      }else if(dump.error_message!=null){
-        var alert_config = {
-          type: "normal",
-          title: "Aww..",
-          message: "Saat memanggil data, terdapat error : '"+dump.error_message.message+"' (Code : "+dump.error_message.code+")",
-          status: "error"
-        };
-        alert_toast(JSON.stringify(alert_config));
-        return '';
-      }
-    }
+var columns = [
+  {"render":function(data, type, row, meta){return '';}, title:"#", "orderable":false},
+  {"data": "nama_kegiatan",title:"Kegiatan"},
+  {"render":
+    function(data, type, row, meta){
+      return date_converter(row.tgl_mulai)+"-"+date_converter(row.tgl_selesai);
+    }, title:"Tanggal Kegiatan"
   },
-  "columns": [
-    {"render":function(data, type, row, meta){return '';}, title:"#", "orderable":false},
-    {"data": "nama_kegiatan",title:"Kegiatan"},
-    {"render":
-      function(data, type, row, meta){
-        return date_converter(row.tgl_mulai)+"-"+date_converter(row.tgl_selesai);
-      }, title:"Tanggal Kegiatan"
-    },
-    {"data":"nama_koor", title: "Koordinator"},
-    {"data": "angkatan", title:"Tahun Ajaran"},
-    {"data": "semester", title:"Semester"},
-    {"render":
-      function(data, type, row, meta){
-        switch(row.status_mulai){
-          case "0": return "<button class='btn btn-default' id='btn_mulai'>Mulai</button>"; break;
-          case "1": return "Berjalan"; break;
-          case "2": return "Selesai"; break;
-        }
-      }, title:"Status"
-    }
-  ],
-  "paging": true,
-  "scrollX": true,
-  "lengthChange": false,
-  "searching": true,
-  "ordering": true,
-  "info": false,
-  "autoWidth": false,
-  "responsive":true,
-  "order": [[ 1, 'asc' ]],
-  "dom":'t<"bottom"p>'
-});
+  {"data":"nama_koor", title: "Koordinator"},
+  {"data": "angkatan", title:"Tahun Ajaran"},
+  {"data": "semester", title:"Semester"},
+  {"render":
+    function(data, type, row, meta){
+      switch(row.status_mulai){
+        case "0": return "<button class='btn btn-default' id='btn_mulai'>Mulai</button>"; break;
+        case "1": return "Berjalan"; break;
+        case "2": return "Selesai"; break;
+      }
+    }, title:"Status"
+  }
+];
+var kegiatan_table = setting_table(window.location.href+"/Data", columns);
 $(function(){
   kegiatan_table.on( 'order.dt search.dt', function () {
       kegiatan_table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {

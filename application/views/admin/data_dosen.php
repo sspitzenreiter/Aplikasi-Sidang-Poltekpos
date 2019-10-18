@@ -44,7 +44,7 @@
                     </div>
                   </div>
                 </div>
-                <table class="table" id="data-dosen">
+                <table class="table main-table">
                   <thead>
 
                   </thead>

@@ -134,3 +134,49 @@ function form_clear(id){
 function base_url(sub_url){
   return window.location.protocol+"//"+window.location.host+"/"+window.location.pathname.split('/')[1]+"/"+sub_url;
 }
+
+function setting_table(url, columns){
+  var table = $('.table').DataTable({
+    "ajax": {
+      "type":"GET",
+      "url":url,
+      "dataSrc": function(json){
+        var dump = JSON.parse(JSON.stringify(json));
+        if(dump.data!=null){
+          if(dump.data.length>0){
+            return json.data;
+          }else{
+            var alert_config = {
+              type: "top-end",
+              message: "Data Kosong",
+              status: "warning"
+            };
+            alert_toast(JSON.stringify(alert_config));
+            return '';
+          }
+        }else if(dump.error_message!=null){
+          var alert_config = {
+            type: "normal",
+            title: "Aww..",
+            message: "Saat memanggil data, terdapat error : '"+dump.error_message.message+"' (Code : "+dump.error_message.code+")",
+            status: "error"
+          };
+          alert_toast(JSON.stringify(alert_config));
+          return '';
+        }
+      }
+    },
+    "columns": columns,
+    "paging": true,
+    "scrollX": true,
+    "lengthChange": false,
+    "searching": true,
+    "ordering": true,
+    "info": false,
+    "responsive":true,
+    "autoWidth": false,
+    "order": [[ 1, 'asc' ]],
+    "dom":'t<"bottom"p>'
+  });
+  return table;
+}
