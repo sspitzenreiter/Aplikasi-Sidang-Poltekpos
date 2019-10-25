@@ -87,6 +87,8 @@ class Mahasiswa extends CI_Controller {
 					$search[0]['value'] = array('prodi'=>$_SESSION['prodi']);
 					$search[1]['type']="where";
 					$search[1]['value']=array('status_mulai'=>'1');
+					$search[2]['type']="where";
+					$search[2]['value']="semester <= '".$_SESSION['semester']."'";
 				}
 				echo $this->Tampil_Data($this->input->post('config'), "",$search);
 			break;
@@ -232,6 +234,9 @@ class Mahasiswa extends CI_Controller {
 			break;
 			case "Update":
 				$data = $this->input->post();
+				if(isset($data['semester'])){
+					$_SESSION['semester'] = $data['semester'];
+				}
 				echo $this->Ubah_Data($data, "", 'profile');
 			break;
 		}

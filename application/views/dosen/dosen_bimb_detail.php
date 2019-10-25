@@ -50,32 +50,21 @@
                   </tbody>
                 </table>
               </div>
-              <!-- /.card-body -->
+              
             </div>
-            <!-- /.card -->
-
-
-            <!-- /.card -->
           </div>
-          <!-- /.col -->
+          
         </div>
-        <!-- /.row -->
-
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
-    <!-- /.content -->
   </div>
   <?php $this->load->view('common/footer');?>
   <script>
   	$(function(){
-  		$("#delete").click(function(){
-  			Swal.fire('Success', 'Data Approved', 'success');
-  		});
 
   	});
   </script>
-        <div class="modal fade" id="modal-default">
+      <div class="modal fade" id="modal-bimbingan">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -86,33 +75,21 @@
               </button>
             </div>
             <div class="modal-body">
-
-
-            <!-- general form elements -->
-
-
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form">
+              <form>
                 <div class="card-body">
-
-                <div class="form-group">
+                  <div class="form-group">
                     <label>Pembahasan</label>
-                    <textarea class="form-control" rows="3" placeholder="Pembahasan"></textarea>
+                    <textarea class="form-control" rows="3" placeholder="Pembahasan" id="catatan"></textarea>
                   </div>
-
-
+                  <div class="form-group">
+                    <label>Nilai</label>
+                    <input type="number" max="100" min="0" id="nilai" value="0">
+                  </div>
                 </div>
-                <!-- /.card-body -->
-
-
               </form>
-
-
-
             <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button id="save" type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+              <button id="save" type="button" class="btn btn-primary">Kirim</button>
             </div>
           </div>
           <!-- /.modal-content -->

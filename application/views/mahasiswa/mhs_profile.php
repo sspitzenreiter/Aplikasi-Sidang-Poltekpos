@@ -1,7 +1,9 @@
 <?php $this->load->view('common/header'); ?>
   <div class="content-wrapper">
     <div class="content-header">
-    <?php $row = $data_mahasiswa->row(); ?>
+    <?php 
+      $row = $data_mahasiswa->row(); 
+    ?>
       <section class="col-lg-12 connectedSortable">
         <div class="container-fluid">
           <div class="col-md-12">
@@ -62,7 +64,7 @@
                 <div class="col-sm-3">
                   <div class="form-group" >
                     <label >Tanggal Lahir</label><br>
-                    <label id="tgl_lahir" ><?php echo $row->tgl_lahir; ?></label>
+                    <label id="tgl_lahir"><?php echo $row->tgl_lahir; ?></label>
                   </div>
                 </div>
               </div>
@@ -115,7 +117,7 @@
                   <div class="col-sm-2">
                     <div class="form-group" >
                       <label >Angkatan</label>
-                      <input  type="text" class="form-control" value="<?php echo $row->angkatan; ?>"name="angkatan" placeholder="NONE" >
+                      <input  type="text" class="form-control" value="<?php echo $row->angkatan; ?>" name="angkatan" placeholder="NONE" >
                     </div>
                   </div>
                 </div>
@@ -130,6 +132,25 @@
                     <div class="form-group" >
                       <label >Tanggal Lahir</label>
                       <input  type="date" class="form-control" value="<?php echo $row->tgl_lahir; ?>"name="tgl_lahir" placeholder="NONE" >
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group" >
+                      <label >Semester</label>
+                      <select name="semester" class="form-control">
+                        <?php for($a=1;$a<=8;$a++){ 
+                          if($a==$row->semester){
+                            ?><option selected><?=$a?></option><?php
+                          }else{
+                            ?><option><?=$a?></option><?php
+                          }
+                          ?>
+                          
+                          
+                        <?php } ?>
+                      </select>
                     </div>
                   </div>
                 </div>

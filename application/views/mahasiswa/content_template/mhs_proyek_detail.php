@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
         <div class="card">
-            <div class="card-header"><h2>Detail Proyek</h2></div>
+            <div class="card-header"><h2>Kontrak Proyek</h2></div>
             <div class="card-body">
                 <div class="form-group">
                     <label>Kegiatan</label><br>
@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-md-12">
         <div class="card">
-            <div class="card-header">Detail Sidang</div>
+            <div class="card-header">Status Sidang</div>
             <div class="card-body">
                 <div class="form-group">
                     <label >Tanggal Sidang</label>

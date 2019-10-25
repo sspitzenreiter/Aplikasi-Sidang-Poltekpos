@@ -13,9 +13,9 @@ var bimb_table = $('#data-bimbingan').DataTable({
       {"render":
         function(data, type, row, meta){
             if(row.status_bimbingan=="0"){
-                return "Belum Diapprove";
+                return "Belum Disetujui";
             }else{
-                return "Sudah Diapprove";
+                return "Sudah Disetujui";
             }
         }, title:"Status Approval"
       }

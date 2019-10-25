@@ -69,14 +69,6 @@
   <?php $this->load->view('common/footer');?>
   <script>
   	$(function(){
-  		$("#save").click(function(){
-  			$('#modal-default').modal('toggle');
-  			Swal.fire('Success', 'Data Submitted ', 'success');
-  		});
-  		$("#delete").click(function(){
-
-  			Swal.fire('Success', 'Data Deleted', 'success');
-  		});
 
   	});
   </script>
@@ -91,28 +83,18 @@
               </button>
             </div>
             <div class="modal-body">
-
-
-            <!-- general form elements -->
-
-
-              <!-- /.card-header -->
-              <!-- form start -->
               <form role="form">
                 <div class="card-body">
 
-               <div class="form-group">
+                <div class="form-group">
                   <label>Dosen Pembimbing</label>
                   <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Tia</option>
                     <option>Upi</option>
                     <option>Bin</option>
                     <option>Tia</option>
-
                   </select>
                 </div>
-
-
                 </div>
                 <!-- /.card-body -->
 

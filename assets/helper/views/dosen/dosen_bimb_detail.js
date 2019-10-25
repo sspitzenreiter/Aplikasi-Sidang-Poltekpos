@@ -19,7 +19,7 @@ var bimb_table = $('#data-bimbingan').DataTable({
             if(row.status_bimbingan=="0"){
                 return "<button class='btn btn-primary' id='approve'>Approve</button>";
             }else{
-                return "Sudah Diapprove";
+                return "Sudah Disetujui";
             }
         }, title:"Status Approval"
       }
@@ -46,43 +46,43 @@ $(function(){
     $("#data-bimbingan tbody").on('click', '#approve', function(){
         var data = bimb_table.row( $(this).parents('tr') ).data();
         var fd = {id_bimbingan:data.id_bimbingan, id_proyek:data.id_proyek};
-        var notif_config = {
-            title:"Approve Bimbingan?",
-            message:"Yang sudah di approve tidak bisa di cancel",
-            status:"question",
-            yes_text:"Ya",
-            no_text:"Tidak",
-            function_call:"approve_bimbingan",
-            param:fd,
-            type:"confirmation"
-          };
-        alert_toast(JSON.stringify(notif_config));
+        session.setSession("fd", JSON.stringify(fd));
+        $('#modal-bimbingan').modal('toggle');
     });
     $('#opsi-tampil').on('change', function(){
         bimb_table.ajax.reload();
     });
-});
-function approve_bimbingan(data){
-    var fd = new FormData();
-    for ( var key in data ) {
-        fd.append(key, data[key]);
-    }
 
-    $.ajax({
-        url:window.location.href+":Approve",
-        data:fd,
-        type:'POST',
-        contentType: false,
-        processData: false,
-        success: function(response){
-            var result = JSON.parse(response);
-            if(result.status=="success"){
-                bimb_table.ajax.reload();
-            }
-            alert_toast(response);
+    $('#save').on('click', function(){
+        var data = JSON.parse(sessionStorage.getItem("fd"));
+        var fd = new FormData();
+        for ( var key in data ) {
+            fd.append(key, data[key]);
         }
+        fd.append('catatan', $('#catatan').val());
+        fd.append('nilai_bimbingan', $('#nilai').val());
+        $.ajax({
+            url:window.location.href+":Approve",
+            data:fd,
+            type:'POST',
+            contentType: false,
+            processData: false,
+            success: function(response){
+                var result = JSON.parse(response);
+                if(result.status=="success"){
+                    $('#modal-bimbingan').modal('toggle');
+                    bimb_table.ajax.reload();
+                }
+                alert_toast(response);
+            }
+        });
     });
+});
+
+function approve_bimbingan(data){
+    
 }
+
 function activate_tombol_sidang(total){
     var tombol_sidang = $('#button-sidang');
     if(total>=8){

@@ -134,6 +134,18 @@
                     <option>8</option>
                   </select>
                 </div>
+                <div class="form-group">
+                  <label>Batas Minimal Bimbingan : </label>
+                  <input type="number" class="form-control" id="min_bimbingan" name="min_bimbingan" min="8" value="8">
+                </div>
+                <div class="form-group">
+                  <label>Persentase Nilai Bimbingan : </label>
+                  <input type="number" class="form-control" id="persentase_bimbingan" name="persentase_bimbingan" min="0" max="100" value="50">
+                </div>
+                <div class="form-group">
+                  <label>Persentasi Nilai Sidang : </label>
+                  <input type="number" class="form-control" id="persentase_sidang" name="persentase_sidang" min="0" max="100" value="50">
+                </div>
               </form>
             </div>
             <div class="modal-footer justify-content-between">

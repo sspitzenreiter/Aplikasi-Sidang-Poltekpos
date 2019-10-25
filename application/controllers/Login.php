@@ -51,6 +51,9 @@ class Login extends CI_Controller{
 		}
 		$data['nama'] = $data_user['isi']->row()->nama;
 		$data['prodi'] = $data_user['isi']->row()->prodi;
+		if($data['jabatan']=="M"){
+			$data['semester'] = $data_user['isi']->row()->semester;
+		}
 		$this->session->set_userdata($data);
 		$this->load->helper('auth');
 		

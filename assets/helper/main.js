@@ -180,3 +180,37 @@ function setting_table(url, columns){
   });
   return table;
 }
+
+class SessionData{
+  constructor (){
+    
+  }
+
+  setSession(key, val){
+    sessionStorage.setItem(key, val);
+  }
+  
+  setSessions(object){
+    $.each(object, function (key, val) {
+      sessionStorage.setItem(key, val);
+    });
+  }
+
+  getSession(key){
+    return sessionStorage.getItem(key);
+  }
+
+  getSessions(){
+    return sessionStorage;
+  }
+
+  destroySessions(){
+    sessionStorage.clear();
+  }
+
+  destroySession(key){
+    sessionStorage.removeItem(key);
+  }
+}
+
+var session = new SessionData();

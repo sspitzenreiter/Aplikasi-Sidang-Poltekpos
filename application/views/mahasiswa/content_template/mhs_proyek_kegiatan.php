@@ -32,7 +32,11 @@
                         <div class="form-group">     
                             <label>Abstrak</label>
                             <textarea class="form-control"   placeholder="Abstrak" name="abstrak"></textarea>
-                        </div>      
+                        </div>
+                        <div class="form-group">     
+                            <label>Keyword</label>
+                            <input type="text" class="form-control"   placeholder="Abstrak" name="keyword_abstrak"></textarea>
+                        </div>
                         <div class="form-group">
                             <label>Latar Belakang</label>
                             <textarea class="form-control" placeholder="Latar Belakang" name="latar_belakang"></textarea>
@@ -44,6 +48,10 @@
                         <div class="form-group">
                             <label>Daftar Pustaka</label>
                             <textarea class="form-control" placeholder="Daftar Pustaka" name="daftar_pustaka"></textarea>
+                        </div>
+                        <div class="form-group">     
+                            <label>Kategori Proyek</label>
+                            <input type="text" class="form-control"   placeholder="Abstrak" name="kategori_proyek" placeholder="ex:IoT, SCM, Data Mining"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Anggota</label>

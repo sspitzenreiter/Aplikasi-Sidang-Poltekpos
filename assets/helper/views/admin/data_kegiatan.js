@@ -91,8 +91,27 @@ $(function(){
     Swal.fire('Success', 'Data Deleted', 'success');
   });
 
+  $('#persentase_sidang').on('change', function(){
+    hitung_persentase('sidang');
+  });
+
+  $('#persentase_bimbingan').on('change', function(){
+    hitung_persentase('bimbing');
+  });
   
 });
+
+function hitung_persentase(changed){
+  var sidang = $('#persentase_sidang');
+  var bimbing = $('#persentase_bimbingan');
+  if(sidang.val()+bimbing.val()>100){
+    switch(changed){
+      case "bimbing": sidang.val(100-bimbing.val()); break;
+      case "sidang": bimbing.val(100-sidang.val()); break;
+    }
+  }
+}
+
 function mulai_kegiatan(data){
   var fd = new FormData();
   for ( var key in data ) {
