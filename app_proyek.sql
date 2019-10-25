@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2019 at 07:35 AM
+-- Generation Time: Oct 25, 2019 at 05:26 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -69,49 +69,51 @@ DELIMITER ;
 CREATE TABLE `bimbingan` (
   `id_bimbingan` int(24) NOT NULL,
   `tgl_bimbingan` date NOT NULL,
-  `keterangan` varchar(300) DEFAULT NULL,
+  `keterangan` varchar(50) NOT NULL,
+  `catatan` varchar(300) NOT NULL,
   `status_bimbingan` int(1) NOT NULL,
-  `id_proyek` int(16) NOT NULL
+  `id_proyek` int(16) NOT NULL,
+  `nilai_bimbingan` int(100) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bimbingan`
 --
 
-INSERT INTO `bimbingan` (`id_bimbingan`, `tgl_bimbingan`, `keterangan`, `status_bimbingan`, `id_proyek`) VALUES
-(1, '2019-10-03', 'qwfqqfw', 1, 3),
-(2, '2019-10-04', 'qwfqqfwa', 1, 3),
-(3, '2019-10-05', 'qwfqqfwa', 1, 3),
-(4, '2019-10-06', 'qwfqqfwa', 1, 3),
-(5, '2019-10-07', 'qwfqqfwa', 1, 3),
-(6, '2019-10-08', 'qwfqqfwa', 1, 3),
-(7, '2019-10-09', 'qwfqqfwa', 1, 3),
-(8, '2019-10-10', 'qwfqqfwa', 1, 3),
-(9, '2019-10-03', 'iewfoiwe', 1, 5),
-(10, '2019-10-07', 'asfasfas', 1, 7),
-(11, '2019-10-08', 'asfasfasasfsafsa', 1, 7),
-(12, '2019-10-11', 'wefwef', 1, 7),
-(13, '2019-10-12', 'wgwegwegweweg', 1, 7),
-(14, '2019-10-13', 'wgwegwegwewwegwegweeg', 1, 7),
-(15, '2019-10-14', 'wgwegwegwwegwegewgwewwegwegweega', 1, 7),
-(16, '2019-10-15', 'wgwegwegwwegwegewgwewwegwegweega', 1, 7),
-(17, '2019-10-16', 'wgwegwegwwegwegewgwewwegwegweega', 1, 7),
-(18, '2019-10-10', 'awfaw', 1, 4),
-(19, '2019-10-11', 'awfaw', 1, 4),
-(20, '2019-10-12', 'awfaw', 1, 4),
-(21, '2019-10-14', 'awfaw', 1, 4),
-(22, '2019-10-15', 'awfaw', 1, 4),
-(23, '2019-10-16', 'awfaw', 1, 4),
-(24, '2019-10-17', 'awfaw', 1, 4),
-(25, '2019-10-18', 'awfaw', 1, 4),
-(26, '2019-10-10', 'ugvtyvty', 1, 6),
-(27, '2019-10-15', 'hahahaha', 1, 6),
-(28, '2019-10-24', 'protyekkfcakepoojd', 1, 6),
-(29, '2019-10-31', 'geloood', 1, 6),
-(30, '2019-11-06', 'geloood wkwk', 1, 6),
-(31, '2019-11-13', 'GELUD TEROOOS', 1, 6),
-(32, '2019-11-14', 'GELUD TEROOOS', 1, 6),
-(33, '2019-11-15', 'GELUD TEROOOS', 1, 6);
+INSERT INTO `bimbingan` (`id_bimbingan`, `tgl_bimbingan`, `keterangan`, `catatan`, `status_bimbingan`, `id_proyek`, `nilai_bimbingan`) VALUES
+(1, '2019-10-03', 'qwfqqfw', '', 1, 3, 0),
+(2, '2019-10-04', 'qwfqqfwa', '', 1, 3, 0),
+(3, '2019-10-05', 'qwfqqfwa', '', 1, 3, 0),
+(4, '2019-10-06', 'qwfqqfwa', '', 1, 3, 0),
+(5, '2019-10-07', 'qwfqqfwa', '', 1, 3, 0),
+(6, '2019-10-08', 'qwfqqfwa', '', 1, 3, 0),
+(7, '2019-10-09', 'qwfqqfwa', '', 1, 3, 0),
+(8, '2019-10-10', 'qwfqqfwa', '', 1, 3, 0),
+(9, '2019-10-03', 'iewfoiwe', '', 1, 5, 0),
+(10, '2019-10-07', 'asfasfas', '', 1, 7, 0),
+(11, '2019-10-08', 'asfasfasasfsafsa', '', 1, 7, 0),
+(12, '2019-10-11', 'wefwef', '', 1, 7, 0),
+(13, '2019-10-12', 'wgwegwegweweg', '', 1, 7, 0),
+(14, '2019-10-13', 'wgwegwegwewwegwegweeg', '', 1, 7, 0),
+(15, '2019-10-14', 'wgwegwegwwegwegewgwewwegwegweega', '', 1, 7, 0),
+(16, '2019-10-15', 'wgwegwegwwegwegewgwewwegwegweega', '', 1, 7, 0),
+(17, '2019-10-16', 'wgwegwegwwegwegewgwewwegwegweega', '', 1, 7, 0),
+(18, '2019-10-10', 'awfaw', '', 1, 4, 0),
+(19, '2019-10-11', 'awfaw', '', 1, 4, 0),
+(20, '2019-10-12', 'awfaw', '', 1, 4, 0),
+(21, '2019-10-14', 'awfaw', '', 1, 4, 0),
+(22, '2019-10-15', 'awfaw', '', 1, 4, 0),
+(23, '2019-10-16', 'awfaw', '', 1, 4, 0),
+(24, '2019-10-17', 'awfaw', '', 1, 4, 0),
+(25, '2019-10-18', 'awfaw', '', 1, 4, 0),
+(26, '2019-10-10', 'ugvtyvty', 'qwfwqfqw', 1, 6, 0),
+(27, '2019-10-15', 'hahahaha', 'oqeufuqeq', 1, 6, 0),
+(28, '2019-10-24', 'protyekkfcakepoojd', '', 1, 6, 0),
+(29, '2019-10-31', 'geloood', '', 1, 6, 0),
+(30, '2019-11-06', 'geloood wkwk', '', 1, 6, 0),
+(31, '2019-11-13', 'GELUD TEROOOS', '', 1, 6, 0),
+(32, '2019-11-14', 'GELUD TEROOOS', '', 1, 6, 0),
+(33, '2019-11-15', 'GELUD TEROOOS', '', 1, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -174,16 +176,21 @@ CREATE TABLE `kegiatan` (
   `angkatan` varchar(9) NOT NULL,
   `tgl_mulai` date NOT NULL,
   `tgl_selesai` date NOT NULL,
-  `semester` char(1) NOT NULL
+  `semester` char(1) NOT NULL,
+  `min_bimbingan` int(2) NOT NULL,
+  `persentase_sidang` int(3) NOT NULL,
+  `persentase_bimbingan` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kegiatan`
 --
 
-INSERT INTO `kegiatan` (`id_kegiatan`, `prodi`, `nama_kegiatan`, `jenis_kegiatan`, `id_koordinator`, `status_mulai`, `angkatan`, `tgl_mulai`, `tgl_selesai`, `semester`) VALUES
-(18, '14', 'Proyek I', NULL, '3217061702990004', 1, '2017/2018', '2019-10-01', '2019-10-09', '1'),
-(19, '14', 'Proyek II', NULL, '3217061702990005', 0, '2017/2018', '2019-10-01', '2019-10-09', '2');
+INSERT INTO `kegiatan` (`id_kegiatan`, `prodi`, `nama_kegiatan`, `jenis_kegiatan`, `id_koordinator`, `status_mulai`, `angkatan`, `tgl_mulai`, `tgl_selesai`, `semester`, `min_bimbingan`, `persentase_sidang`, `persentase_bimbingan`) VALUES
+(18, '14', 'Proyek I', NULL, '3217061702990004', 1, '2017/2018', '2019-10-01', '2019-10-09', '1', 0, 0, 0),
+(19, '14', 'Proyek II', NULL, '3217061702990005', 0, '2017/2018', '2019-10-01', '2019-10-09', '2', 0, 0, 0),
+(20, '13', 'Coba', NULL, '3217061702990001', 1, '2017/2018', '2019-10-09', '2019-10-24', '4', 10, 0, 0),
+(21, '14', 'qfqwf', NULL, '3217061702990005', 0, '2', '2019-10-17', '2019-10-31', '1', 8, 43, 57);
 
 -- --------------------------------------------------------
 
@@ -198,134 +205,135 @@ CREATE TABLE `mahasiswa` (
   `angkatan` varchar(9) DEFAULT NULL,
   `tempat_lahir` varchar(35) DEFAULT NULL,
   `tgl_lahir` date DEFAULT NULL,
-  `prodi` int(2) DEFAULT NULL
+  `prodi` int(2) DEFAULT NULL,
+  `semester` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`npm`, `nama`, `alamat`, `angkatan`, `tempat_lahir`, `tgl_lahir`, `prodi`) VALUES
-('1173001', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173002', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173003', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173004', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173005', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173006', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173007', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173008', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173009', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173010', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173011', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173012', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173013', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173014', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173015', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173016', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173017', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173018', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173019', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173020', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173021', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173022', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173023', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173024', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173025', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173026', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173027', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173028', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173029', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173030', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173031', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173032', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173033', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173034', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173035', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173036', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173037', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173038', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173039', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173040', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173041', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173042', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173043', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173044', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173045', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173046', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173047', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173048', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173049', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173050', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173051', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173052', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173053', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173054', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173055', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173056', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173057', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173058', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173059', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173060', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173061', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173062', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173063', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173064', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173065', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173066', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173067', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173068', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173069', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173070', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173071', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173072', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173073', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173074', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173075', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173076', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173077', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173078', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173079', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173080', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173081', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173082', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173083', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173084', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173085', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173086', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173087', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173088', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173089', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173090', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173091', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173092', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173093', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173094', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173095', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173096', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173097', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173098', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173099', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173100', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173101', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173102', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173103', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173104', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173105', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173106', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1173107', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13),
-('1173108', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13),
-('1173109', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13),
-('1173110', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13),
-('1174001', 'Luthfi', NULL, '2017/2018', NULL, NULL, 14),
-('1174002', 'Hagan', NULL, '2017/2018', NULL, NULL, 14),
-('1174003', 'Tia', NULL, '2017/2018', NULL, NULL, 14),
-('1174004', 'Luthfi', NULL, '2017/2018', NULL, NULL, 14),
-('1174005', 'Hagan', NULL, '2017/2018', NULL, NULL, 14),
-('1174006', 'Tia', NULL, '2017/2018', NULL, NULL, 14),
-('1174007', 'Luthfi', NULL, '2017/2018', NULL, NULL, 14),
-('1174008', 'Hagan', NULL, '2017/2018', NULL, NULL, 14),
-('1174009', 'Tia', NULL, '2017/2018', NULL, NULL, 14),
-('1174010', 'Luthfi', NULL, '2017/2018', NULL, NULL, 14);
+INSERT INTO `mahasiswa` (`npm`, `nama`, `alamat`, `angkatan`, `tempat_lahir`, `tgl_lahir`, `prodi`, `semester`) VALUES
+('1173001', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173002', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173003', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173004', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173005', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173006', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173007', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173008', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173009', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173010', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173011', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173012', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173013', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173014', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173015', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173016', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173017', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173018', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173019', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173020', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173021', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173022', 'Anak Tiga De', 'asfasfafa', '2017/2018', '', '0000-00-00', 13, 5),
+('1173023', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173024', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173025', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173026', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173027', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173028', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173029', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173030', 'Anak Tiga De', '', '2017/2018', '', '0000-00-00', 13, 5),
+('1173031', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173032', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173033', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173034', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173035', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173036', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173037', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173038', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173039', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173040', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173041', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173042', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173043', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173044', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173045', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173046', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173047', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173048', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173049', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173050', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173051', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173052', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173053', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173054', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173055', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173056', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173057', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173058', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173059', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173060', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173061', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173062', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173063', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173064', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173065', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173066', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173067', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173068', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173069', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173070', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173071', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173072', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173073', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173074', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173075', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173076', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173077', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173078', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173079', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173080', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173081', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173082', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173083', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173084', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173085', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173086', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173087', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173088', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173089', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173090', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173091', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173092', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173093', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173094', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173095', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173096', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173097', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173098', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173099', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173100', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173101', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173102', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173103', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173104', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173105', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173106', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173107', 'Tiga De Anak', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173108', 'Tiga Anak De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173109', 'Anak De Tiga', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1173110', 'Anak Tiga De', NULL, '2017/2018', NULL, NULL, 13, 1),
+('1174001', 'Luthfi', 'Bandung', '2', 'Bandung', '2019-10-15', 14, 1),
+('1174002', 'Hagan', NULL, '2017/2018', NULL, NULL, 14, 1),
+('1174003', 'Tia', NULL, '2017/2018', NULL, NULL, 14, 1),
+('1174004', 'Luthfi', NULL, '2017/2018', NULL, NULL, 14, 1),
+('1174005', 'Hagan', NULL, '2017/2018', NULL, NULL, 14, 1),
+('1174006', 'Tia', NULL, '2017/2018', NULL, NULL, 14, 1),
+('1174007', 'Luthfi', NULL, '2017/2018', NULL, NULL, 14, 1),
+('1174008', 'Hagan', NULL, '2017/2018', NULL, NULL, 14, 1),
+('1174009', 'Tia', NULL, '2017/2018', NULL, NULL, 14, 1),
+('1174010', 'Luthfi', NULL, '2017/2018', NULL, NULL, 14, 1);
 
 --
 -- Triggers `mahasiswa`
@@ -372,9 +380,11 @@ CREATE TABLE `proyek` (
   `id_proyek` int(16) NOT NULL,
   `judul_proyek` text,
   `abstrak` text,
+  `keyword_abstrak` text,
   `latar_belakang` text,
   `identifikasi_masalah` text,
   `daftar_pustaka` text,
+  `kategori_proyek` text,
   `id_kegiatan` int(8) NOT NULL,
   `id_dosen_pembimbing` char(16) DEFAULT NULL,
   `id_dosen_penguji` char(16) DEFAULT NULL,
@@ -385,20 +395,22 @@ CREATE TABLE `proyek` (
   `ruangan` varchar(4) DEFAULT NULL,
   `npm_ketua` char(7) NOT NULL,
   `status_proyek` int(1) DEFAULT NULL,
-  `npm_anggota` char(7) DEFAULT NULL
+  `npm_anggota` char(7) DEFAULT NULL,
+  `status_anggota` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `proyek`
 --
 
-INSERT INTO `proyek` (`id_proyek`, `judul_proyek`, `abstrak`, `latar_belakang`, `identifikasi_masalah`, `daftar_pustaka`, `id_kegiatan`, `id_dosen_pembimbing`, `id_dosen_penguji`, `tgl_sidang`, `tgl_sidang_ulang`, `nilai_pembimbing`, `nilai_penguji`, `ruangan`, `npm_ketua`, `status_proyek`, `npm_anggota`) VALUES
-(3, 'qfasfsg', 'qwegweg', 'wegwe', 'wegew', 'wegew', 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174001', 1, '1174007'),
-(4, 'qfwfqeefwef', 'weew', 'wefew', 'wegew', 'wegwegw', 18, '3217061702990004', '3217061702990007', '2019-10-31', NULL, NULL, NULL, '101', '1174002', 2, NULL),
-(5, 'eqwfewgew', 'wegewg', 'gwegweg', 'wewgwegw', 'eqwgwegw', 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174003', 1, NULL),
-(6, 'wefwef', 'wegwewf', 'gwewgfew', 'wegweg', 'wwegewgwe', 18, '3217061702990005', '3217061702990006', '2019-10-11', NULL, NULL, NULL, '102', '1174004', 2, NULL),
-(7, 'qwflknqhwoifqw', 'qwqoefweoif', 'qoweifweoif', 'oiwehfoiwejf', 'wefeoiwfwoie', 18, '3217061702990007', '3217061702990004', '2019-10-10', NULL, NULL, NULL, '111', '1174009', 2, '1174005'),
-(8, 'wegwe', 'weew', 'wegweg', 'wegweg', 'wegewg', 18, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1174006', 0, '1174008');
+INSERT INTO `proyek` (`id_proyek`, `judul_proyek`, `abstrak`, `keyword_abstrak`, `latar_belakang`, `identifikasi_masalah`, `daftar_pustaka`, `kategori_proyek`, `id_kegiatan`, `id_dosen_pembimbing`, `id_dosen_penguji`, `tgl_sidang`, `tgl_sidang_ulang`, `nilai_pembimbing`, `nilai_penguji`, `ruangan`, `npm_ketua`, `status_proyek`, `npm_anggota`, `status_anggota`) VALUES
+(3, 'qfasfsg', 'qwegweg', NULL, 'wegwe', 'wegew', 'wegew', NULL, 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174001', 1, '1174007', NULL),
+(4, 'qfwfqeefwef', 'weew', NULL, 'wefew', 'wegew', 'wegwegw', NULL, 18, '3217061702990004', '3217061702990007', '2019-10-31', NULL, NULL, NULL, '101', '1174002', 2, NULL, NULL),
+(5, 'eqwfewgew', 'wegewg', NULL, 'gwegweg', 'wewgwegw', 'eqwgwegw', NULL, 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174003', 1, NULL, NULL),
+(6, 'wefwef', 'wegwewf', NULL, 'gwewgfew', 'wegweg', 'wwegewgwe', NULL, 18, '3217061702990005', '3217061702990006', '2019-10-11', NULL, NULL, NULL, '102', '1174004', 2, NULL, NULL),
+(7, 'qwflknqhwoifqw', 'qwqoefweoif', NULL, 'qoweifweoif', 'oiwehfoiwejf', 'wefeoiwfwoie', NULL, 18, '3217061702990007', '3217061702990004', '2019-10-10', NULL, NULL, NULL, '111', '1174009', 2, '1174005', NULL),
+(8, 'wegwe', 'weew', NULL, 'wegweg', 'wegweg', 'wegewg', NULL, 18, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1174006', 0, '1174008', NULL),
+(9, 'asfsaf', 'qwfqwf', 'qqqasa', 'fqfqwf', 'qwfqww', 'qfqwf', 'qwfwqf', 20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1173010', 0, '1173002', NULL);
 
 -- --------------------------------------------------------
 
@@ -616,13 +628,13 @@ ALTER TABLE `bimbingan`
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `id_kegiatan` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_kegiatan` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `proyek`
 --
 ALTER TABLE `proyek`
-  MODIFY `id_proyek` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_proyek` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
