@@ -10,7 +10,9 @@ var bimb_table = $('#data-bimbingan').DataTable({
       {"render":function(data, type, row, meta){return '';}, title:"#", "orderable":false},
       {"data": "nama_kegiatan", title:"Kegiatan"},
       {"data": "judul_proyek", title:"Judul"},
-      {"data": "total_bimbingan", title:"Total Bimbingan",  width:"10%"},
+      {"render": function(data, type, row, meta){
+        return row.min_bimbingan-row.total_bimbingan;
+      }, title:"Total Bimbingan",  width:"10%"},
       {"render":
         function(data, type, row, meta){
           var anggota = "";

@@ -35,6 +35,7 @@ class M_Proyek extends CI_Model {
     }
     //end of kondisi dinamis
     $isi = $this->db->get();
+    //echo $this->db->last_query();
     if($isi){
       return array('status'=>'1','isi'=>$isi);
     }else{

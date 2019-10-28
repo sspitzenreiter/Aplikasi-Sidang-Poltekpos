@@ -92,14 +92,7 @@
             </div>
   <script>
     $(function(){
-      $("#save").click(function(){
-        $('#modal-default').modal('toggle');
-        Swal.fire('Success', 'Data Submitted ', 'success');
-      });
-      $("#delete").click(function(){
-
-        Swal.fire('Success', 'Data Deleted', 'success');
-      });
+      
 
     });
   </script>

@@ -289,27 +289,22 @@ class Dosen extends CI_Controller {
 				$data['nav_open'] = "koordinator";
 				$data['jscallurl'] = "dosen/koor_app_pembimbing.js";
 				$data = array_merge($data, $this->con_config);
-				$this->session->set_flashdata('id_proyek', $this->input->post('id_proyek'));
-				$this->session->set_flashdata('judul_proyek', $this->input->post('judul_proyek'));
 				$this->load->view('admin/data_dosen', $data);
 			break;
 			case "PilihPembimbing:Data":
+				$maks_anak = "(select count(*) from proyek where id_dosen_pembimbing = dosen.nik && status_proyek='1' && id_kegiatan = '".$_SESSION['stat_koor']['id_kegiatan']."') <= round((select count(*) from mahasiswa where prodi=dosen.prodi) / (select count(*) from dosen as a where a.prodi = dosen.prodi), 0)";
 				$search[0]['type']="where";
 				$search[0]['value']=array('prodi'=>$_SESSION['prodi']);
+				$search[1]['type']="where";
+				$search[1]['value']=$maks_anak;
 				$query_extras[0] = "(select count(*) from proyek where id_dosen_pembimbing = dosen.nik && status_proyek='1' && id_kegiatan = '".$_SESSION['stat_koor']['id_kegiatan']."') as total_pembimbing";
-				$query_extras[1] = "(select count(*) from mahasiswa where prodi=dosen.prodi) / (select count(*) from dosen as a where a.prodi = dosen.prodi) as maks_anak";
-				echo $this->Tampil_Data('dosen', array('id_proyek'=>$_SESSION['id_proyek'], 'judul_proyek'=>$_SESSION['judul_proyek']), $search, $query_extras);
+				echo $this->Tampil_Data('dosen', "", $search, $query_extras);
 			break;
 			case "PilihPembimbing:Update":
 				$data = $this->input->post();
 				$data['status_proyek']="1";
 				$where = array('id_proyek'=>$data['id_proyek']);
 				echo $this->Ubah_Data($data, $where, 'proyek');
-			break;
-			case "PilihPembimbing:Sukses":
-				$data = $this->input->post();
-				$this->session->set_flashdata('notification', json_decode($data['notification'], true));
-				redirect($data['link']);
 			break;
 		}
 		//$this->load->view('common/footer');

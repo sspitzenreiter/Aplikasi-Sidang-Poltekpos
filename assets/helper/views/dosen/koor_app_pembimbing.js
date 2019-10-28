@@ -1,6 +1,8 @@
-var id_proyek = "";
-var judul_proyek = "";
-var dsn_table = $('#data-dosen').DataTable({
+var session = new SessionData();
+var id_proyek = session.getSession("id_proyek");
+var judul_proyek = session.getSession("judul_proyek");
+
+var dsn_table = $('.main-table').DataTable({
     "ajax": {
         "type":"GET",
         "url":window.location.href+":Data",
@@ -8,8 +10,6 @@ var dsn_table = $('#data-dosen').DataTable({
         var dump = JSON.parse(JSON.stringify(json));
         if(dump.data!=null){
             if(dump.data.length>0){
-            id_proyek = dump.extras.id_proyek;
-            judul_proyek = dump.extras.judul_proyek;
             return json.data;
             }else{
             var alert_config = {

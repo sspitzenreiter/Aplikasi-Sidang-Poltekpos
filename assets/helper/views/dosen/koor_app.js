@@ -1,3 +1,4 @@
+var id_proyek = "";
 var approval_table = $('#data-approval').DataTable({
     "ajax": {
       "type":"POST",
@@ -12,7 +13,7 @@ var approval_table = $('#data-approval').DataTable({
       {"data": "nama_kegiatan",title:"Kegiatan"},
       {"render":
         function(data, type, row, meta){
-          return '<button type="button" class="btn btn-default" id="btn-approve">Approve</button><button type="button" class="btn btn-default" id="btn-tolak">Tolak</button>';
+          return '<button type="button" class="btn btn-default" id="btn-approve">Aksi</button>';
         }, title:"Aksi"
       }
     ],
@@ -47,16 +48,53 @@ var approval_table = $('#data-approval').DataTable({
           alert_toast(response);
           if(JSON.parse(response).status=="success"){
             approval_table.ajax.reload();
-            
           }
         }
       });
   }
 
+  function pilih_pembimbing(){
+    $.ajax({
+      url:base_url("Dosen/Approval/PilihPembimbing:Data"),
+      type:'post',
+      contentType:false,
+      processData:false,
+      success:function(response){
+        $("#select-pembimbing").empty();
+        $.each(JSON.parse(response).data, function(index, value){
+          $("#select-pembimbing").append("<option value='"+value.nik+"'>"+value.nama+"</option>");
+        });
+      }
+    });
+  }
+
+  function approve_proyek(){
+    var fd = form_data('form-approval');
+    fd.append('id_proyek', id_proyek);
+    id_proyek = "";
+    $.ajax({
+      url:base_url("Dosen/Approval/PilihPembimbing:Update"),
+      type:'post',
+      data: fd,
+      contentType: false,
+      processData: false,
+      success: function(response){
+        alert_toast(response);
+        if(JSON.parse(response).status=="success"){
+            $("#modal-approval").modal('toggle');
+            approval_table.ajax.reload();
+        }
+      }
+    }); 
+  }
 $(function(){    
       $("#data-approval tbody").on('click', '#btn-approve', function(){
         var data = approval_table.row( $(this).parents('tr') ).data();
-        $.redirect(window.location.href+"/PilihPembimbing", {id_proyek:data.id_proyek, judul_proyek:data.judul_proyek});
+        $('#modal-approval').modal('toggle');
+        id_proyek = data.id_proyek;
+        pilih_pembimbing();
+        //session.setSessions({id_proyek:data.id_proyek, judul_proyek:data.judul_proyek});
+        //window.location.href=base_url("Dosen/Approval/PilihPembimbing");
       });
 
       $("#data-approval tbody").on('click', '#btn-tolak', function(){
@@ -72,5 +110,9 @@ $(function(){
             type:"confirmation"
           };
           alert_toast(JSON.stringify(notif_config));
+      });
+
+      $('#save').on('click', function(){
+        approve_proyek();
       });
 });

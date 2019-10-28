@@ -72,7 +72,7 @@
 
   	});
   </script>
-        <div class="modal fade" id="modal-default">
+        <div class="modal fade" id="modal-approval">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -83,26 +83,21 @@
               </button>
             </div>
             <div class="modal-body">
-              <form role="form">
+              <form role="form" id="form-approval">
                 <div class="card-body">
-
-                <div class="form-group">
-                  <label>Dosen Pembimbing</label>
-                  <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">Tia</option>
-                    <option>Upi</option>
-                    <option>Bin</option>
-                    <option>Tia</option>
-                  </select>
-                </div>
-                </div>
-                <!-- /.card-body -->
-
-
+                  <div class="form-group">
+                    <label>Alasan Approval</label>
+                    <input type="text" class="form-control" name="alasan_approval">
+                  </div>
+                  <div class="form-group">
+                    <label>Dosen Pembimbing</label>
+                    <select class="form-control select2" style="width: 100%;" id="select-pembimbing" name="id_dosen_pembimbing">
+                      
+                    </select>
+                  </div>
+                </div>                
               </form>
-
-
-
+            </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button id="save" type="button" class="btn btn-primary">Save changes</button>
