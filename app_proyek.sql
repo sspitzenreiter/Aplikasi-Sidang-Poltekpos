@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2019 at 05:26 AM
+-- Generation Time: Oct 29, 2019 at 06:24 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -113,7 +113,10 @@ INSERT INTO `bimbingan` (`id_bimbingan`, `tgl_bimbingan`, `keterangan`, `catatan
 (30, '2019-11-06', 'geloood wkwk', '', 1, 6, 0),
 (31, '2019-11-13', 'GELUD TEROOOS', '', 1, 6, 0),
 (32, '2019-11-14', 'GELUD TEROOOS', '', 1, 6, 0),
-(33, '2019-11-15', 'GELUD TEROOOS', '', 1, 6, 0);
+(33, '2019-11-15', 'GELUD TEROOOS', '', 1, 6, 0),
+(34, '2019-11-05', 'wddwaadwa', 'gud dgud', 1, 9, 100),
+(35, '2019-10-15', 'asfsaf', '', 0, 7, 0),
+(36, '2019-10-16', 'coba doang', '', 0, 7, 0);
 
 -- --------------------------------------------------------
 
@@ -187,10 +190,11 @@ CREATE TABLE `kegiatan` (
 --
 
 INSERT INTO `kegiatan` (`id_kegiatan`, `prodi`, `nama_kegiatan`, `jenis_kegiatan`, `id_koordinator`, `status_mulai`, `angkatan`, `tgl_mulai`, `tgl_selesai`, `semester`, `min_bimbingan`, `persentase_sidang`, `persentase_bimbingan`) VALUES
-(18, '14', 'Proyek I', NULL, '3217061702990004', 1, '2017/2018', '2019-10-01', '2019-10-09', '1', 0, 0, 0),
-(19, '14', 'Proyek II', NULL, '3217061702990005', 0, '2017/2018', '2019-10-01', '2019-10-09', '2', 0, 0, 0),
+(18, '14', 'Proyek I', NULL, '3217061702990004', 1, '2017/2018', '2019-10-01', '2019-10-09', '1', 10, 0, 0),
+(19, '14', 'Proyek II', NULL, '3217061702990005', 0, '2017/2018', '2019-10-01', '2019-10-09', '2', 22, 0, 0),
 (20, '13', 'Coba', NULL, '3217061702990001', 1, '2017/2018', '2019-10-09', '2019-10-24', '4', 10, 0, 0),
-(21, '14', 'qfqwf', NULL, '3217061702990005', 0, '2', '2019-10-17', '2019-10-31', '1', 8, 43, 57);
+(21, '14', 'qfqwf', NULL, '3217061702990005', 0, '2', '2019-10-17', '2019-10-31', '1', 8, 43, 57),
+(22, '13', 'proyekyej', NULL, '3217061702990001', 1, '2', '2019-10-29', '2019-10-29', '1', 9, 80, 20);
 
 -- --------------------------------------------------------
 
@@ -396,21 +400,23 @@ CREATE TABLE `proyek` (
   `npm_ketua` char(7) NOT NULL,
   `status_proyek` int(1) DEFAULT NULL,
   `npm_anggota` char(7) DEFAULT NULL,
-  `status_anggota` int(1) DEFAULT NULL
+  `status_anggota` int(1) DEFAULT NULL,
+  `alasan_approval` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `proyek`
 --
 
-INSERT INTO `proyek` (`id_proyek`, `judul_proyek`, `abstrak`, `keyword_abstrak`, `latar_belakang`, `identifikasi_masalah`, `daftar_pustaka`, `kategori_proyek`, `id_kegiatan`, `id_dosen_pembimbing`, `id_dosen_penguji`, `tgl_sidang`, `tgl_sidang_ulang`, `nilai_pembimbing`, `nilai_penguji`, `ruangan`, `npm_ketua`, `status_proyek`, `npm_anggota`, `status_anggota`) VALUES
-(3, 'qfasfsg', 'qwegweg', NULL, 'wegwe', 'wegew', 'wegew', NULL, 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174001', 1, '1174007', NULL),
-(4, 'qfwfqeefwef', 'weew', NULL, 'wefew', 'wegew', 'wegwegw', NULL, 18, '3217061702990004', '3217061702990007', '2019-10-31', NULL, NULL, NULL, '101', '1174002', 2, NULL, NULL),
-(5, 'eqwfewgew', 'wegewg', NULL, 'gwegweg', 'wewgwegw', 'eqwgwegw', NULL, 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174003', 1, NULL, NULL),
-(6, 'wefwef', 'wegwewf', NULL, 'gwewgfew', 'wegweg', 'wwegewgwe', NULL, 18, '3217061702990005', '3217061702990006', '2019-10-11', NULL, NULL, NULL, '102', '1174004', 2, NULL, NULL),
-(7, 'qwflknqhwoifqw', 'qwqoefweoif', NULL, 'qoweifweoif', 'oiwehfoiwejf', 'wefeoiwfwoie', NULL, 18, '3217061702990007', '3217061702990004', '2019-10-10', NULL, NULL, NULL, '111', '1174009', 2, '1174005', NULL),
-(8, 'wegwe', 'weew', NULL, 'wegweg', 'wegweg', 'wegewg', NULL, 18, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1174006', 0, '1174008', NULL),
-(9, 'asfsaf', 'qwfqwf', 'qqqasa', 'fqfqwf', 'qwfqww', 'qfqwf', 'qwfwqf', 20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1173010', 0, '1173002', NULL);
+INSERT INTO `proyek` (`id_proyek`, `judul_proyek`, `abstrak`, `keyword_abstrak`, `latar_belakang`, `identifikasi_masalah`, `daftar_pustaka`, `kategori_proyek`, `id_kegiatan`, `id_dosen_pembimbing`, `id_dosen_penguji`, `tgl_sidang`, `tgl_sidang_ulang`, `nilai_pembimbing`, `nilai_penguji`, `ruangan`, `npm_ketua`, `status_proyek`, `npm_anggota`, `status_anggota`, `alasan_approval`) VALUES
+(3, 'qfasfsg', 'qwegweg', NULL, 'wegwe', 'wegew', 'wegew', NULL, 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174001', 1, '1174007', NULL, ''),
+(4, 'qfwfqeefwef', 'weew', NULL, 'wefew', 'wegew', 'wegwegw', NULL, 18, '3217061702990004', '3217061702990007', '2019-10-31', NULL, NULL, NULL, '101', '1174002', 1, NULL, NULL, ''),
+(5, 'eqwfewgew', 'wegewg', NULL, 'gwegweg', 'wewgwegw', 'eqwgwegw', NULL, 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174003', 1, NULL, NULL, ''),
+(6, 'wefwef', 'wegwewf', NULL, 'gwewgfew', 'wegweg', 'wwegewgwe', NULL, 18, '3217061702990005', '3217061702990006', '2019-10-11', NULL, NULL, NULL, '102', '1174004', 2, NULL, NULL, ''),
+(7, 'qwflknqhwoifqw', 'qwqoefweoif', NULL, 'qoweifweoif', 'oiwehfoiwejf', 'wefeoiwfwoie', NULL, 18, '3217061702990007', '3217061702990004', '2019-10-10', NULL, NULL, NULL, '111', '1174009', 1, '1174005', NULL, ''),
+(8, 'wegwe', 'weew', NULL, 'wegweg', 'wegweg', 'wegewg', NULL, 18, '3217061702990004', NULL, NULL, NULL, NULL, NULL, NULL, '1174006', 1, '1174008', NULL, 'asfsaf'),
+(9, 'asfsaf', 'qwfqwf', 'qqqasa', 'fqfqwf', 'qwfqww', 'qfqwf', 'qwfwqf', 20, '3217061702990001', NULL, NULL, NULL, NULL, NULL, NULL, '1173010', 1, '1173002', NULL, 'cucok'),
+(10, 'blabla', 'wdugawduka', 'hah,asda,asda,asaasd', '1wwddwad', 'sadasda', 'asdaada', '', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1173090', 0, '1173004', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -622,19 +628,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `bimbingan`
 --
 ALTER TABLE `bimbingan`
-  MODIFY `id_bimbingan` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_bimbingan` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `id_kegiatan` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_kegiatan` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `proyek`
 --
 ALTER TABLE `proyek`
-  MODIFY `id_proyek` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_proyek` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
